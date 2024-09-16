@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pe.beyond.visanet.MainActivity">
+
+<android.support.percent.PercentRelativeLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Button
+        app:layout_marginPercent="10%"
+        android:id="@+id/buttonAutorizar"
+        android:onClick="clickAutorizar"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="10%"
+        android:text="Autorizar" />
+
+
+    <Button
+        android:id="@+id/buttonAnular"
+        android:layout_below="@+id/buttonAutorizar"
+        android:onClick="clickAnular"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="30%"
+        android:text="Anular" />
+
+
+    <Button
+        android:id="@+id/buttonReportes"
+        android:layout_below="@+id/buttonAnular"
+        android:onClick="clickReportes"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="70%"
+        android:text="Reportes" />
+
+
+
+</android.support.percent.PercentRelativeLayout>
+
+
+
+
+</FrameLayout>

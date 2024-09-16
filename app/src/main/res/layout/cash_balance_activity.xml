@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="@string/title_activity_cash_balance" />
+
+    <FrameLayout
+        android:id="@+id/fltLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_trans"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/margin_medium">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:labelFor="@+id/datePickerCashBalance"
+                android:text="@string/fecha"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <DatePicker
+                android:id="@+id/datePickerCashBalance"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnPrint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/print"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

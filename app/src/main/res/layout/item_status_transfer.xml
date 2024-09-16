@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvwCodeProducto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/black"
+            tools:text="1234234"
+            />
+        <LinearLayout
+            android:id="@+id/lltContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvwProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:layout_marginEnd="8dp"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="USB 5000TB" />
+
+
+
+            <ImageButton
+                android:id="@+id/ivbDelete"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:adjustViewBounds="true"
+                android:backgroundTint="@color/visanet_gray_numpad"
+                android:background="@drawable/ic_delete"
+                android:visibility="gone"
+                android:contentDescription="@null" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+              android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="5dp"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="Cantidad: " />
+
+            <TextView
+                android:id="@+id/tvwProductCantidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="1dp"
+                android:textColor="@android:color/black"
+                android:layout_marginStart="16dp"
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:text="Picking" />
+            <LinearLayout
+                android:id="@+id/lltContainerCant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_rounded_gray"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                >
+
+                <TextView
+                    android:id="@+id/tvwProductCantLess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:maxLines="1"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="14sp"
+                    android:visibility="visible"
+                    android:textStyle="bold"
+                    android:text=" - " />
+                <EditText
+                    android:id="@+id/tvwProductCant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:paddingStart="32dp"
+                    android:paddingEnd="32dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:maxLines="1"
+                    android:inputType="numberDecimal"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:visibility="visible"
+                    android:textStyle="bold"
+                    tools:text="1" />
+                <TextView
+                    android:id="@+id/tvwProductCantPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:maxLines="1"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:visibility="visible"
+                    android:textStyle="bold"
+                    android:text=" + " />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_gravity="bottom"
+        android:background="@color/background" />
+</FrameLayout>

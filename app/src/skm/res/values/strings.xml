@@ -1,0 +1,205 @@
+<!--
+  ~ Copyright 2017, The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">SKM Ventas</string>
+    <string name="company_name">SKM</string>
+    <string name="title_activity_login">@string/company_name</string>
+    <string name="no_comments">No comments</string>
+    <string name="loading_comments">Loading comments...</string>
+    <string name="loading_products">Loading products...</string>
+    <string name="cd_products_list">Products list</string>
+    <string name="cd_comments_list">Comments list</string>
+    <string name="cd_product_name">Name of the product</string>
+
+    <string name="sales_header_amount_label">Cantidad</string>
+    <string name="sales_header_product_label">Nombre del producto</string>
+    <string name="sales_header_unit_label">Unidad</string>
+    <string name="sales_header_total_label">Total</string>
+    <string name="sales_sub_title">Productos</string>
+    <string name="sales_title_report">Pedidos</string>
+    <string name="sales_client_label">Cliente:</string>
+    <string name="sales_select_client_button">CLIENTE</string>
+    <string name="sale_subtotal_label">Subtotal:</string>
+    <string name="sale_discount_label">Descuento:</string>
+    <string name="sale_tax_label">Impuesto:</string>
+    <string name="sale_total_label">Total:</string>
+    <string name="sale_make_sale_button">Resumen Pedido de Venta</string>
+    <string name="sale_make_sale_guia_button">Continuar Venta</string>
+    <string name="sales_title">Nuevo Pedido</string>
+    <string name="sale_add_product_button">Agregar Producto</string>
+    <string name="sale_add_product_manual_button">Manual</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Usuario</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Ingresar</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="btn_register_client">Aceptar</string>
+    <string name="btn_seleccionar_client">Seleccionar</string>
+    <string name="search_product_result_label">Resultado</string>
+    <string name="dni_ruc">DNI/RUC</string>
+    <string name="nombre_razonsocial">Nombres/Razon Social</string>
+    <string name="btn_buscar_cliente">RENIEC/SUNAT</string>
+    <string name="cam_permission_request_message">Necesitamos acceso a la camara para poder leer los codigos de barras.</string>
+    <string name="ok">OK</string>
+    <string name="cam_permission_request_message_dont_show">Necesitamos permiso a la camara para poder leer el codigo de barras, concedelo en la configuarion del app!</string>
+    <string name="search_scan_label">Escanear</string>
+    <string name="tipo_documento_prompt">Tipo de documento</string>
+    <string name="tipo_documento">Tipo de doc.</string>
+    <string name="btn_eliminar_pedido">Eliminar Pedido</string>
+    <string name="btn_imprimi_pedido">Imprimir Pedido</string>
+    <string name="btn_cobrar_pedido">Cobrar Pedido</string>
+    <string name="ending_title">Opciones</string>
+    <string name="title_activity_payment_activity">Payment</string>
+    <string name="btn_efectivo">EFECTIVO</string>
+    <string name="tvw_tipo_cobro">Cobranza</string>
+    <string name="btn_tarjeta">TARJETA</string>
+    <string name="tvw_tipo_tarjeta">Cobranza Tarjeta</string>
+    <string name="btn_diners">DINERS</string>
+    <string name="btn_master_card">MASTERCARD</string>
+    <string name="btn_visa">VISA</string>
+    <string name="btn_mpos">MPOS VISA</string>
+    <string name="sale_producto_label">Producto</string>
+    <string name="sale_item_discount_label">Dcto.</string>
+    <string name="sale_item_price">Precio</string>
+
+    <string name="propt_imei_title">IMEI</string>
+    <string name="sale_validation_no_products">No hay productos agregados</string>
+    <string name="title_activity_home">Home</string>
+    <string name="home_pedido_logout">Cerrar Sesion</string>
+    <string name="home_pedido_nuevo_label">Nuevo Pedido</string>
+    <string name="home_header_label">Menu Principal</string>
+    <string name="title_activity_menu">Menu</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Sistema De Pedidos</string>
+    <string name="nav_header_subtitle">Bienvenido</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="side_bar_item_pedido">Pedido</string>
+    <string name="side_bar_item_logout">Cerrar sesion</string>
+    <string name="tvwEfectivo">EFECTIVO</string>
+    <string name="tvwEstilos">ESTILOS</string>
+    <string name="bwFinalizar">FINALIZAR</string>
+    <string name="tarjeta">TARJETA</string>
+    <string name="lbl_tipo_documento">TIPO DE DOCUMENTO</string>
+    <string name="rdw_boleta">BOLETA</string>
+    <string name="rdw_factura">FACTURA</string>
+
+    <string name="title_sale_mayuscula">PEDIDO VENTA</string>
+    <string name="title_sale_tienda">PEDIDO TDA</string>
+    <string name="title_guide_tienda">GUÍA DE REMISIÓN</string>
+    <string name="title_guide_transfer">GR TRANSFERENCIA</string>
+    <string name="title_packing">LISTA DE PICKING</string>
+    <string name="title_packing_detail">PACKING</string>
+    <string name="confirmacion_extorno_picking">¿Esta seguro de Extornar el Picking?</string>
+    <string name="confirmacion_terminar_picking">¿Esta seguro de Terminar el Picking?</string>
+    <string name="title_sale">Pedido de Venta</string>
+    <string name="title_search">Buscar Producto</string>
+    <string name="title_payment">PAGOS</string>
+    <string name="title_ending">RESUMEN PEDIDO</string>
+    <string name="tvw_total_cobrar">TOTAL A COBRAR</string>
+    <string name="tvw_payment_tipo_documento">DOCUMENTO</string>
+    <string name="tvw_cobranza_mpos">Cobranza Tarjeta Mpos</string>
+    <string name="btn_mpos_master_card">MPOS MASTERCARD</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="tvw_url_base">Url base</string>
+    <string name="hint_url_base">http://my_host.com</string>
+    <string name="save_changes">Guardar Cambios</string>
+    <string name="hint_imagen_url">http://www.img.com/myimage.png</string>
+    <string name="tvw_img_logo_url">URL Logo</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="payment_no_receipt">No se encontro documento a imprimir</string>
+    <string name="printer_error">Error seleccionando la impresora</string>
+    <string name="cliente_direccion">Dirección</string>
+    <string name="cliente_email">Correo</string>
+    <string name="cliente_phone">Teléfono</string>
+    <string name="imei_scan_alert">Escanear IMEI</string>
+    <string name="complementary_title">Garantía Extendida </string>
+    <string name="complementary_return">Regresar</string>
+    <string name="register">Registrar</string>
+    <string name="complementary_products_tittle">Productos Complementarios</string>
+    <string name="garanties_tittle">Garantías</string>
+    <string name="complementary_sub_title">Garantía Extendida</string>
+    <string name="numero_documento">NRO. DOCUMENTO</string>
+    <string name="numero_transaccion">NRO. OPERACION</string>
+    <string name="anular">ANULAR</string>
+    <string name="title_sale_cancel">Anular</string>
+    <string name="title_activity_operations_report">Reporte de Operaciones</string>
+    <string name="generate_operations_report">Generar Reporte</string>
+    <string name="tvw_impresora">Impresora:</string>
+    <string name="hint_impresora">Mi Impresora...</string>
+    <string name="propt_imei_title2">IMEI 2</string>
+    <string name="imei_scan_alert2">Escanear el IMEI 2</string>
+    <string name="vuelo">VUELO</string>
+    <string name="title_activity_client">Clients</string>
+    <string name="tvw_total_venta">TOTAL VENTA</string>
+    <string name="tvwMakeAndWish">MAKE AND WISH</string>
+    <string name="make_and_wish_message">Acepta Donar su Redondeo a (0.10, 0.20, .....) \'0\' o en Blanco NO ACEPTA</string>
+    <string name="title_activity_cash_balance">Cierre Caja Movil</string>
+    <string name="fecha">FECHA</string>
+    <string name="print">IMPRIMIR</string>
+    <string name="title_activity_error">Error Report</string>
+    <string name="title_activity_documents_generated">Documentos Generados</string>
+    <string name="title_activity_generated_documents">Documentos Generados</string>
+    <string name="title_activity_generated_guide">Guía de Remisión</string>
+    <string name="title_activity_generated_inventa">Inventario Sensible</string>
+    <string name="title_activity_confirmar_transferencia">GR. Transferencia</string>
+    <string name="btn_search">BUSCAR</string>
+    <string name="label_client">Cliente</string>
+    <string name="label_numero_documento_generado">Numero</string>
+    <string name="label_total_documento_generado">Importe</string>
+    <string name="label_tipo_documento_generado">Tipo</string>
+    <string name="sale_tax_labelB">Impuesto B</string>
+    <string name="sale_tax_labelC">Impuesto C</string>
+    <string name="printer_not_found">Impresora configurada no encontrada</string>
+    <string name="printer_not_configured">No se configuró la impresora</string>
+    <string name="no_devices_paired">No hay dispositivos pareados</string>
+    <string name="btn_regresar">REGRESAR</string>
+    <string name="c_digo_del_producto">Código del producto : </string>
+    <string name="descripci_n">Descripción : </string>
+    <string name="c_digo_secuencial">Código Secuencial : </string>
+    <string name="precio_del_producto">Precio del producto : </string>
+    <string name="version">VERSION</string>
+    <string name="sale_add_description_button">Agregar Descripción</string>
+    <string name="warranty_size_wrong">Por el momento solo se puede ingresar un producto de garantía.</string>
+    <string name="monto_a_pagar_n_0_para_cancelar">Monto a pagar \n\'0\' para cancelar</string>
+    <string name="seleccione_una_tarjeta_nde_pago">SELECCIONE UNA TARJETA \nDE PAGO</string>
+    <string name="select_payment_other">SELECCIONE OTROS PAGOS</string>
+    <string name="cobranza_otros_pagos">Cobranza Otros Pagos</string>
+    <string name="tvw_cobranza_fpay">Cobranza Fpay</string>
+    <string name="tvw_cobranza_pLink">Cobranza Pago Link</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_packing">Packing</string>
+    <string name="title_activity_report_packing">Reporte Pedidos</string>
+    <string-array name="array_modo_transport">
+        <item>PUBLICO</item>
+        <item>PRIVADO</item>
+    </string-array>
+</resources>

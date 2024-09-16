@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:background="@color/visanet_transparent" >
+
+    <Button
+        android:id="@+id/buttonClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:layout_marginPercent="4%"
+        android:background="@android:color/transparent"
+        android:text="X"
+        android:textColor="@color/visanet_white"
+        android:textSize="@dimen/title_big_textSize" />
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonClose"
+        android:layout_centerHorizontal="true"
+        app:layout_marginPercent="2%"
+        android:gravity="center"
+        android:text="prueba"
+        android:textColor="@color/visanet_white"
+        android:textSize="@dimen/title_normal_textSize" />
+
+    <ScrollView  app:layout_marginPercent="5%" android:layout_width="fill_parent" android:layout_centerHorizontal="true" android:layout_height="fill_parent"    android:layout_below="@+id/textTitle">
+    <TextView
+        android:id="@+id/textDescription"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="prueba2"
+        android:scrollbars="vertical"
+        android:textColor="@color/visanet_white"
+        android:textSize="@dimen/title_small_textSize" />
+    </ScrollView>
+
+</android.support.percent.PercentRelativeLayout>

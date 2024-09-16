@@ -1,0 +1,10 @@
+rx.android.BuildConfig
+rx.android.MainThreadSubscription
+rx.android.MainThreadSubscription$1
+rx.android.plugins.RxAndroidPlugins
+rx.android.plugins.RxAndroidSchedulersHook
+rx.android.schedulers.AndroidSchedulers
+rx.android.schedulers.HandlerScheduler
+rx.android.schedulers.LooperScheduler
+rx.android.schedulers.LooperScheduler$HandlerWorker
+rx.android.schedulers.LooperScheduler$ScheduledAction

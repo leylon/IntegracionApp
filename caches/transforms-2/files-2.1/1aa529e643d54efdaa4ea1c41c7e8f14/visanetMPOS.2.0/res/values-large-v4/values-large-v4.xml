@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_next_textSize">16sp</dimen>
+    <dimen name="pinpad_numberSize">19sp</dimen>
+    <dimen name="pinpad_textButtonSize">14sp</dimen>
+    <dimen name="title_big_textSize">22sp</dimen>
+    <dimen name="title_normal_textSize">18sp</dimen>
+    <dimen name="title_small_textSize">15sp</dimen>
+    <dimen name="voucher_large">16sp</dimen>
+    <dimen name="voucher_medium">14sp</dimen>
+    <dimen name="voucher_small">12sp</dimen>
+</resources>

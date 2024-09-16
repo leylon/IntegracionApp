@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerCard"
+    android:layout_margin="4dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imgCard"
+        android:layout_width="60dp"
+        android:layout_height="35dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/visa_pos_fc" />
+
+    <TextView
+        android:id="@+id/txtDescriptionCard"
+        android:layout_width="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4sp"
+        android:gravity="center_horizontal"
+        android:maxLines="1"
+        android:text="VISA"
+        android:textColor="@color/visanet_black"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgCard" />
+
+    <CheckBox
+        android:id="@+id/rdCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imgCard"
+        app:layout_constraintStart_toStartOf="@+id/imgCard"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionCard" />
+</android.support.constraint.ConstraintLayout>

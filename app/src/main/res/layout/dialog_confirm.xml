@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    app:cardCornerRadius="8dp"
+    android:background="@drawable/background_round_blank">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="left|center"
+        android:layout_marginTop="16dp"
+       >
+        <ImageView
+            android:id="@+id/imgQuestion"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:padding="5dp"
+            android:layout_marginHorizontal="8dp"
+            android:tint="@color/grayButton"
+            android:src="@mipmap/ic_questions" />
+    <TextView
+        android:id="@+id/texto_dialogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Para venta de 1 producto debe solicitar Aprobación:
+        \n 1 BT-400 CONTROL REMOTO 4 EN 1" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        >
+
+        <Button
+            android:id="@+id/boton_aceptar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aceptar"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/background_rounded_blue"
+            android:textColor="@color/background"/>
+
+        <Button
+            android:id="@+id/boton_cancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:layout_marginHorizontal="8dp"
+            android:background="@drawable/background_rounded_red"
+            android:textColor="@color/background"/>
+
+    </LinearLayout>
+</LinearLayout>
+</android.support.v7.widget.CardView>

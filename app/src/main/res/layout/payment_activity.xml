@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/payment_activity_root"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/fltLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="2dp"
+        android:translationZ="2dp"
+        android:background="@color/background_trans"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:elevation="2dp"
+            android:translationZ="2dp"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tvApp"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                app:navigationIcon="?attr/homeAsUpIndicator"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:title="@string/title_payment" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:background="@color/darkBlue"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/tvw_total_venta"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="@string/tvw_total_venta" />
+
+                <TextView
+                    android:id="@+id/tvwTotalVenta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:text="150.00"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutTotalCobrar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/darkBlue"
+                android:visibility="gone"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/tvw_total_cobrar"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="@string/tvw_total_cobrar" />
+
+                <TextView
+                    android:id="@+id/tvwTotalCobrar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:text="150.00"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llFlight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginEnd="@dimen/margin_medium"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/vuelo"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="@string/vuelo" />
+
+                <EditText
+                    android:id="@+id/tvwFlight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:inputType="text"
+                    android:textAlignment="textEnd" />
+            </LinearLayout>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:orientation="horizontal">
+                <!--
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/tvw_payment_tipo_documento"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="@string/tvw_payment_tipo_documento" />
+                -->
+                <RadioButton
+                    android:id="@+id/rbwBoleta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:textSize="20sp"
+                    android:text="@string/rdw_boleta" />
+
+                <RadioButton
+                    android:id="@+id/rdwFactura"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:textSize="20sp"
+                    android:text="@string/rdw_factura" />
+
+            </RadioGroup>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/darkBlue"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:text="Cobranza Efectivo"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="@string/tvw_tipo_cobro" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/margin_small"
+                    android:paddingRight="@dimen/margin_small"
+                    android:weightSum="2">
+                    <!--
+                    <Button
+                        android:id="@+id/btnMakeAndWish"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:text="@string/tvwMakeAndWish"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:drawableLeft="@drawable/ic_coins_white_100"
+                        android:textSize="15sp" />
+                    -->
+
+                    <Button
+                        android:id="@+id/btnMakeAndWish"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        android:text="MAKE AND WISH"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:drawableLeft="@drawable/ic_monedas_64"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/etwMakeAndWish"
+                        android:textColor="@color/colorDark"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:textAlignment="textEnd"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/margin_small"
+                    android:paddingRight="@dimen/margin_small"
+                    android:weightSum="2">
+                    <!--
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/tvwEfectivo"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="@string/tvwEfectivo" />
+                    -->
+                    <!--
+                    <Button
+                        android:id="@+id/btnEfectivo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:text="EFECTIVO"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:drawableLeft="@drawable/ic_money_white_100"
+                        android:textSize="16sp" />
+                    -->
+                    <Button
+                        android:id="@+id/btnEfectivo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        android:text="EFECTIVO"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:drawableLeft="@drawable/ic_billete_96"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/etwEfectivo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:textAlignment="textEnd" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/darkBlue"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/tvw_tipo_tarjeta"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="@string/tvw_tipo_tarjeta" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:orientation="horizontal"
+                    android:paddingRight="@dimen/margin_small"
+                    android:weightSum="2">
+
+                    <Spinner
+                        android:id="@+id/swTipoTarjeta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text="@string/tarjeta"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/btnTarjeta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        android:drawableLeft="@drawable/credicts_cards"
+                        android:text="Seleccionar"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:visibility="visible" />
+
+                    <EditText
+                        android:id="@+id/etwTarjeta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:textColor="@color/visanet_black"
+                        android:inputType="numberDecimal"
+                        android:textAlignment="textEnd" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/darkBlue"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:text="@string/cobranza_otros_pagos" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/margin_small"
+                        android:weightSum="2">
+
+
+                        <Button
+                            android:id="@+id/btnOther"
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/white"
+                            android:drawableLeft="@drawable/other_service"
+                            android:text="Seleccionar"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/etwOther"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:textColor="@color/visanet_black"
+                            android:inputType="numberDecimal"
+                            android:textAlignment="textEnd" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/darkBlue"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:text="VALES/GIFTCARD" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="18dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/margin_small"
+                        android:weightSum="2">
+
+
+                        <Button
+                            android:id="@+id/btnOtherVale"
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/white"
+                            android:drawableLeft="@drawable/other_service"
+                            android:text="Seleccionar"
+                            android:textAlignment="center"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:visibility="visible" />
+
+                        <EditText
+                            android:id="@+id/etwOtherVale"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:enabled="false"
+                            android:focusable="false"
+                            android:textColor="@color/visanet_black"
+                            android:inputType="numberDecimal"
+                            android:textAlignment="textEnd" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/darkBlue"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/tvw_cobranza_mpos"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="@string/tvw_cobranza_mpos" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/btnMpos"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        android:drawableLeft="@drawable/visa_pos_fc"
+                        android:text="MPOS"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/etwMpos"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:textAlignment="textEnd"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/darkBlue"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/tvw_cobranza_fpay"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <ImageButton
+                        android:id="@+id/btnFpay"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/fpay_ic"
+                        android:backgroundTint="@color/white"
+                        android:drawableStart="@drawable/fpay_ic"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/etwFpay"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:textAlignment="textEnd"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/darkBlue"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/tvw_cobranza_pLink"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <ImageButton
+                        android:id="@+id/btnPlink"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/pago_link_ic"
+                        android:backgroundTint="@color/white"
+                        android:drawableStart="@drawable/pago_link_ic"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/etwPlink"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:textAlignment="textEnd"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:id="@+id/btnVisa"
+
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:paddingTop="@dimen/nav_header_vertical_spacing"
+                        android:text="@string/btn_mpos"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+
+                        android:textSize="16sp"
+                        app:srcCompat="@drawable/visa_pos_fc" />
+
+                    <EditText
+                        android:id="@+id/etwMpos1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:textAlignment="textEnd"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:weightSum="2">
+
+                    <Button
+                        android:id="@+id/btnMposMasterCard"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/colorPrimary"
+                        android:text="@string/btn_mpos_master_card"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/etwMposMasterCard"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:textAlignment="textEnd" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="7dp"
+                    android:background="@color/divider" />
+
+
+                <Button
+                    android:id="@+id/btnRegresar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:drawableLeft="@drawable/ic_back_white_50"
+                    android:text="@string/btn_regresar"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    tools:text="@string/btn_regresar" />
+
+                <Button
+                    android:id="@+id/btnFinalizar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:drawableLeft="@drawable/ic_task_completed_white_100"
+                    android:text="@string/bwFinalizar"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    tools:text="@string/bwFinalizar" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_round_blank"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/texto_dialogo_auth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textStyle="bold"
+
+                android:text="Leer Barra Del Fotocheck" />
+            <EditText
+                android:id="@+id/edit_barcod_auth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+
+                android:layout_gravity="center_vertical"
+                />
+            <TextView
+                android:id="@+id/boton_aprobar_fotocheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_rounded_blue"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="8dp"
+                android:padding="8dp"
+                android:lines="2"
+                android:text="Aprobar Gerente/SubGerente"
+
+                android:textColor="@color/background" />
+
+
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/imgCamCod"
+            android:layout_width="48dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="8dp"
+            android:layout_gravity="right|center_vertical"
+            android:padding="5dp"
+            android:src="@drawable/ic_menu_camera"
+            android:tint="@color/grayButton" />
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+
+        android:orientation="horizontal">
+
+        <ProgressBar
+            android:id="@+id/progress_send"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:elevation="2dp"
+            android:layout_marginStart="8dp"
+            android:translationZ="2dp"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/texto_dialogo"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="8dp"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:text="Enviar Solicitud de Aprobación:" />
+
+            <TextView
+                android:id="@+id/texto_dialogo_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="8dp"
+                android:padding="5dp"
+                android:text="cpachasv@outlook.com" />
+
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/imgSendMail"
+            android:layout_width="48dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_gravity="start"
+            android:padding="5dp"
+
+            android:src="@mipmap/ic_mail_send"
+            android:tint="@color/grayButton" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="72dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        >
+        <TextView
+            android:id="@+id/texto_dialogo_d"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:text="Ingresa Código de Autorización" />
+
+        <EditText
+            android:id="@+id/edit_cod_auth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/boton_aprobar_cod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/background_rounded_blue"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="8dp"
+            android:padding="8dp"
+            android:text="Aprobar código de autorización"
+            android:textColor="@color/background" />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+

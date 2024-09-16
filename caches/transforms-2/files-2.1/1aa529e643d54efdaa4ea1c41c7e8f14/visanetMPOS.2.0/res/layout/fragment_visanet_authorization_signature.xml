@@ -1,0 +1,71 @@
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:background="@color/visanet_white">
+
+
+    <pe.beyond.visanet.view.MPOSHeaderView
+        android:id="@+id/viewHeader"
+        android:layout_width="match_parent"
+        app:layout_heightPercent="6%"
+        app:titleVISANET="" />
+
+    <android.support.percent.PercentFrameLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/viewHeader"
+        android:layout_above="@+id/tvNext"
+        app:layout_heightPercent="100%"
+        android:layout_gravity="center_horizontal" >
+
+        <pe.beyond.visanet.external.signaturepad.views.SignaturePad
+            android:id="@+id/spSignature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|left"
+            app:layout_marginPercent="3%"
+            android:textColor="@color/visanet_black"
+            android:text="S/.0.0"
+            android:textSize="@dimen/title_big_textSize" />
+
+
+        <TextView
+            android:id="@+id/tvErrorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            app:layout_marginPercent="3%"
+            android:textColor="@color/visanet_red"
+            android:visibility="invisible"
+            android:text="Debe ingresar una firma"
+            android:textSize="@dimen/title_big_textSize" />
+
+        <ImageView
+            android:id="@+id/ivSignClean"
+            android:layout_gravity="top|end"
+            app:layout_widthPercent="15%"
+            app:layout_heightPercent="10%"
+            app:layout_marginPercent="1%"
+            android:clickable="true"
+            android:src="@drawable/ico_borrar" />
+
+    </android.support.percent.PercentFrameLayout>
+
+
+    <TextView
+        style="@style/styleButtonVISA"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/tvNext"
+        android:background="@drawable/background_blue_gray"
+        app:layout_heightPercent="10%"
+        android:text="Siguiente" />
+
+</android.support.percent.PercentRelativeLayout>

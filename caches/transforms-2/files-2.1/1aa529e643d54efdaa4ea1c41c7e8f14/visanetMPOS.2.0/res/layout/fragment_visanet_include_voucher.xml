@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollVoucher"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@drawable/background_white_stroke_black"
+    android:fillViewport="true" >
+
+    <LinearLayout
+        android:id="@+id/lyVoucher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_white_stroke_black"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="VISANET"
+            android:textColor="@color/visanet_black"
+            android:textSize="@dimen/voucher_large" />
+
+        <TextView
+            android:id="@+id/tvBankName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VENTA - NOMBANCO "
+            android:textColor="@color/visanet_black"
+            android:textSize="@dimen/voucher_large" />
+
+        <TextView
+            android:id="@+id/tvTransactionId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="ID: 99999999999999"
+            android:textColor="@color/visanet_black"
+            android:textSize="@dimen/voucher_large" />
+
+        <TextView
+            android:id="@+id/tvMerchantTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="NOMBRE DEL COMERCIO - 99999"
+            android:textColor="@color/visanet_black"
+            android:textSize="@dimen/voucher_small" />
+
+        <TextView
+            android:id="@+id/tvMerchanLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="CIUDAD - PAIS"
+            android:textColor="@color/visanet_black"
+            android:textSize="@dimen/voucher_small" />
+
+        <TextView
+            android:id="@+id/tvTrack2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="XXXXXXXXXXXXXXXXX"
+            android:textColor="@color/visanet_black"
+            android:textSize="@dimen/voucher_medium" />
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:stretchColumns="1" >
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" >
+
+                <TextView
+                    android:id="@+id/tvTerminalId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="TER: 9999999"
+                    android:textColor="@color/visanet_black"
+                    android:textSize="@dimen/voucher_small" />
+
+                <TextView
+                    android:id="@+id/tvBatchNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="LOTE: 999"
+                    android:textColor="@color/visanet_black"
+                    android:textSize="@dimen/voucher_small" />
+
+                <TextView
+                    android:id="@+id/tvTicketNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="REF: 999"
+                    android:textColor="@color/visanet_black"
+                    android:textSize="@dimen/voucher_small" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" >
+
+                <TextView
+                    android:id="@+id/tvAuthorizationCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="AP:999999"
+                    android:textColor="@color/visanet_black"
+                    android:textSize="@dimen/voucher_small" />
+
+                <TextView
+                    android:id="@+id/tvTransactionLocalDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center"
+                    android:text="DD/MM/AA"
+                    android:textColor="@color/visanet_black"
+                    android:textSize="@dimen/voucher_small" />
+
+                <TextView
+                    android:id="@+id/tvTransactionLocalTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="HORA: HH:MM"
+                    android:textColor="@color/visanet_black"
+                    android:textSize="@dimen/voucher_small" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/quotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal" >
+
+                <TextView
+                    android:id="@+id/tvvoucherPaymentsNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="1"
+                    android:gravity="left"
+                    android:text="CUOTAS: XX"
+                    android:textColor="@color/visanet_black"
+                    android:textSize="@dimen/voucher_small" />
+
+                <TextView
+                    android:id="@+id/tvvoucherPaymentsAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="2"
+                    android:gravity="right"
+                    android:text="CTA APROX: XXX"
+                    android:textColor="@color/visanet_black"
+                    android:textSize="@dimen/voucher_small" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/tvAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="S/. 0000000"
+            android:textColor="@color/visanet_black"
+            android:textSize="@dimen/voucher_large" />
+
+        <TextView
+            android:id="@+id/tvPrizeMessage"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:text="xxx"
+            android:textColor="@color/visanet_black"
+            android:textSize="@dimen/voucher_small" />
+
+        <LinearLayout
+            android:id="@+id/lySign"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FIRMA:"
+                android:textColor="@color/visanet_black"
+                android:textSize="@dimen/voucher_medium" />
+
+            <ImageView
+                android:adjustViewBounds="true"
+                android:id="@+id/imageSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:scaleType="fitXY"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lySignLine"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/visanet_black"
+            android:orientation="horizontal" >
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvDocumentClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:gravity="left"
+            android:text="DOC"
+            android:textColor="@color/visanet_black"
+            android:textSize="@dimen/voucher_medium" />
+
+        <TextView
+            android:id="@+id/tvMessageDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:gravity="left"
+            android:text="ACEPTO PAGAR AL EMISOR DE LA TARJETA EL IMPORTE ANOTADO EN EL TITULO. RETENGA ESTA COPIA PARA VERIFICAR EN SU ESTADO DE CUENTA"
+            android:textColor="@color/visanet_black"
+            android:textSize="@dimen/voucher_small" />
+
+        <LinearLayout
+            android:id="@+id/lyTdata"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvAppName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:gravity="left"
+                android:text="Preferred Name / Label"
+                android:textColor="@color/visanet_black"
+                android:textSize="@dimen/voucher_small" />
+
+            <TextView
+                android:id="@+id/tvAid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:text="AID: XXXXXXX"
+                android:textColor="@color/visanet_black"
+                android:textSize="@dimen/voucher_small" />
+
+            <TextView
+                android:id="@+id/tvSign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginLeft="20dp"
+                android:gravity="left"
+                android:text="CT: XXXXXX"
+                android:textColor="@color/visanet_black"
+                android:textSize="@dimen/voucher_small" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvHostMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:gravity="left"
+            android:text="(MENSAJE HOST)"
+            android:textColor="@color/visanet_black"
+            android:textSize="@dimen/voucher_small" />
+
+        <TextView
+            android:id="@+id/tvVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:gravity="left"
+            android:text="** MPOS 1.0 **"
+            android:textColor="@color/visanet_black"
+            android:textSize="@dimen/voucher_small" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="&lt;&lt;COPIA CLIENTE>>"
+            android:textColor="@color/visanet_black"
+            android:textSize="@dimen/voucher_small" />
+    </LinearLayout>
+
+</ScrollView>

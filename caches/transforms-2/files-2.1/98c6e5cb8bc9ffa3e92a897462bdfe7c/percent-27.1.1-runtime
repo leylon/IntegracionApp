@@ -1,0 +1,8 @@
+android.support.percent.PercentFrameLayout
+android.support.percent.PercentFrameLayout$LayoutParams
+android.support.percent.PercentLayoutHelper
+android.support.percent.PercentLayoutHelper$PercentLayoutInfo
+android.support.percent.PercentLayoutHelper$PercentLayoutParams
+android.support.percent.PercentLayoutHelper$PercentMarginLayoutParams
+android.support.percent.PercentRelativeLayout
+android.support.percent.PercentRelativeLayout$LayoutParams

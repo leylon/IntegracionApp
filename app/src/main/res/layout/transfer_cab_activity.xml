@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.guide.GuideActivity"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/CustomBlue"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:titleTextColor="@color/white"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Registro Pedido (vers 3)" />
+
+    <FrameLayout
+        android:id="@+id/fltLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_trans"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="8dp">
+                <TextView
+                    android:id="@+id/tvwDocumentInventary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Filtro:"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="18sp"
+
+                    android:layout_marginStart="16dp"
+                    android:layout_gravity="center"
+                    android:textStyle="bold" />
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rbwFecha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:paddingEnd="8dp"
+                        android:text="Fecha" />
+
+                    <RadioButton
+                        android:id="@+id/rdwPedido"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="8dp"
+                        android:checked="true"
+                        android:text="Pedido" />
+
+                </RadioGroup>
+            </LinearLayout>
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal"
+               >
+
+                <RelativeLayout
+                    android:id="@+id/containerTransferFecha"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_rounded"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="visible">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/tilDateGuideTransfer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="16dp"
+                        android:hint="Fecha"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/tielDateGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:cursorVisible="false"
+                            android:focusable="false"
+                            android:inputType="none"
+                            android:textSize="14sp" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <ImageButton
+                        android:id="@+id/imbSearchDateTranfer"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="5dp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/ic_calendar_custom"
+                        android:backgroundTint="@color/CustomBlue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/containerTransferPedido"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_rounded"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:visibility="gone"
+                    >
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/tilTransferPedido"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="16dp"
+                        android:hint="Pedido"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/tielTransferPedido"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp" />
+
+                    </android.support.design.widget.TextInputLayout>
+                </RelativeLayout>
+
+                <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/imbwProductoWithCamera"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_menu_camera" />
+
+                <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/btnProcessList"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_search_black" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvwOrderDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end|center_vertical"
+                        android:textSize="14sp"
+
+                        tools:text="Fecha: 15/08/2018" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/sales_sub_title"
+                android:textColor="@color/CustomBlue"
+                android:layout_marginTop="16dp"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="-20dp"
+                android:background="@drawable/background_triangle"
+                android:contentDescription="@null" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_rounded"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_gravity="bottom"
+                        android:background="@color/background" />
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvwProductsTransfer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"
+                            tools:itemCount="4"
+                            tools:listitem="@layout/item_transfer_cab">
+
+                        </android.support.v7.widget.RecyclerView>
+
+                    </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                android:background="@drawable/background_rounded"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="12dp"
+                    android:paddingEnd="12dp"
+                    android:visibility="gone"
+                    android:paddingStart="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/sale_total_label"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvwSaleTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+            <TextView
+                android:id="@+id/textVersion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/version"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+</LinearLayout>

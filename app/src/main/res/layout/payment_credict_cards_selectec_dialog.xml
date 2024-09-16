@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textDialogSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:padding="4dp"
+            android:gravity="center"
+            android:text="@string/seleccione_una_tarjeta_nde_pago"
+            android:textColor="@color/colorDark"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rwCards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            tools:itemCount="6"
+            tools:listitem="@layout/card_item"
+            app:spanCount="3"
+            android:layout_gravity="center"
+            app:layoutManager="android.support.v7.widget.GridLayoutManager"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="4dp"
+            android:gravity="center"
+            android:text="@string/monto_a_pagar_n_0_para_cancelar"
+            android:visibility="gone"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/edtAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_weight="1"
+                android:hint="Importe"
+                android:inputType="numberDecimal"
+                android:maxLength="100"
+                android:textAlignment="textEnd"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
+            <EditText
+                android:id="@+id/edtAmountOther"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:maxLength="100"
+                android:hint="Referencia"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvwAccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="12dp"
+            android:padding="4dp"
+            android:text="Aceptar"
+            android:textColor="@color/colorDark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

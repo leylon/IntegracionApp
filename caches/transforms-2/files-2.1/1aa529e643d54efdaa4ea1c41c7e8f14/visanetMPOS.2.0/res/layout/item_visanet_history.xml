@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlReportItem"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@android:color/transparent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:padding="8dp"
+        android:background="@drawable/background_white_rounded"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" >
+
+            <TextView
+                android:id="@+id/tvDescNroOperation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:text="Número de referencia: "
+                android:textColor="@color/visanet_blue_titlebar" />
+
+            <TextView
+                android:id="@+id/tvTicketNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:singleLine="true"
+                android:text="34234234"
+                android:textStyle="bold"
+                android:textColor="@color/visanet_gray_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" >
+
+            <TextView
+                android:id="@+id/tvDescFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:text="Fecha: "
+                android:textColor="@color/visanet_gray_text" />
+
+            <TextView
+                android:id="@+id/tvTransactionLocalDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:singleLine="true"
+                android:text="34234234"
+                android:textColor="@color/visanet_gray_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" >
+
+            <TextView
+                android:id="@+id/tvDescHora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:text="Hora: "
+                android:textColor="@color/visanet_gray_text" />
+
+            <TextView
+                android:id="@+id/tvTransactionLocalTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:singleLine="true"
+                android:text="34234234"
+                android:textColor="@color/visanet_gray_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" >
+
+            <TextView
+                android:id="@+id/tvDescMonto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:text="Importe: "
+                android:textColor="@color/visanet_gray_text" />
+
+            <TextView
+                android:id="@+id/tvTransactionAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:singleLine="true"
+                android:text="34234234"
+                android:textColor="@color/visanet_gray_text" />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" >
+
+            <TextView
+                android:id="@+id/tvDescTrack2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:text="Tarjeta: "
+                android:textColor="@color/visanet_gray_text" />
+
+            <TextView
+                android:id="@+id/tvTrack2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:singleLine="true"
+                android:text="34234234"
+                android:textColor="@color/visanet_gray_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" >
+
+            <TextView
+                android:id="@+id/tvDescSourceBank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:text="Banco Emisor: "
+                android:textColor="@color/visanet_gray_text" />
+
+            <TextView
+                android:id="@+id/tvBankName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:singleLine="true"
+                android:text="34234234"
+                android:textColor="@color/visanet_gray_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" >
+
+            <TextView
+                android:id="@+id/tvDescTransactionState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:text="Estado de Transacción: "
+                android:textColor="@color/visanet_gray_text" />
+
+            <TextView
+                android:id="@+id/tvTransactionStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:singleLine="true"
+                android:text="34234234"
+                android:textColor="@color/visanet_gray_text" />
+        </RelativeLayout>
+        
+        
+          <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:text="Referencia comercio: "
+                android:textColor="@color/visanet_gray_text" />
+
+            <TextView
+                android:id="@+id/tvMerchantReferenceNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:singleLine="true"
+                android:text="34234234"
+                android:textColor="@color/visanet_gray_text" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

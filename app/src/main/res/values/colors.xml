@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright 2017, The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <color name="colorPrimary">@color/colorCoolbox</color>
+    <color name="colorPrimaryDark">@color/colorCoolboxDark</color>
+    <color name="colorAccent">@color/colorDark</color>
+    <color name="colorCoolbox">#bf0411</color>
+    <color name="colorCoolboxDark">#8d000a</color>
+    <color name="colorDark">#000000</color>
+    <color name="colorOrangeWhite">#f44236</color>
+    <color name="colorPink">#ffcdd2</color>
+
+    <color name="comment_light_background">#d6d6d6</color>
+    <color name="white">#e7e7e7</color>
+    <color name="divider">#e7e7e7</color>
+    <color name="divider_darker">#a6a6a6</color>
+    <color name="background">#e7e7e7</color>
+    <color name="background_trans">#98020202</color>
+    <color name="background_green">#17944B</color>
+
+    <color name="link">#3173ed</color>
+    <color name="darkBlue">#1d2742</color>
+    <color name="grayButton">#828282</color>
+    <color name="CustomBlue">#2656AF</color>
+    <color name="CustomPurple">#EA286A</color>
+</resources>

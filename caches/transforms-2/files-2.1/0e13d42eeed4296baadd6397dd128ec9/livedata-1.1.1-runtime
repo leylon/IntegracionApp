@@ -1,0 +1,10 @@
+android.arch.lifecycle.ComputableLiveData
+android.arch.lifecycle.ComputableLiveData$1
+android.arch.lifecycle.ComputableLiveData$2
+android.arch.lifecycle.ComputableLiveData$3
+android.arch.lifecycle.MediatorLiveData
+android.arch.lifecycle.MediatorLiveData$Source
+android.arch.lifecycle.Transformations
+android.arch.lifecycle.Transformations$1
+android.arch.lifecycle.Transformations$2
+android.arch.lifecycle.Transformations$2$1

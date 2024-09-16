@@ -1,0 +1,11 @@
+android.arch.persistence.db.SimpleSQLiteQuery
+android.arch.persistence.db.SupportSQLiteDatabase
+android.arch.persistence.db.SupportSQLiteOpenHelper
+android.arch.persistence.db.SupportSQLiteOpenHelper$Callback
+android.arch.persistence.db.SupportSQLiteOpenHelper$Configuration
+android.arch.persistence.db.SupportSQLiteOpenHelper$Configuration$Builder
+android.arch.persistence.db.SupportSQLiteOpenHelper$Factory
+android.arch.persistence.db.SupportSQLiteProgram
+android.arch.persistence.db.SupportSQLiteQuery
+android.arch.persistence.db.SupportSQLiteQueryBuilder
+android.arch.persistence.db.SupportSQLiteStatement

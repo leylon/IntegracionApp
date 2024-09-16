@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/visanet_blue_titlebar" >
+
+
+    <TextView
+        android:id="@+id/tvTitleBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text=""
+        android:textColor="@color/visanet_white" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|left"
+        app:layout_marginTopPercent="30%"
+        app:layout_marginBottomPercent="30%"
+        app:layout_marginLeftPercent="2%"
+        android:scaleType="fitStart"
+        android:src="@drawable/logo_visanet" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right"
+        android:scaleType="fitEnd"
+        app:layout_marginTopPercent="20%"
+        app:layout_marginBottomPercent="20%"
+        app:layout_marginRightPercent="1%"
+        android:src="@drawable/logo_visa_right" />
+
+
+</android.support.percent.PercentFrameLayout>

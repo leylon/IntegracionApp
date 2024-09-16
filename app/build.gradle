@@ -1,0 +1,132 @@
+/*
+ * Copyright 2017, The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion build_versions.target_sdk
+    //buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        applicationId 'com.pedidos.android.persistence'
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 3
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    flavorDimensions "version"
+    productFlavors{
+        root {
+            dimension "version"
+            versionCode 4
+            versionName "2.0.1"
+            buildConfigField 'String', 'URL_SERVER', '"https://wsfacturacion.coolbox.com.pe:9443/SKM/"'
+            buildConfigField 'String', 'URL_PEDIDO_PAGAR_NUEVO', '"pedidopagarnuevo"'
+            buildConfigField 'String', 'VERSION_APP', '"27/03/2024"'
+        }
+        skm {
+            dimension "version"
+            applicationIdSuffix ".skm"
+            versionCode 138
+            versionName "2.1.4-test"
+            buildConfigField 'String', 'URL_SERVER', '"https://wsfacturacion.coolbox.com.pe:9443/SKM/"'
+            buildConfigField 'String', 'URL_PEDIDO_PAGAR_NUEVO', '"pedidopagarnuevoskmicg"'
+            buildConfigField 'String', 'VERSION_APP', '"27/03/2024"'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    // Support libraries
+    implementation deps.support.app_compat
+    implementation deps.support.v4
+    implementation deps.support.design
+    implementation deps.support.cardview
+
+    // Architecture components
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    kapt deps.lifecycle.compiler
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.okhttp_logging_interceptor
+
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.atsl.rules
+    androidTestImplementation deps.room.testing
+    androidTestImplementation deps.arch_core.testing
+
+    // Espresso UI Testing
+    androidTestImplementation deps.espresso.core
+    androidTestImplementation deps.espresso.contrib
+    androidTestImplementation deps.espresso.intents
+
+    // Resolve conflicts between main and test APK:
+    androidTestImplementation deps.support.annotations
+    androidTestImplementation deps.support.v4
+    androidTestImplementation deps.support.app_compat
+    androidTestImplementation deps.support.design
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'com.android.support:percent:27.1.1'
+    //compile(name:'visanetMPOS.2.0', ext:'aar')
+
+    // Z-Xing
+    implementation deps.zxing.compiler
+
+    implementation(name: 'visanetMPOS.2.0', ext: 'aar')
+
+    //todo: organize
+    implementation 'com.jakewharton.rxbinding:rxbinding:1.0.0'
+
+}
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+kapt {
+    generateStubs = true
+}

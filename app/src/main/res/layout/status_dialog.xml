@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/imgCheckInventary"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:src="@mipmap/ic_check_ok"
+
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvTitlePopup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="INVENTARIO SKM"
+        android:textColor="@color/colorDark"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:layout_gravity="center"
+        android:tint="@color/CustomBlue"
+        android:src="@drawable/ic_skm_big" />
+    <TextView
+        android:id="@+id/tvItemIventaryStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:text="TOMA DE INVENTARIO NRO: 216\r\nNRO. PRODUCTOS: 2\r\nTOTAL CONTADO: 34.00"
+        android:textColor="@color/colorDark"
+        android:paddingStart="30dp"
+        android:paddingEnd="30dp"
+        android:textStyle="bold"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvwProductsInvetary"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        tools:listitem="@layout/item_status_inventary"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/tvItemIventaryMoreThan"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:gravity="center"
+            android:text="CONTINUAR\nMAS TARDE"
+            android:textColor="@color/white"
+            android:layout_marginTop="5dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/background_rounded_red"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvItemIventaryFinish"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:gravity="center"
+            android:text="FINALIZAR"
+            android:textColor="@color/white"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/background_rounded_green"
+            android:textStyle="bold"/>
+    </LinearLayout>
+</LinearLayout>

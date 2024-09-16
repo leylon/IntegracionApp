@@ -1,0 +1,9 @@
+android.arch.persistence.db.framework.FrameworkSQLiteDatabase
+android.arch.persistence.db.framework.FrameworkSQLiteDatabase$1
+android.arch.persistence.db.framework.FrameworkSQLiteDatabase$2
+android.arch.persistence.db.framework.FrameworkSQLiteOpenHelper
+android.arch.persistence.db.framework.FrameworkSQLiteOpenHelper$OpenHelper
+android.arch.persistence.db.framework.FrameworkSQLiteOpenHelper$OpenHelper$1
+android.arch.persistence.db.framework.FrameworkSQLiteOpenHelperFactory
+android.arch.persistence.db.framework.FrameworkSQLiteProgram
+android.arch.persistence.db.framework.FrameworkSQLiteStatement

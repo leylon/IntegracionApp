@@ -1,0 +1,60 @@
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/visanet_white"
+    tools:context="pe.beyond.visanet.events.cancellation.CancellationActivity">
+
+    <pe.beyond.visanet.view.MPOSHeaderView
+        android:id="@+id/viewHeader"
+        android:layout_width="match_parent"
+        app:layout_heightPercent="6%"
+        app:titleVISANET="" />
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_below="@+id/viewHeader"
+        app:layout_heightPercent="100%"
+        android:layout_width="match_parent" >
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:lines="2"
+            app:layout_marginTopPercent="10%"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginRightPercent="5%"
+            android:text="Ingrese el número de referencia de la transacción"
+            android:textColor="@color/visanet_blue_titlebar"
+            android:textSize="@dimen/title_big_textSize" />
+
+
+        <EditText
+            android:layout_centerInParent="true"
+            android:id="@+id/etTicketNumber"
+            style="@style/styleEditTextVISA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:hint=""
+            android:inputType="phone"
+            android:digits="1234567890"
+            android:maxLength="15"
+            android:textSize="@dimen/pinpad_textButtonSize" />
+
+
+        <TextView
+            style="@style/styleButtonVISA"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/tvNext"
+            android:background="@drawable/background_blue_gray"
+            app:layout_heightPercent="10%"
+            android:text="Siguiente" />
+    </android.support.percent.PercentRelativeLayout>
+
+</android.support.percent.PercentRelativeLayout>

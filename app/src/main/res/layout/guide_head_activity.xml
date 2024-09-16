@@ -1,0 +1,1350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".ui.guide.GuideActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/CustomBlue"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Guía de Remisíon"
+        app:titleTextColor="@color/white" />
+
+    <FrameLayout
+        android:id="@+id/fltLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_trans"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardwHead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/CustomBlue"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Datos de Cabecera"
+                        android:textColor="@color/white"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/llContainerHeadGuide"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/tilDateGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Fecha de Operación"
+
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielDateGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:cursorVisible="false"
+                                    android:focusable="false"
+                                    android:inputType="none"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <ImageButton
+                                android:id="@+id/imbSearchDate"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/ic_calendar_custom"
+                                android:backgroundTint="@color/CustomBlue"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiStorageGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Almacén">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielStorageGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchStorage"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@drawable/ic_search_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchStorageAll"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:background="@drawable/ic_storage_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiTypeGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Tipo de Guía"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielTypeGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchTypeDocumentGuia"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@drawable/ic_search_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+
+                                <ImageButton
+                                    android:id="@+id/imbTypeDocumentGuiaAll"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:background="@drawable/ic_type_doc_guide"
+                                    android:backgroundTint="@color/CustomBlue" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiOperationGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Operación"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielOperationGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchOperation"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@drawable/ic_search_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+
+                                <ImageButton
+                                    android:id="@+id/imbOperationGuiaAll"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:background="@drawable/ic_operation_guide"
+                                    android:backgroundTint="@color/CustomBlue" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiProveedorGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:hint="Proveedor Guía"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielProveedorGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiTypeAuxGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Tipo Auxiliar"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielTypeAuxGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <ImageButton
+                                android:id="@+id/imbSearchTypeAux"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/ic_search_custom"
+                                android:backgroundTint="@color/CustomBlue"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiAuxGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Auxiliar"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielAuxGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchAux"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@drawable/ic_search_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchAllAux"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:background="@drawable/ic_operation_guide"
+                                    android:backgroundTint="@color/CustomBlue" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiStartAdrressGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:hint="Dirección de Partida"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielStartAdrressGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiStartCityGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Distrito de Partida"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielStartCityGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchCity"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@drawable/ic_search_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchAllCity"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:background="@drawable/ic_city_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiDocumentIdGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Documento de Identidad"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielDocumentIdGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <ImageButton
+                                android:id="@+id/imbSearchTypeDocumentId"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/ic_search_custom"
+                                android:backgroundTint="@color/CustomBlue"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiNumberDocumentIdGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Número Documento Identidad"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielNumberDocumentIdGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <ImageButton
+                                android:id="@+id/imbSearchNumberDocumentId"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/ic_search_custom"
+                                android:backgroundTint="@color/CustomBlue"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </RelativeLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiFinishAddressGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:hint="Dirección de llegada"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielFinishAddressGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiFinishCityGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:hint="Distrito de Llegada"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielFinishCityGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchCityFinish"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@drawable/ic_search_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchAllCityFinish"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:background="@drawable/ic_city_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiObservationGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:hint="Observación"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielObservationGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardwTransportGuia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/CustomBlue"
+                app:cardCornerRadius="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Datos de Tansportista"
+                        android:textColor="@color/white"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/llContainerTransport"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiModeTransportGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:hint="Modalidad de Transporte"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielModeTransportGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <ImageButton
+                                android:id="@+id/imbSearchModeTransport"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/ic_search_custom"
+                                android:backgroundTint="@color/CustomBlue"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </RelativeLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiTypeDocumentTransportGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:hint="Tipo Documento Transportista"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielTypeDocumentTransportGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:cursorVisible="false"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiNumberDocumentTransportGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:hint="Numero Documento Transportista"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielNumberDocumentTransportGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchNumberDocTransport"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@drawable/ic_search_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchNumberDocTransportAll"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:background="@drawable/ic_transport"
+                                    android:backgroundTint="@color/CustomBlue" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiNameTransportGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:hint="Nombre de Transportista"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielNameTransportGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiAdrressTransportGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:hint="Dirección de Transportista"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielAdrressTransportGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiCityTransportGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:hint="Distrito de Transportista"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielCityTransportGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchCityTransport"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@drawable/ic_search_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchAllCityTransport"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:background="@drawable/ic_city_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardwCarGuia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/CustomBlue"
+                app:cardCornerRadius="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Datos del Vehículo"
+                        android:textColor="@color/white"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/llContainerCar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiIdCarGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:hint="Placa de Vehículo"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielIdCarGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchPlaca"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@drawable/ic_search_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchPlacaAll"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:background="@drawable/ic_car"
+                                    android:backgroundTint="@color/CustomBlue" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiDescriptionCarGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:hint="Descripcion de Vehículo"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielDescriptionCarGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiHopperCarGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:hint="Tolva de Vehículo"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielHopperCarGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardwDriverGuia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/CustomBlue"
+                app:cardCornerRadius="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Datos del Conductor"
+                        android:textColor="@color/white"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/llContainerDriver"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiTypeDocumentDriverGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:hint="Tipo Documento Conductor"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielTypeDocumentDriverGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:cursorVisible="false"
+                                    android:focusable="false"
+                                    android:inputType="none"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                            <ImageButton
+                                android:id="@+id/imbSearchDocumentDrive"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:background="@drawable/ic_search_custom"
+                                android:backgroundTint="@color/CustomBlue"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/etiDriverDocumentGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="16dp"
+                                android:hint="Documento del Conductor"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tielDriverDocumentGuide"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchNumberDocumentDrive"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@drawable/ic_search_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchNumberDocumentDriveAll"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:background="@drawable/ic_drive_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiDriverNameGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:hint="Nombre del Conductor"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielDriverNameGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiDriverAddressGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:hint="Dirección del Conductor"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielDriverAddressGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiCityDriverGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+
+                            android:hint="Distrito de Conductor"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielCityDriverGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:importantForAutofill="no"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="5dp"
+                                android:adjustViewBounds="true"
+                                android:orientation="horizontal"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchCityDrive"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_marginEnd="5dp"
+                                    android:background="@drawable/ic_search_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+
+                                <ImageButton
+                                    android:id="@+id/imbSearchAllCityDrive"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:background="@drawable/ic_city_custom"
+                                    android:backgroundTint="@color/CustomBlue" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/etiLicenseDriveGuide"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:hint="Licencia del Conductor"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/tielLicenseDriveGuide"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <Button
+                android:id="@+id/btnFinishGuide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:backgroundTint="@color/CustomBlue"
+                android:text="Continuar"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

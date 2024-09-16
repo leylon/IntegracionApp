@@ -1,0 +1,5 @@
+android.arch.core.executor.ArchTaskExecutor
+android.arch.core.executor.ArchTaskExecutor$1
+android.arch.core.executor.ArchTaskExecutor$2
+android.arch.core.executor.DefaultTaskExecutor
+android.arch.core.executor.TaskExecutor

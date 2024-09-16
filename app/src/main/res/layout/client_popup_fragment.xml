@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.pedidos.android.persistence.viewmodel.ClientViewModel" />
+
+        <variable
+            name="callback"
+            type="com.pedidos.android.persistence.ui.ClientClickCallback" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/fltLoading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_trans"
+            android:elevation="2dp"
+            android:translationZ="2dp"
+            app:visibleGone="@{viewModel.showProgress}">
+
+            <ProgressBar
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:elevation="2dp"
+                android:translationZ="2dp" />
+        </android.support.design.widget.CoordinatorLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/cardview_light_background"
+            android:orientation="vertical"
+            android:layout_margin="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_customer_25"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="DATOS CLIENTE"
+                        android:textSize="20dp"
+                        android:textStyle="bold"/>
+
+
+                </LinearLayout>>
+
+
+                <!-- Este campo es para dar espacio -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="10dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tipo_documento" />
+
+                <Spinner
+                    android:id="@+id/tipodocumentoSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@{viewModel.documentosIdentidad}"
+                    android:prompt="@string/tipo_documento_prompt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/codigo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:hint="@string/dni_ruc"
+                    android:inputType="number|textCapCharacters"
+                    android:text="@{viewModel.client.documentNumber}"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <ImageButton
+                    android:id="@+id/imgScan"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/background_rounded"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_menu_camera"
+                    android:tint="@color/visanet_gray_numpad" />
+
+                <ImageButton
+                    android:id="@+id/imgSearch"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/background_rounded"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_search"
+                    android:tint="@color/visanet_gray_numpad" />
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/nombres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/nombre_razonsocial"
+                android:text="@{viewModel.client.fullName}"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/direccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/cliente_direccion"
+                android:text="@{viewModel.client.address}"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/correo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/cliente_email"
+                android:text="@{viewModel.client.email}"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/cliente_phone"
+                android:text="@{viewModel.client.phone}"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnReniecSunat"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="@string/btn_buscar_cliente"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:onClick="@{()-> callback.onRegisterClick()}"
+                    android:text="@string/btn_register_client"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

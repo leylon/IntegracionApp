@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lltContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tvwProductName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginEnd="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="USB 5000TB" />
+
+        <TextView
+            android:id="@+id/tvwProductDiscount"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:gravity="end"
+            android:maxLines="1"
+            android:visibility="gone"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            tools:text="S/ 50.00" />
+
+        <TextView
+            android:id="@+id/tvwProductTotalPrice"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:gravity="end"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="S/ 250000.00" />
+
+        <ImageButton
+            android:id="@+id/ivbProdComp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:adjustViewBounds="true"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/visanet_gray_numpad"
+            android:background="@drawable/product_ic"
+            android:contentDescription="@null" />
+
+        <ImageButton
+            android:id="@+id/ivbDelete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:adjustViewBounds="true"
+            android:backgroundTint="@color/visanet_gray_numpad"
+            android:background="@drawable/ic_delete"
+            android:contentDescription="@null" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_gravity="bottom"
+        android:background="@color/background" />
+</FrameLayout>

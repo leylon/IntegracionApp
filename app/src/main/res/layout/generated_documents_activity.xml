@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="@string/title_activity_documents_generated" />
+
+    <FrameLayout
+        android:id="@+id/fltLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_trans"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:labelFor="@+id/datePickerGeneratedDocument"
+                    android:text="@string/fecha"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <DatePicker
+                    android:id="@+id/datePickerGeneratedDocument"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="3"
+                    android:calendarViewShown="false"
+                    android:datePickerMode="spinner"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnSearch"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:text="@string/btn_search"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/background_rounded"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:text="@string/label_tipo_documento_generado"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text="@string/label_numero_documento_generado"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="@string/label_client"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text="@string/label_total_documento_generado"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:gravity="end"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_gravity="bottom"
+                        android:background="@color/background" />
+
+                    <android.support.v4.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/rvwProducts"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:nestedScrollingEnabled="false"
+                                tools:listitem="@layout/generated_document_item">
+
+                            </android.support.v7.widget.RecyclerView>
+
+                        </LinearLayout>
+                    </android.support.v4.widget.NestedScrollView>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

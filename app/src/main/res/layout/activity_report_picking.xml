@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.guide.ReportPackingPrincipal"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/CustomBlue"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:titleTextColor="@color/white"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Registro Pedido (vers 3)" />
+
+    <FrameLayout
+        android:id="@+id/fltLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_trans"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilDateGuide"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:hint="Fecha de Operación"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tielDateGuide"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:inputType="none"
+                        android:textSize="14sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/imbSearchDateInventary"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="5dp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/ic_calendar_custom"
+                    android:backgroundTint="@color/CustomBlue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:padding="12dp">
+                <Button
+                    android:id="@+id/btnProcessList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:background="@drawable/background_rounded_blue"
+                    android:backgroundTint="@color/CustomBlue"
+                    android:drawableLeft="@drawable/ic_resume_white_100"
+                    android:text="  Cargar Pedidos"
+                    android:textColor="@android:color/white"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvwOrderDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end|center_vertical"
+                        android:textSize="14sp"
+
+                        tools:text="Fecha: 15/08/2018" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tvwDocumentInventary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/sales_title_report"
+                android:textColor="@color/darkBlue"
+                android:textSize="18sp"
+                android:layout_marginStart="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Reporte"
+                android:textColor="@color/CustomBlue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="-20dp"
+                android:background="@drawable/background_triangle"
+                android:contentDescription="@null" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/background_rounded"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/etwAddProduct"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_weight="4"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:hint="@string/sale_add_product_button"
+                        android:text=""/>
+
+                    <android.support.v7.widget.AppCompatImageButton
+                        android:id="@+id/btnAddCliente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_view_week_black"
+                        android:visibility="gone"/>
+
+                    <android.support.v7.widget.AppCompatImageButton
+                        android:id="@+id/imbwAddProductCombined"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_view_week_black"
+                        android:visibility="gone" />
+
+                    <android.support.v7.widget.AppCompatImageButton
+                        android:id="@+id/imbwAddProductoWithCamera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_menu_camera" />
+
+                    <android.support.v7.widget.AppCompatImageButton
+                        android:id="@+id/imbwAddProductManualOnly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_search_black"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="12dp"
+                            android:layout_weight="3"
+                            android:gravity="end"
+                            android:maxLines="1"
+                            android:text="@string/sales_title_report"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:gravity="end"
+                            android:text="@string/sale_item_discount_label"
+                            android:visibility="invisible"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvwProductTotalCant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="60dp"
+                            android:gravity="end"
+                            android:text=""
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_gravity="bottom"
+                        android:background="@color/background" />
+                </LinearLayout>
+                <android.support.v4.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvwReportePedido"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false"
+                            tools:itemCount="4"
+                            tools:listitem="@layout/item_report_picking">
+
+                        </android.support.v7.widget.RecyclerView>
+
+                    </LinearLayout>
+                </android.support.v4.widget.NestedScrollView>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/background_rounded"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="12dp"
+                    android:paddingEnd="12dp"
+                    android:visibility="gone"
+                    android:paddingStart="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/sale_total_label"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvwSaleTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnProcessGuide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/background_rounded_blue"
+                android:backgroundTint="@color/CustomBlue"
+                android:drawableLeft="@drawable/ic_resume_white_100"
+                android:paddingStart="16dp"
+                android:text="Continuar"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textVersion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/version"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

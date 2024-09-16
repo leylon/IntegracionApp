@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_pedido"
+            android:icon="@drawable/ic_edit"
+            android:title="@string/side_bar_item_pedido" />
+        <item
+            android:id="@+id/nav_pedido_anular"
+            android:icon="@android:drawable/ic_menu_delete"
+            android:title="@string/title_sale_cancel" />
+        <item
+            android:id="@+id/nav_pedido_reporte_operaciones"
+            android:icon="@android:drawable/ic_menu_set_as"
+            android:title="@string/title_activity_operations_report" />
+        <item
+            android:id="@+id/nav_cierre_caja"
+            android:icon="@android:drawable/ic_menu_day"
+            android:title="@string/title_activity_cash_balance" />
+        <item
+            android:id="@+id/nav_documentos_generados"
+            android:icon="@drawable/ic_list_black"
+            android:title="@string/title_activity_documents_generated" />
+        <item
+            android:id="@+id/nav_guia_remision"
+            android:icon="@drawable/ic_resume_white_100"
+            android:title="@string/title_activity_generated_guide" />
+        <item
+            android:id="@+id/nav_invetary"
+            android:icon="@drawable/ic_type_doc_guide"
+            android:title="@string/title_activity_generated_inventa" />
+        <item
+            android:id="@+id/nav_confirmar_transferencia"
+            android:icon="@drawable/ic_type_doc_guide"
+            android:title="@string/title_activity_confirmar_transferencia" />
+        <item
+            android:id="@+id/nav_packing"
+            android:icon="@drawable/ic_type_doc_guide"
+            android:title="@string/title_activity_packing" />
+       <item
+            android:id="@+id/nav_report_packing"
+            android:icon="@drawable/ic_task_completed_white_100"
+            android:title="@string/title_activity_report_packing" />
+
+    </group>
+
+    <item android:title="Options">
+        <menu>
+            <item
+                android:id="@+id/nav_log_out"
+                android:icon="@drawable/ic_people_outline"
+                android:title="@string/side_bar_item_logout" />
+        </menu>
+    </item>
+
+</menu>

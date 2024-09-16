@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:padding="4dp"
+        android:text="@string/tvwMakeAndWish"
+        android:textColor="@color/colorDark"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/btn010"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/mon_010" />
+
+        <ImageView
+            android:id="@+id/btn020"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/mon_020" />
+
+        <ImageView
+            android:id="@+id/btn050"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/mon_050" />
+
+        <ImageView
+            android:id="@+id/btn1sol"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/mon_1" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:padding="4dp"
+        android:text="@string/make_and_wish_message"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="21sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/edtAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:textAlignment="textEnd"
+            android:textSize="16sp"
+            tools:ignore="LabelFor" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvwAccept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:padding="4dp"
+        android:text="Aceptar"
+        android:textColor="@color/colorDark"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

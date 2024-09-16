@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="@string/title_ending" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvwClient"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text="999999 Cliente Generico" />
+
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvwOrderNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end|center_vertical"
+                    android:textSize="14sp"
+                    tools:text="Pedido N° 005 - 00444" />
+
+                <TextView
+                    android:id="@+id/tvwOrderDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end|center_vertical"
+                    android:textSize="14sp"
+                    tools:text="Fecha: 15/08/2018" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_rounded"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvwEvento"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/sale_subtotal_label"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvwSubTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/sale_discount_label"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvwDescuento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/lbwImpuestoA"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/sale_tax_label"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvwImpuestoA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/lbwImpuestoB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/sale_tax_labelB"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvwImpuestoB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/lbwImpuestoC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/sale_tax_labelC"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvwImpuestoC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingBottom="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="TOTAL"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvwSaleTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
+                        android:textColor="@android:color/black"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10sp"
+            android:rowCount="3"
+            android:columnCount="2">
+
+
+
+        <Button
+            android:id="@+id/btnRegresar"
+            android:layout_gravity="fill"
+            android:layout_columnWeight="1"
+            android:layout_height="65sp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/btn_regresar"
+            android:textColor="@android:color/white"
+            android:drawableStart="@drawable/ic_back_white_50"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnEliminar"
+            android:layout_gravity="fill"
+            android:layout_columnWeight="1"
+            android:layout_height="65sp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="ELIMINAR"
+            android:textColor="@android:color/white"
+            android:drawableStart="@drawable/ic_delete_white_100"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnImprimir"
+            android:layout_gravity="fill"
+            android:layout_columnWeight="1"
+            android:layout_height="65sp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="IMPRIMIR"
+            android:textColor="@android:color/white"
+            android:drawableStart="@drawable/ic_print_white_100"
+            android:textSize="16sp" />
+
+
+
+        <Button
+            android:id="@+id/btnCobrar"
+            android:layout_gravity="fill"
+            android:layout_columnWeight="1"
+            android:layout_height="65sp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="COBRAR"
+            android:textColor="@android:color/white"
+            android:drawableStart="@drawable/ic_cash_white"
+            android:textSize="16sp" />
+
+        </GridLayout>
+
+        <ImageView
+            android:id="@+id/btnVisa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:contentDescription="@string/btn_visa"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            app:srcCompat="@drawable/visa_pos_fc"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/fltLoading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_trans"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center" />
+        </FrameLayout>
+    </LinearLayout>
+</ScrollView>

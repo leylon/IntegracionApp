@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:id="@+id/lltContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="start"
+            android:maxLines="1"
+            android:layout_weight="0.5"
+            android:textColor="@color/darkBlue"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="Número:" />
+
+
+        <TextView
+            android:id="@+id/tvwTransferNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="start"
+            android:maxLines="1"
+            android:layout_marginEnd="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:paddingStart="5dp"
+            tools:text="B901-0000178490" />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+
+            android:textColor="@color/darkBlue"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="Tienda:" />
+
+        <TextView
+            android:id="@+id/tvwTransferTienda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:layout_marginEnd="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:paddingStart="5dp"
+            tools:text="K06" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lltContainer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/darkBlue"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="Observacion:" />
+
+
+        <TextView
+            android:id="@+id/tvwTransferObs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:layout_marginEnd="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:paddingStart="5dp"
+            tools:text="6 comprobantes , 4 asignado" />
+
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/CustomBlue"
+        android:layout_marginBottom="2dp"/>
+</LinearLayout>

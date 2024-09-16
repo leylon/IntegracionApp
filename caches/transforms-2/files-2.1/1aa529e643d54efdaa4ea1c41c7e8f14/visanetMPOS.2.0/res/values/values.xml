@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="visanet_black">#000000</color>
+    <color name="visanet_blue_titlebar">#14125C</color>
+    <color name="visanet_dark_transparent">#CC000000</color>
+    <color name="visanet_gray_background">#EBEBFF</color>
+    <color name="visanet_gray_numpad">#96989F</color>
+    <color name="visanet_gray_text">#7C7C7C</color>
+    <color name="visanet_orange_text">#E87B13</color>
+    <color name="visanet_red">#CA0B2A</color>
+    <color name="visanet_transparent">#99000000</color>
+    <color name="visanet_white">#FFFFFF</color>
+    <declare-styleable name="MPOSHeaderView"><attr format="string" name="titleVISANET"/></declare-styleable>
+    <declare-styleable name="SignaturePad"><attr format="float" name="minWidth"/><attr format="float" name="maxWidth"/><attr format="color" name="penColor"/><attr format="float" name="velocityFilterWeight"/></declare-styleable>
+    <dimen name="button_next_textSize">16sp</dimen>
+    <dimen name="pinpad_numberSize">17sp</dimen>
+    <dimen name="pinpad_textButtonSize">14sp</dimen>
+    <dimen name="title_big_textSize">20sp</dimen>
+    <dimen name="title_normal_textSize">16sp</dimen>
+    <dimen name="title_small_textSize">14sp</dimen>
+    <dimen name="voucher_large">16sp</dimen>
+    <dimen name="voucher_medium">14sp</dimen>
+    <dimen name="voucher_small">12sp</dimen>
+    <string name="app.library.name">VisaNet</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="msg.dialog.checkTerminal">Verificando terminal...</string>
+    <string name="msg.dialog.error.connection">No se pudo conectar al servicio, verifique su conexión a Internet</string>
+    <string name="msg.dialog.error.incorrect">Datos incorrectos</string>
+    <string name="msg.dialog.loading">Espere un momento Por favor...</string>
+    <string name="msg.dialog.readingCard">Leyendo Tarjeta...</string>
+    <string name="msg.pinpad.connection.error">No se pudo conectar al Pinpad</string>
+    <string name="msg.pinpad.connection.lost">Se perdió la conexión con el Pinpad</string>
+    <string name="msg.pinpad.connection.successful">Pinpad Enlazado</string>
+    <string name="msg.pinpad.enter.pin">Ingrese su Pin en el terminal</string>
+    <string name="msg.terms.condition">\nPRIMERO: El uso del Sistema (*) se rige por estos T\u00e9rminos y Condiciones as\u00ed como por lo establecido en el Contrato de Afiliaci\u00f3n al Sistema Visanet Per\u00fa, sus Adendas, manuales, procedimientos, gu\u00edas, instructivos y todo aquel documento que Visanet Per\u00fa haya suscrito con la Empresa Afiliada o que haya sido entregado o comunicado o publicado a trav\u00e9s de los distintos canales de comunicaci\u00f3n utilizados por Visanet Per\u00fa, sean estos f\u00edsicos o virtuales.\n\nSEGUNDO: La Empresa Afiliada declara que conoce y acepta los documentos que regulan el uso del Sistema (*) los mismos que se obliga a difundir entre sus colaboradores, asumiendo la entera responsabilidad por el uso no autorizado o indebido que pudieran hacer del mismo.\n\nTERCERO: el Sistema (*) es de propiedad de Visanet Per\u00fa y s\u00f3lo podr\u00e1 ser utilizado en los dispositivos m\u00f3viles y por los colaboradores que la Empresa Afiliada comunique a Visanet Per\u00fa.\n\nCUARTO: los dispositivos m\u00f3viles pueden ser de propiedad de la Empresa Afiliada o de sus colaboradores. Sin perjuicio de ello, es obligaci\u00f3n de la Empresa Afiliada verificar que estos dispositivos cuentan con softwares capaces de detectar virus, programas esp\u00edas y cualquier programa malicioso destinado a obtener informaci\u00f3n. Asimismo, se obliga a verificar que estos programas se mantienen actualizados.\n\nQUINTO: los dispositivos m\u00f3viles de la Empresa Afiliada se vincular\u00e1n v\u00eda tecnolog\u00eda Bluetooth a dispositivos electr\u00f3nicos Pin Pads de propiedad de Visanet Per\u00fa, los cuales ser\u00e1n utilizados conjuntamente con los dispositivos m\u00f3viles para realizar la transacci\u00f3n. La Empresa Afiliada se responsabiliza por el uso indebido de estos terminales as\u00ed como por el deterioro producido m\u00e1s all\u00e1 del que se hubiera generado por su uso normal y diligente.\n\nSEXTO: a trav\u00e9s del Sistema (*) se podr\u00e1n realizar transacciones con tarjetas de Cr\u00e9dito o D\u00e9bito. Son aplicables a estas transacciones, las disposiciones del Contrato de Afiliaci\u00f3n al Sistema Visanet Per\u00fa, sus Adendas y otros documentos as\u00ed como el Reglamento de Tarjetas de Cr\u00e9dito y D\u00e9bito u otras leyes o normas destinados a regular la aceptaci\u00f3n de pagos a trav\u00e9s de tarjetas de Cr\u00e9dito y D\u00e9bito en Empresas Afiliadas. En raz\u00f3n de ello, el usuario del Sistema (*) trat\u00e1ndose de tarjetas de Cr\u00e9dito se obliga, sin limitarse a, verificar los elementos de seguridad y la vigencia de la tarjeta, identidad del titular de la tarjeta y verificar que la firma en el dispositivo m\u00f3vil corresponda con la del documento de identidad y la de la tarjeta; trat\u00e1ndose de Tarjetas de D\u00e9bito, se obliga a brindar privacidad al titular de la tarjeta para el ingreso de su clave.   \n\nSETIMO: el usuario del Sistema (*) se obliga a seguir el procedimiento de inicializaci\u00f3n para su acceso al sistema y la vinculaci\u00f3n del Pin Pad s\u00f3lo en los dispositivos m\u00f3viles autorizados por la Empresa Afiliada, registrando su DNI y generando su contrase\u00f1a de uso personal e intransferible. Es responsabilidad del usuario y de la Empresa Afiliada, garantizar que el usuario y contrase\u00f1a permanecen s\u00f3lo en conocimiento del colaborador y que en caso de sospechas de difusi\u00f3n, divulgaci\u00f3n o uso no autorizado gestionen la renovaci\u00f3n de la misma. La renovaci\u00f3n por este motivo o por olvido se pueden gestionar a trav\u00e9s del mismo Sistema (*).\n\nOCTAVO: el Sistema (*) solicitar\u00e1 el usuario y contrase\u00f1a para poder realizar transacciones.\n\nNOVENO: Visanet Per\u00fa se reserva el derecho de suspender o inactivar usuarios en forma inmediata, temporal o definitivamente, si existieran indicios razonables que le permitan determinar que existe un uso indebido del Sistema (*) o indicios de transacciones inusuales, irregulares o fraudulentas o cualquier otro hecho que no corresponda con la actividad o el comportamiento regular del usuario o de la Empresa Afiliada.\n\nDECIMO: la Empresa Afiliada y sus colaboradores son responsables de las transacciones que originan a trav\u00e9s del Sistema (*), aceptando que cualquier transacci\u00f3n que no sea reconocida por el titular de la tarjeta podr\u00e1 ser anulada o contracargada por Visanet Per\u00fa de acuerdo a lo establecido en el Contrato de Afiliaci\u00f3n al Sistema Visanet Per\u00fa y los dem\u00e1s documentos aplicables.\n\nDECIMO PRIMERO: La Empresa Afiliada y sus colaboradores se obligan a informar el mismo d\u00eda de ocurrido el hecho, aquellos dispositivos m\u00f3viles que sean dados de baja, hayan sido robados o perdidos, al igual que los equipos electr\u00f3nicos Pin Pad.\nDECIMO SEGUNDO: Visanet Per\u00fa se reserva el derecho de modificar los T\u00e9rminos y Condiciones de uso del Sistema (*) en cualquier momento y sin previo aviso, bastando para ello la publicaci\u00f3n de los nuevos T\u00e9rminos y Condiciones en el mismo Sistema (*). La Empresa Afiliada y sus colaboradores se obligan a revisar peri\u00f3dicamente estos T\u00e9rminos y Condiciones.\n</string>
+    <string name="text.terms.condition">\nPRIMERO: El uso del Sistema (*) se rige por estos T\u00e9rminos y Condiciones as\u00ed como por lo establecido en el Contrato de Afiliaci\u00f3n al Sistema Visanet Per\u00fa, sus Adendas, manuales, procedimientos, gu\u00edas, instructivos y todo aquel documento que Visanet Per\u00fa haya suscrito con la Empresa Afiliada o que haya sido entregado o comunicado o publicado a trav\u00e9s de los distintos canales de comunicaci\u00f3n utilizados por Visanet Per\u00fa, sean estos f\u00edsicos o virtuales.\n\nSEGUNDO: La Empresa Afiliada declara que conoce y acepta los documentos que regulan el uso del Sistema (*) los mismos que se obliga a difundir entre sus colaboradores, asumiendo la entera responsabilidad por el uso no autorizado o indebido que pudieran hacer del mismo.\n\nTERCERO: el Sistema (*) es de propiedad de Visanet Per\u00fa y s\u00f3lo podr\u00e1 ser utilizado en los dispositivos m\u00f3viles y por los colaboradores que la Empresa Afiliada comunique a Visanet Per\u00fa.\n\nCUARTO: los dispositivos m\u00f3viles pueden ser de propiedad de la Empresa Afiliada o de sus colaboradores. Sin perjuicio de ello, es obligaci\u00f3n de la Empresa Afiliada verificar que estos dispositivos cuentan con softwares capaces de detectar virus, programas esp\u00edas y cualquier programa malicioso destinado a obtener informaci\u00f3n. Asimismo, se obliga a verificar que estos programas se mantienen actualizados.\n\nQUINTO: los dispositivos m\u00f3viles de la Empresa Afiliada se vincular\u00e1n v\u00eda tecnolog\u00eda Bluetooth a dispositivos electr\u00f3nicos Pin Pads de propiedad de Visanet Per\u00fa, los cuales ser\u00e1n utilizados conjuntamente con los dispositivos m\u00f3viles para realizar la transacci\u00f3n. La Empresa Afiliada se responsabiliza por el uso indebido de estos terminales as\u00ed como por el deterioro producido m\u00e1s all\u00e1 del que se hubiera generado por su uso normal y diligente.\n\nSEXTO: a trav\u00e9s del Sistema (*) se podr\u00e1n realizar transacciones con tarjetas de Cr\u00e9dito o D\u00e9bito. Son aplicables a estas transacciones, las disposiciones del Contrato de Afiliaci\u00f3n al Sistema Visanet Per\u00fa, sus Adendas y otros documentos as\u00ed como el Reglamento de Tarjetas de Cr\u00e9dito y D\u00e9bito u otras leyes o normas destinados a regular la aceptaci\u00f3n de pagos a trav\u00e9s de tarjetas de Cr\u00e9dito y D\u00e9bito en Empresas Afiliadas. En raz\u00f3n de ello, el usuario del Sistema (*) trat\u00e1ndose de tarjetas de Cr\u00e9dito se obliga, sin limitarse a, verificar los elementos de seguridad y la vigencia de la tarjeta, identidad del titular de la tarjeta y verificar que la firma en el dispositivo m\u00f3vil corresponda con la del documento de identidad y la de la tarjeta; trat\u00e1ndose de Tarjetas de D\u00e9bito, se obliga a brindar privacidad al titular de la tarjeta para el ingreso de su clave.   \n\nSETIMO: el usuario del Sistema (*) se obliga a seguir el procedimiento de inicializaci\u00f3n para su acceso al sistema y la vinculaci\u00f3n del Pin Pad s\u00f3lo en los dispositivos m\u00f3viles autorizados por la Empresa Afiliada, registrando su DNI y generando su contrase\u00f1a de uso personal e intransferible. Es responsabilidad del usuario y de la Empresa Afiliada, garantizar que el usuario y contrase\u00f1a permanecen s\u00f3lo en conocimiento del colaborador y que en caso de sospechas de difusi\u00f3n, divulgaci\u00f3n o uso no autorizado gestionen la renovaci\u00f3n de la misma. La renovaci\u00f3n por este motivo o por olvido se pueden gestionar a trav\u00e9s del mismo Sistema (*).\n\nOCTAVO: el Sistema (*) solicitar\u00e1 el usuario y contrase\u00f1a para poder realizar transacciones.\n\nNOVENO: Visanet Per\u00fa se reserva el derecho de suspender o inactivar usuarios en forma inmediata, temporal o definitivamente, si existieran indicios razonables que le permitan determinar que existe un uso indebido del Sistema (*) o indicios de transacciones inusuales, irregulares o fraudulentas o cualquier otro hecho que no corresponda con la actividad o el comportamiento regular del usuario o de la Empresa Afiliada.\n\nDECIMO: la Empresa Afiliada y sus colaboradores son responsables de las transacciones que originan a trav\u00e9s del Sistema (*), aceptando que cualquier transacci\u00f3n que no sea reconocida por el titular de la tarjeta podr\u00e1 ser anulada o contracargada por Visanet Per\u00fa de acuerdo a lo establecido en el Contrato de Afiliaci\u00f3n al Sistema Visanet Per\u00fa y los dem\u00e1s documentos aplicables.\n\nDECIMO PRIMERO: La Empresa Afiliada y sus colaboradores se obligan a informar el mismo d\u00eda de ocurrido el hecho, aquellos dispositivos m\u00f3viles que sean dados de baja, hayan sido robados o perdidos, al igual que los equipos electr\u00f3nicos Pin Pad.\nDECIMO SEGUNDO: Visanet Per\u00fa se reserva el derecho de modificar los T\u00e9rminos y Condiciones de uso del Sistema (*) en cualquier momento y sin previo aviso, bastando para ello la publicaci\u00f3n de los nuevos T\u00e9rminos y Condiciones en el mismo Sistema (*). La Empresa Afiliada y sus colaboradores se obligan a revisar peri\u00f3dicamente estos T\u00e9rminos y Condiciones.\n</string>
+    <string name="title_activity_authorization">AuthorizationActivity</string>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="ThemeVisanetNoTitleDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:padding">0dp</item>
+    </style>
+    <style name="styleButtonVISA">
+        <item name="android:textColor">@color/visanet_white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/button_next_textSize</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:lines">1</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <style name="styleEditTextVISA">
+        <item name="android:textColor">@color/visanet_black</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">@dimen/pinpad_textButtonSize</item>
+        <item name="android:background">@drawable/background_white_rounded</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginRight">40dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:lines">1</item>
+        <item name="android:maxLines">1</item>
+    </style>
+    <style name="stylePinPadButtonVISA">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/background_white_gray</item>
+        <item name="android:layout_margin">1dp</item>
+        <item name="android:textSize">@dimen/pinpad_numberSize</item>
+        <item name="android:textColor">@color/visanet_blue_titlebar</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
