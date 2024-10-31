@@ -29,7 +29,10 @@ import com.pedidos.android.persistence.db.entity.SaleEntity
 import com.pedidos.android.persistence.db.entity.SaleSubItemEntity
 import com.pedidos.android.persistence.model.SaleSubItem
 import com.pedidos.android.persistence.model.guide.DataResponse
+import com.pedidos.android.persistence.model.pluging.Linea
+import com.pedidos.android.persistence.model.pluging.PluginDataResponse
 import com.pedidos.android.persistence.model.sale.*
+import com.pedidos.android.persistence.model.transfer.TransferDataResponse
 import com.pedidos.android.persistence.ui.BasicApp
 import com.pedidos.android.persistence.ui.ClientPopUpFragment
 import com.pedidos.android.persistence.ui.ending.EndingActivity
@@ -63,10 +66,17 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
     private var view: View? = null
     lateinit var  dialgCustomSenCod: SendCodPopUpFragment
     var flag_pop: Boolean = false
+    var parametros: Bundle? = null
+    var pluginDataResponseData: PluginDataResponse? = null
+    var secuencialOtro = 0
+    var sizeProductoSearch = 0
+    var listSaleSubItem: MutableList<SaleSubItem> = mutableListOf()
+    lateinit var dataItemLinea: Linea
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentViewWithMenu(R.layout.sales_activity)
         setSupportActionBarMenu(toolbar)
+
 
         checkSession()
 
@@ -91,12 +101,14 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         val searchFactory = SearchProductViewModel.Companion.Factory(application, getSettings().urlbase)
         saleViewModel = ViewModelProviders.of(this, saleFactory).get(SaleViewModel::class.java)
         searchViewModel = ViewModelProviders.of(this, searchFactory).get(SearchProductViewModel::class.java)
-        searchViewModel.searchResults.observe(this, Observer { checkResult(it) })
+        searchViewModel.searchResults.observe(this, Observer {
+            checkResult(it)
+        })
         searchViewModel.errorResults.observe(this, Observer { showError(it) })
 
         subscribeToModel(saleViewModel)
 
-        RxTextView.textChanges(etwAddProduct)
+        /*RxTextView.textChanges(etwAddProduct)
                 .filter { it.length > 2 }
                 .debounce(600, TimeUnit.MILLISECONDS)
                 //.subscribeOn(Schedulers.io())
@@ -104,13 +116,87 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                 .subscribe {
                     productSearchCombined()
                 }
-
+*/
         initSale()
+        parametros = intent.extras
+
+        if (parametros != null){
+            //if (!parametros!!.getBoolean("acction")){
+             //   onBackPressed()
+            //}else{
+            Log.v("ley", "transferDataResponse: ${Gson().toJson(parametros!!.getString("PLUGIN_DATA"))}")
+            pluginDataResponseData  = Gson().fromJson(parametros!!.getString("PLUGIN_DATA"), PluginDataResponse::class.java) // parametros!!.get("PLUGIN_DATA") as PluginDataResponse
+            Log.v("ley","Ley Detalle: ${Gson().toJson(pluginDataResponseData?.lineas)}")
+            if (getActiveLog() == 1){
+                Log.v("ley","Ley Detalle: ${Gson().toJson(pluginDataResponseData?.lineas)}")
+                confirmMessage(Gson().toJson(pluginDataResponseData?.lineas))
+            }
+            //
+            if(pluginDataResponseData?.lineas?.size!!>0) {
+                    sizeProductoSearch = pluginDataResponseData?.lineas?.size!!
+                    saleViewModel.run {
+                        for (dataResponse in pluginDataResponseData?.lineas!!) {
+                            //  showProgress(true)
+
+                            val productEntity = ProductEntity()
+                            productEntity.codigo = dataResponse.referencia
+                            productEntity.cantidad = dataResponse.unidades
+                            productEntity.precio = dataResponse.precioneto
+                            productEntity.imei = dataResponse.color
+                            //productEntity.de = dataResponse.dto
+                            secuencialOtro = dataResponse.numlinea
+                            /*productEntity.descripcion = dataResponse.descripcion
+                            productEntity.precio = dataResponse.preciobruto
+                            productEntity.monedaSimbolo = dataResponse.
+                            productEntity.stimei = dataResponse.stimei
+                            productEntity.stimei2 = dataResponse.stimei2
+                            productEntity.codigoVenta = dataResponse.codigoVenta
+                            productEntity.complementaryRowColor = dataResponse.complementaryRowColor
+                            productEntity.secgaraexte = dataResponse.secgaraexte
+                            productEntity.codgaraexte = dataResponse.codgaraexte*/
+
+                            productSearchCombined(dataResponse)
+                            // searchViewModel?.searchProduct()
+
+                        }
+                    }
+
+                }
+
+           // }
+        }else{
+            println("no hay parametros!!!")
+        }
+        val accionGetBehavior = "icg.actions.electronicpayment.CoolboxVentas.GET_BEHAVIOR"
+        val accionTransaction = "icg.actions.electronicpayment.CoolboxVentas.TRANSACTION"
     }
 
 
 
     override fun onBackPressed() {
+       /* val resultIntent = Intent()
+        resultIntent.putExtra("PLUGIN_RESPONSE", "{\n" +
+                "\t\"msg\": \"\",\n" +
+                "\t\"borr_articulos\": [\n" +
+                "\t\t{\n" +
+                "\t\t\t\"referencia\": \"2740632\",\n" +
+                "\t\t\t\"codbarras\": \"040293132125\",\n" +
+                "\t\t\t\"signo\": \"-\"\n" +
+                "\t\t}\n" +
+                "\t],\n" +
+                "\t\"ejecucionexterna\": {\n" +
+                "\t\t\"correcta\": 1\n" +
+                "\t}\n" +
+                "}")
+        //if (resultCode == Activity.RESULT_OK) {
+            println("ley: "+ resultIntent?.getStringExtra("PLUGIN_RESPONSE"))
+            setResult(Activity.RESULT_OK, resultIntent)
+            finish()
+
+        */
+        //}
+        finish()
+        this@SaleActivity.finishAffinity()
     }
 
     private fun showError(it: String?) {
@@ -126,16 +212,17 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                 if (TextUtils.isEmpty(productEntity.imei)) {
 
                     view = LayoutInflater.from(this).inflate(R.layout.search_imei_dialog, lltRoot, false)
+                    view?.textTitle?.setText("${productEntity.codigo}: ${productEntity.descripcion}")
                     dialog = AlertDialog.Builder(this)
                             .setView(view)
                             .setCancelable(false)
-                            .setTitle(R.string.propt_imei_title)
+                            //.setTitle("\n${productEntity.codigo}: ${productEntity.descripcion}")
                             .show()
 
                     view?.btnScan?.setOnClickListener {
                         val integrator = IntentIntegrator(this)
                         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
-                        integrator.setPrompt("ESCANEAR IMEI")
+                        integrator.setPrompt("ESCANEAR IMEI: \n${productEntity.descripcion}")
                         integrator.setOrientationLocked(false)
                         integrator.setBeepEnabled(true)
                         integrator.setBarcodeImageEnabled(true)
@@ -146,11 +233,17 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                         fltLoading.visibility = View.VISIBLE
 
                         productEntity.imei = view?.edtImei?.text.toString()
-                        checkResult(productEntity)
-                        dialog?.dismiss()
+                        if(!TextUtils.isEmpty(productEntity.imei)){
+                            checkResult(productEntity)
+                            dialog?.dismiss()
+                        }
+
                     }
                 } else {
-                    searchViewModel.checkAutomatically(productEntity)
+                   // dialog?.dismiss()
+                   // addItem(productEntity, true)
+                    saleViewModel.checkAutomatically(productEntity, ::resultSearch, ::onError)
+                   // searchViewModel.checkAutomatically(productEntity)
                 }
             } else if (productEntity.stimei2) {
                 if (TextUtils.isEmpty(productEntity.imei2)) {
@@ -177,14 +270,17 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
 
                         productEntity.imei2 = view?.edtImei?.text.toString()
                         checkResult(productEntity)
+                        //dialog?.dismiss()
                     }
                 } else {
-                    addItem(productEntity)
+                    addItem(productEntity, true)
                 }
             } else {
                 // get product from search edittext
                 complementProductTempCode = productEntity.codigo
-                addItem(productEntity)
+                addItem(productEntity,true)
+                if (dialog?.isShowing == true)
+                    dialog?.dismiss()
             }
         } else {
             showProgress(false)
@@ -201,7 +297,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
             SEARCH_REQUEST -> {
                 if (Activity.RESULT_OK == resultCode) {
                     val productEntity: ProductEntity? = data?.getParcelableExtra(SearchProductActivity.PRODUCT_KEY)
-                    if(productEntity != null) addItem(productEntity)
+                    if(productEntity != null) addItem(productEntity,false)
                 }
             }
 
@@ -210,8 +306,8 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                     val productEntityExt: ProductEntity? = data?.getParcelableExtra(SearchProductActivity.PRODUCT_KEY_EXT)
                     val productEntityDamage: ProductEntity? = data?.getParcelableExtra(SearchProductActivity.PRODUCT_KEY_DAMAGE)
 
-                    if(productEntityExt != null) addItem(productEntityExt)
-                    if(productEntityDamage != null)addItem(productEntityDamage)
+                    if(productEntityExt != null) addItem(productEntityExt,false)
+                    if(productEntityDamage != null)addItem(productEntityDamage,false)
                 }
             }
 
@@ -221,7 +317,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
 
                     for (index in 0 .. (sizeList - 1)) {
                         val productEntity: ProductEntity? = data?.getParcelableExtra(SearchProductActivity.PRODUCT_KEY+index)
-                        if(productEntity != null) addItem(productEntity)
+                        if(productEntity != null) addItem(productEntity,false)
                     }
                 }
             }
@@ -308,25 +404,81 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                     Log.d(TAG, "data returned null")
                 }
             }
+            999 -> {
+                val resultado = data?.getStringExtra("PLUGIN_RESPONSE")
+                println("ley: PLUGIN_RESPONSE_BACK: "+ resultado)
+                val resultIntent = Intent()
+                resultIntent.putExtra("PLUGIN_RESPONSE", "{\n" +
+                        "\t\"ejecucionexterna\": {\n" +
+                        "\t\t\"correcta\": 0,\n" +
+                        "\t\t\"ifejecucionnookinitventa\": 1\n" +
+                        "\t}\n" +
+                        "}")
+                if (resultCode == Activity.RESULT_OK) {
+                    println("ley: "+ resultIntent?.getStringExtra("PLUGIN_RESPONSE"))
+                    setResult(Activity.RESULT_OK, resultIntent)
+                    finish()
+                }
+            }
             else -> {
                 super.onActivityResult(requestCode, resultCode, data)
             }
         }
     }
 
-    private fun addItem(productEntity: ProductEntity) {
-        var lastSecuencialOrDefault = 0
+    private fun addItem(productEntity: ProductEntity, isGarantie: Boolean) {
+        var lastSecuencialOrDefault =  0
         if (saleViewModel.saleLiveData.value != null) {
             if (saleViewModel.saleLiveData.value!!.productos.size > 0)
                 lastSecuencialOrDefault = saleViewModel.saleLiveData.value!!.productos[saleViewModel.saleLiveData.value!!.productos.size - 1].secuencial
         }
 
-        val saleSubItem = SaleSubItemEntity().apply {
-            secuencial = lastSecuencialOrDefault + 1
+            var saleSubItem = SaleSubItemEntity().apply {
+                secuencial = lastSecuencialOrDefault //+ 1
+                codigoventa = productEntity.codigoVenta
+                codigoProducto = productEntity.codigo
+                descripcion = productEntity.descripcion
+                pcdcto = dataItemLinea.dto
+                cantidad = dataItemLinea.unidades
+                precio = productEntity.precio
+                imei = productEntity.imei
+                imei2 = productEntity.imei2
+                monedaSimbolo = productEntity.monedaSimbolo
+                complementaryRowColor = productEntity.complementaryRowColor
+                secgaraexte = productEntity.secgaraexte
+                codgaraexte = productEntity.codgaraexte
+                totaldetalle = dataItemLinea.precioneto
+            }
+
+        listSaleSubItem.add(saleSubItem)
+
+        if (listSaleSubItem.size == sizeProductoSearch) {
+            showProgress(true)
+            saleViewModel.saveDetail(listSaleSubItem)
+        }
+        if (!isGarantie) {
+            saleViewModel.saveDetail(saleSubItem)
+        }
+
+
+
+       // saleViewModel.saveDetail(saleSubItem)
+    }
+    private fun addItem(productEntity: ProductEntity, isGarantie: Boolean, dataPLugin : Linea) {
+        var lastSecuencialOrDefault =  0
+        if (saleViewModel.saleLiveData.value != null) {
+            if (saleViewModel.saleLiveData.value!!.productos.size > 0)
+                lastSecuencialOrDefault = saleViewModel.saleLiveData.value!!.productos[saleViewModel.saleLiveData.value!!.productos.size - 1].secuencial
+        }
+
+        var saleSubItem = SaleSubItemEntity().apply {
+            secuencial = lastSecuencialOrDefault //+ 1
             codigoventa = productEntity.codigoVenta
             codigoProducto = productEntity.codigo
             descripcion = productEntity.descripcion
-            cantidad = 1
+            pcdcto = dataPLugin.dto
+            totaldetalle = dataPLugin.precioneto
+            cantidad = dataPLugin.unidades
             precio = productEntity.precio
             imei = productEntity.imei
             imei2 = productEntity.imei2
@@ -336,10 +488,20 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
             codgaraexte = productEntity.codgaraexte
         }
 
-        showProgress(true)
-        saleViewModel.saveDetail(saleSubItem)
-    }
+        listSaleSubItem.add(saleSubItem)
 
+        if (listSaleSubItem.size == sizeProductoSearch) {
+            showProgress(true)
+            saleViewModel.saveDetail(listSaleSubItem)
+        }
+        if (!isGarantie) {
+            saleViewModel.saveDetail(saleSubItem)
+        }
+
+
+
+        // saleViewModel.saveDetail(saleSubItem)
+    }
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if (grantResults.isEmpty()) return
         when (requestCode) {
@@ -513,9 +675,9 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         }
         //end nulls prevent
 
-        startActivity(Intent(this, EndingActivity::class.java).apply {
+        startActivityForResult(Intent(this, EndingActivity::class.java).apply {
             putExtra(EndingActivity.EXTRA_ENTITY, currentSaleEntity)
-        })
+        },999)
     }
 
     private fun productSearch() {
@@ -545,6 +707,38 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
 
             searchViewModel.searchProductDirectly(productCode)
         }
+    }
+    private fun productSearchCombined(productCodeIn: Linea) {
+        val productCode = productCodeIn
+
+        if (!productCode.referencia.isNullOrEmpty()) {
+            showProgress(true)
+
+            saleViewModel.searchProductDirectly(productCode,::resultSearch,::onError)
+        }
+    }
+
+    private fun resultSearch(entity: ProductEntity,dataPLugin : Linea){
+        val newSaleEntity = saleViewModel.saleLiveData.value!!
+        setSessionInfo(newSaleEntity)
+        newSaleEntity.vendedorCodigo = pluginDataResponseData?.codvendedor.toString()
+        newSaleEntity.tienda = pluginDataResponseData?.lineas?.get(0)?.almacen.toString()
+        toolbar.title = "${getString(R.string.title_sale_tienda)} ${newSaleEntity.tienda}"
+        saleViewModel.saleLiveData.postValue(newSaleEntity)
+        dataItemLinea = dataPLugin
+        checkResult(entity)
+        //addItem(entity,true,dataPLugin)
+    }
+    private fun resultSearch(entity: ProductEntity){
+        val newSaleEntity = saleViewModel.saleLiveData.value!!
+        setSessionInfo(newSaleEntity)
+        newSaleEntity.vendedorCodigo = pluginDataResponseData?.codvendedor.toString()
+        newSaleEntity.tienda = pluginDataResponseData?.lineas?.get(0)?.almacen.toString()
+        toolbar.title = "${getString(R.string.title_sale_tienda)} ${newSaleEntity.tienda}"
+        saleViewModel.saleLiveData.postValue(newSaleEntity)
+        //dataItemLinea = dataPLugin
+        checkResult(entity)
+        //addItem(entity,true,dataPLugin)
     }
 
 

@@ -35,6 +35,7 @@ class SaleSubItemEntity() : SaleSubItem {
     override var pesoTotal: Double = 0.0
     override var pesoUnitario: Double = 0.0
     override var cantidadpickada: Int = 0
+    override var totaldetalle: Double = 0.0
 
     constructor(parcel: Parcel) : this() {
         secuencial = parcel.readInt()
@@ -56,6 +57,7 @@ class SaleSubItemEntity() : SaleSubItem {
         pesoTotal = parcel.readDouble()
         pesoUnitario = parcel.readDouble()
         cantidadpickada = parcel.readInt()
+        totaldetalle = parcel.readDouble()
     }
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
@@ -82,6 +84,7 @@ class SaleSubItemEntity() : SaleSubItem {
         dest.writeDouble(pesoTotal)
         dest.writeDouble(pesoUnitario)
         dest.writeInt(cantidadpickada)
+        dest.writeDouble(totaldetalle)
     }
 
     override fun describeContents(): Int {

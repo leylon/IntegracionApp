@@ -71,9 +71,9 @@ class EndingActivity : MenuActivity() {
     }
 
     private fun cobrarPedido() {
-        startActivity(Intent(this, PaymentActivity::class.java).apply {
+        startActivityForResult(Intent(this, PaymentActivity::class.java).apply {
             putExtra(PaymentActivity.ENTITY_EXTRA, viewModel.saleLiveData.value)
-        })
+        },999)
     }
 
     private fun showLoading(show: Boolean) {
@@ -114,6 +114,23 @@ class EndingActivity : MenuActivity() {
                 if(performPrintingQr(receiptEntity.qrbase64)) {
                     startActivity(Intent(this, SaleActivity::class.java))
                 }
+            }
+        }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            (999) -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    val resultado = data?.getStringExtra("PLUGIN_RESPONSE")
+                    val resultIntent = Intent()
+                    resultIntent.putExtra("PLUGIN_RESPONSE", resultado)
+                    if (resultCode == Activity.RESULT_OK) {
+                        setResult(Activity.RESULT_OK, data)
+                        finish()
+                    }
+                }
+
             }
         }
     }

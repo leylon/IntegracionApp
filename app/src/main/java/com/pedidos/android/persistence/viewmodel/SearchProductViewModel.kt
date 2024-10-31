@@ -32,7 +32,8 @@ class SearchProductViewModel(private var repository: CoolboxApi) : ViewModel() {
     val searchDescriptionResults = MutableLiveData<List<ProductEntity>>()
     val imeiHelperResults = MutableLiveData<ProductEntity>()
     val errorResults = MutableLiveData<String>()
-
+    val itemProduct = MutableLiveData<Int>()
+    var _itemProduct = itemProduct.value ?: 0
     fun searchProduct(productID: String) {
 
         repository.searchProduct(productID).enqueue(object : Callback<ApiWrapper<ProductEntity>> {
@@ -46,6 +47,7 @@ class SearchProductViewModel(private var repository: CoolboxApi) : ViewModel() {
                     if (response.body()?.result == true && response.body()?.data != null) {
                         val productoEntity = response.body()?.data
                         productoEntity!!.codigoVenta = productID
+                        itemProduct.postValue(_itemProduct + 1)
                         searchResults.postValue(productoEntity)
                     } else
                         errorResults.postValue(response.body()?.message)

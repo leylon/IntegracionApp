@@ -527,6 +527,7 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     tools:text="@string/tvw_cobranza_mpos" />
 
                 <LinearLayout
@@ -535,6 +536,7 @@
                     android:layout_marginStart="@dimen/margin_medium"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:weightSum="2">
 
                     <Button
@@ -573,6 +575,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="18sp"
+                    android:visibility="gone"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -581,6 +584,7 @@
                     android:layout_marginStart="@dimen/margin_medium"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:weightSum="2">
 
                     <ImageButton
@@ -618,6 +622,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="18sp"
+                    android:visibility="gone"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -626,6 +631,7 @@
                     android:layout_marginStart="@dimen/margin_medium"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:weightSum="2">
 
                     <ImageButton

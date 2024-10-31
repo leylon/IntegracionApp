@@ -8,8 +8,11 @@ import android.arch.lifecycle.ViewModelProvider
 import android.util.Log
 import com.pedidos.android.persistence.api.ApiCorreo
 import com.pedidos.android.persistence.api.CoolboxApi
+import com.pedidos.android.persistence.db.entity.ProductEntity
 import com.pedidos.android.persistence.db.entity.SaleEntity
+import com.pedidos.android.persistence.model.CheckImeiResponse
 import com.pedidos.android.persistence.model.SaleSubItem
+import com.pedidos.android.persistence.model.pluging.Linea
 import com.pedidos.android.persistence.model.sale.*
 import com.pedidos.android.persistence.ui.BasicApp
 import com.pedidos.android.persistence.utils.ApiWrapper
@@ -124,6 +127,68 @@ class SaleViewModel(application: Application, private var repository: CoolboxApi
                         message.postValue(t.message)
                     }
                 })
+    }
+    fun saveDetail(saleSubItem: MutableList<SaleSubItem>) {
+        val entityToSave = SaleEntity(saleLiveData.value!!)
+        entityToSave.productos = saleSubItem
+        showProgress.postValue(true)
+        repository.insertSaleSubItem(entityToSave)
+            .enqueue(object : Callback<ApiWrapper<SaleEntity>> {
+                override fun onResponse(call: Call<ApiWrapper<SaleEntity>>, response: Response<ApiWrapper<SaleEntity>>) {
+                    if (response.isSuccessful) {
+                        if (response.body()!!.result) {
+                            val result = response.body()!!.data
+                            val currentEntity = SaleEntity(saleLiveData.value!!)
+
+                            //actualizamos documento, total, subtotal, etc
+                            currentEntity.documento = result?.documento ?: ""
+                            currentEntity.subTotal = result?.subTotal ?: 0.0
+                            currentEntity.descuento = result?.descuento ?: 0.0
+                            currentEntity.impuesto = result?.impuesto ?: 0.0
+                            currentEntity.total = result?.total ?: 0.0
+                            currentEntity.monedaSimbolo = result?.monedaSimbolo ?: ""
+                            currentEntity.complementaryRowColor = result?.complementaryRowColor ?: ""
+                            currentEntity.productoconcomplemento = result?.productoconcomplemento ?: 0
+
+                            // cuando se borra un elemento se debe verificar cuando se borra
+
+                            /*if(saleSubItem.cantidad == 0) {
+                                if(saleSubItem.codgaraexte == "") {
+                                    //delete all
+                                    saleLiveData.value!!.productos.removeAll { true }
+
+                                    //agregamos el producto al pedido para mostrarlo
+                                    currentEntity.productos.addAll(result?.productos ?: mutableListOf())
+                                } else {
+                                    val tempListProducts = saleLiveData.value!!.productos.filter { it.codigoProducto != saleSubItem.codigoProducto }
+                                    saleLiveData.value!!.productos.removeAll{true}
+                                    currentEntity.productos.addAll( tempListProducts)
+                                }
+                            } else {
+                                //delete all
+                                saleLiveData.value!!.productos.removeAll { true }
+
+                                //agregamos el producto al pedido para mostrarlo
+                                currentEntity.productos.addAll(result?.productos ?: mutableListOf())
+                            }*/
+                            saleLiveData.value!!.productos.removeAll { true }
+                            currentEntity.productos.addAll(result?.productos ?: mutableListOf())
+                            saleLiveData.postValue(currentEntity)
+                            showProgress.postValue(false)
+                        } else {
+                            Log.e(TAG, "result false ${response.body()!!.message}")
+                            showProgress.postValue(false)
+                            message.postValue(response.body()!!.message)
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<ApiWrapper<SaleEntity>>, t: Throwable) {
+                    Log.e(TAG, "fail request at ${t.message}")
+                    showProgress.postValue(false)
+                    message.postValue(t.message)
+                }
+            })
     }
     fun ventaProducto(
         request: List<VentaProductoRequest>,
@@ -301,7 +366,68 @@ class SaleViewModel(application: Application, private var repository: CoolboxApi
 
         saveDetail(saleSubItem)
     }
+    fun searchProductDirectly(productID: Linea,
+                              onSuccess: (entity: ProductEntity,data: Linea) -> Unit, onError: (message: String) -> Unit) {
+        repository.searchProduct(productID.referencia).enqueue(object : Callback<ApiWrapper<ProductEntity>> {
+            override fun onFailure(call: Call<ApiWrapper<ProductEntity>>, t: Throwable) {
+                onError(t.message.toString())
+            }
 
+            override fun onResponse(call: Call<ApiWrapper<ProductEntity>>, response: Response<ApiWrapper<ProductEntity>>) {
+                if (response.isSuccessful)
+                    if (response.body()?.result == true && response.body()?.data != null) {
+                        val productoEntity = response.body()?.data
+                        productoEntity!!.codigoVenta = productID.referencia
+                        productoEntity.cantidad = productID.unidades
+                       // productoEntity.precio = productID.preciobruto
+                        if (productID.color != ".") {
+                            productoEntity.stimei = false
+                            productoEntity.stimei2  = false
+                            productoEntity.imei2 = productID.color
+                        }
+
+                        //productoEntity!!.precio = productIN.precioneto
+                        //productoEntity!!. = productIN.dto
+                        onSuccess(productoEntity,productID)
+                        //searchResults.postValue(productoEntity)
+                    } else
+                        onError(response.body()?.message.toString())
+                else
+                    onError(response.body()!!.message)
+            }
+        })
+    }
+
+    fun checkAutomatically(it: ProductEntity,
+                           onSuccess: (entity: ProductEntity) -> Unit, onError: (message: String) -> Unit) {
+        repository.checkImei(it.codigoVenta, it.imei).enqueue(object : Callback<ApiWrapper<CheckImeiResponse>> {
+            override fun onFailure(call: Call<ApiWrapper<CheckImeiResponse>>, t: Throwable) {
+                onError(t.message.toString())
+            }
+
+            override fun onResponse(call: Call<ApiWrapper<CheckImeiResponse>>, response: Response<ApiWrapper<CheckImeiResponse>>) {
+                if (response.isSuccessful) {
+                    if (response.body()?.result == true) {
+                        if (response.body()?.data != null) {
+                            it.stimei = false
+                            onSuccess(it)
+                        } else {
+                            onError(response.body()?.message.toString())
+                            showProgress.postValue(false)
+                        }
+                    } else{
+                        it.stimei = true
+                        it.imei = ""
+                        onSuccess(it)
+                        //onError(response.body()?.message.toString())
+                    }
+                } else {
+                    onError(response.body()?.message.toString())
+                }
+                    //errorResults.postValue(response.body()!!.message)
+            }
+        })
+    }
     companion object {
         val TAG = SaleViewModel::class.java.simpleName!!
 

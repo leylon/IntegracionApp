@@ -5,7 +5,23 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical">
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="12dp"
+        android:textStyle="bold"
+        tools:text="MGHF3LLA: CEL IPHONE 12, 12+12/12MP"/>
 
+    <TextView
+        android:id="@+id/textTitleDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="12dp"
+        android:textStyle="bold"
+        android:text="IMEI"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

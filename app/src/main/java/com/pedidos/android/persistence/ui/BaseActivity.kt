@@ -47,6 +47,11 @@ open class BaseActivity : AppCompatActivity() {
         val preferences = getSharedPreferences(LoginActivity.NAMESPACE, Context.MODE_PRIVATE)
         return Gson().fromJson(preferences.getString(LoginActivity.SESSION_USER_NAME, "{}"), LoginResponse::class.java)
     }
+    fun getActiveLog(): Int {
+        val preferences = getSharedPreferences(MenuActivity.NAMESPACE, Context.MODE_PRIVATE)
+        val settings = Gson().fromJson(preferences.getString(MenuActivity.SETTINGS, "{}"), SettingsEntity::class.java)
+        return settings.isLog
+    }
 
     fun cleanSession() {
         val preferences = getSharedPreferences(LoginActivity.NAMESPACE, Context.MODE_PRIVATE)

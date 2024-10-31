@@ -32,6 +32,7 @@ class SettingsActivity : AppCompatActivity() {
         val uuID: String = UUID.randomUUID().toString()
         tvwAndroid_UUID.text = uuID
         tvwAndroid_ID.text = androidID
+
         val settingsEntity: SettingsEntity = intent.getParcelableExtra(SettingsActivity.SETTINGS_KEY)
         setData(settingsEntity)
     }
@@ -40,6 +41,7 @@ class SettingsActivity : AppCompatActivity() {
         val settings = SettingsEntity()
         settings.urlbase = edwUrlBase.text.toString()
         settings.impresora = edwImpresora.text.toString()
+        settings.isLog = if (chxActiveLog.isChecked) 1 else 0
         //settings.logoUrl = edwImageUrl.text.toString()
 
         val intent = Intent().apply {

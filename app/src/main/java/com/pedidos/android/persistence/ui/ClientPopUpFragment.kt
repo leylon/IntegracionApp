@@ -183,6 +183,9 @@ class ClientPopUpFragment : DialogFragment() {
 
             Log.i(TAG, "tipoDocumento: $tipoDocumento")
             Log.i(TAG, "item seleccionado: $item")
+            if(tipoDocumento == 0){
+                mbinding.viewModel!!.findResultSuccess.postValue(true)
+            }
 
             mbinding.viewModel!!.cleanAndSetTipoDocumento(tipoDocumento)
         }

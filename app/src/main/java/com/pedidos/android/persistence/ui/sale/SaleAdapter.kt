@@ -31,12 +31,21 @@ class SaleAdapter(var items: MutableList<SaleSubItem>, val onItemDelete: (SaleSu
     override fun onBindViewHolder(holder: SaleHolder, position: Int) {
         val subItem = items[position]
         holder.tvwProductName.text = subItem.descripcion
+        holder.tvwProductPrice.text = Formatter.DoubleToString(subItem.precio, subItem.monedaSimbolo)
+        holder.tvwProductCuantity.text = subItem.cantidad.toString()
         holder.tvwProductDiscount.text =
-            Formatter.DoubleToString(subItem.pcdcto, subItem.monedaSimbolo)
+            Formatter.DoubleToString(subItem.pcdcto, "%")
         holder.tvwProductTotalPrice.text =
-            Formatter.DoubleToString(subItem.cantidad * subItem.precio, subItem.monedaSimbolo)
+            Formatter.DoubleToString(subItem.totaldetalle, subItem.monedaSimbolo)
 
-        if( items[position].productoconcomplemento <= 0) {
+        holder.tvwProductImei.text = subItem.imei
+        if (subItem.imei.isNullOrEmpty()) {
+            holder.tvwProductImei.visibility = View.GONE
+        } else {
+            holder.tvwProductImei.visibility = View.VISIBLE
+        }
+
+            if( items[position].productoconcomplemento <= 0) {
             holder.ivbProdComp.visibility = View.GONE
         } else {
             holder.ivbProdComp.visibility = View.VISIBLE
@@ -90,7 +99,10 @@ class SaleAdapter(var items: MutableList<SaleSubItem>, val onItemDelete: (SaleSu
         internal val ivbDelete: ImageButton = itemView.findViewById(R.id.ivbDelete)
         internal val lltContainer: LinearLayout = itemView.findViewById(R.id.lltContainer)
         internal val ivbProdComp : ImageButton = itemView.findViewById(R.id.ivbProdComp)
-
+        internal val tvwProductPrice : TextView = itemView.findViewById(R.id.tvwProductPrice)
+        internal val tvwProductCuantity : TextView = itemView.findViewById(R.id.tvwProductCuantity)
+        internal val lltContainerPrice: LinearLayout = itemView.findViewById(R.id.lltContainerPrice)
+        internal val tvwProductImei: TextView = itemView.findViewById(R.id.tvwProductImei)
         init {
             tvwProductName.setOnClickListener {
                 if (itemView.context is AppCompatActivity && !items[adapterPosition].complementaryRowColor.contentEquals(

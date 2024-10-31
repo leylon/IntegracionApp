@@ -28,4 +28,5 @@ interface SaleSubItem: Parcelable {
     var pesoTotal: Double
     var pesoUnitario: Double
     var cantidadpickada: Int
+    var totaldetalle: Double
 }

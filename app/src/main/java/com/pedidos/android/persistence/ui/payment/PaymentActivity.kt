@@ -1,6 +1,7 @@
 package com.pedidos.android.persistence.ui.payment
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
@@ -11,6 +12,7 @@ import android.preference.PreferenceManager
 import android.support.v7.app.AlertDialog
 import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -50,6 +52,7 @@ import pe.beyond.visanet.manager.MPOSResponseBean
 import pe.beyond.visanet.manager.listener.MPOSAuthorizationListener
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.system.exitProcess
 
 
 class PaymentActivity : MenuActivity() {
@@ -98,6 +101,7 @@ class PaymentActivity : MenuActivity() {
         viewModel.resultMessages.observe(this, Observer {
             println("ley: printOnSnackBar => ${it!!}")
             printOnSnackBar(it!!)
+
         })
         viewModel.liveData.observe(this, Observer { performAfterOperations(it) })
 
@@ -106,6 +110,7 @@ class PaymentActivity : MenuActivity() {
         endingViewModel.receiptLiveData.observe(this, Observer { performViewOperations(it) })
         endingViewModel.cardsAccepted.observe(this, Observer { setFirstCard(it ?: arrayListOf()) })
         endingViewModel.otherPayments.observe(this, Observer { setFirstOtherPayment(it ?: arrayListOf()) })
+
         swTipoTarjeta.onItemSelectedListener = onSpinerSelectedItem
         swTipoTarjeta.adapter = arrayAdapter()
 
@@ -138,7 +143,39 @@ class PaymentActivity : MenuActivity() {
                 finalizarPedido(createPaymentEntity())
             }
         }
+        etwEfectivo.setOnClickListener {
+            if (etwEfectivo.text.toString() == "") {
+                etwEfectivo.setText(saleEntity.total.toString())
+            }
+
+        }
+        validDecimal()
     }
+
+    private fun validDecimal() {
+
+        etwEfectivo.addTextChangedListener(object : TextWatcher {
+            private var current = ""
+            override fun afterTextChanged(s: Editable?) {
+                // Permitir solo 2 decimales
+                val text = s.toString()
+                if (text.isNotEmpty()) {
+                    if (text.contains(".")) {
+                        val decimalPart = text.substringAfter(".")
+                        if (decimalPart.length > 2) {
+                            s?.delete(s.length - 1, s.length)  // Limitar a dos decimales
+                        }
+                    }
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+    }
+
+
 
     private fun btnOnClickVale() {
         view = LayoutInflater.from(this)
@@ -229,8 +266,10 @@ class PaymentActivity : MenuActivity() {
         val paymentEntity = PaymentEntity()
         paymentEntity.tipoDocumento = if (rbwBoleta.isChecked) Defaults.BOLETA else Defaults.FACTURA
         paymentEntity.numeroDocumento = numeroDocumento
+
+
         if (etwEfectivo.text.toString() != "") {
-            paymentEntity.montoEfectivo = etwEfectivo.text.toString().toDouble()
+                paymentEntity.montoEfectivo = etwEfectivo.text.toString().toDouble()
         }
 
         paymentEntity.codigoTarjeta = creditCardSelected
@@ -369,8 +408,51 @@ class PaymentActivity : MenuActivity() {
     }
 
     private fun startNewSale() {
+        //finish()
+       /* val intent = Intent(this, SaleActivity::class.java)
+        //exitProcess(0)
+        intent.putExtra("acction",false)
+        startActivity(intent)*/
+       /* val resultIntent = Intent()
+        resultIntent.putExtra("PLUGIN_RESPONSE", "<adic_articulos>\n" +
+                "<adic_articulo>\n" +
+                "   <referencia>HF100ME-K</referencia>\n" +
+                "</adic_articulo>\n" +
+                "</adic_articulos>\n" +
+                "<borr_articulos>\n" +
+                "<borr_articulo>\n" +
+                "  <referencia>TC</referencia>\n" +
+                "</borr_articulo>\n" +
+                "</borr_articulos>\n" +
+                "<msg></msg>\n" +
+                "<ejecucionexterna>\n" +
+                "<correcta>1</correcta>\n" +
+                "<accionsiincorrecta>0</accionsiincorrecta>\n" +
+                "</ejecucionexterna>")
+        /*val activityManager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
+        activityManager.appTasks.forEach { task ->
+            task.finishAndRemoveTask() // Cierra y elimina la tarea asociada con cada actividad
+        }*/
+        setResult(Activity.RESULT_OK,resultIntent)
+        finishAffinity()*/
+        val data ="{\n" +
+                "\t\"msg\": \"Se genero la venta correctamente.\",\n" +
+                "\t\"borr_articulos\": [\n" +
+                "\t\t{\n" +
+                "\t\t\t\"referencia\": \"\",\n" +
+                "\t\t\t\"codbarras\": \"\",\n" +
+                "\t\t\t\"signo\": \"-\"\n" +
+                "\t\t}\n" +
+                "\t],\n" +
+                "\t\"ejecucionexterna\": {\n" +
+                "\t\t\"correcta\": 1\n" +
+                "\t}\n" +
+                "}"
+        val resultIntent = Intent()
+        resultIntent.putExtra("PLUGIN_RESPONSE", data)
+        setResult(Activity.RESULT_OK,resultIntent)
         finish()
-        startActivity(Intent(this, SaleActivity::class.java))
+
     }
 
     private fun performPrintingOrShare(documentoPrint: String): Boolean {
@@ -484,6 +566,25 @@ class PaymentActivity : MenuActivity() {
             .setCancelable(false)
             .show()
 
+        view.edtAmount.addTextChangedListener(object : TextWatcher {
+            private var current = ""
+            override fun afterTextChanged(s: Editable?) {
+                // Permitir solo 2 decimales
+                val text = s.toString()
+                if (text.isNotEmpty()) {
+                    if (text.contains(".")) {
+                        val decimalPart = text.substringAfter(".")
+                        if (decimalPart.length > 2) {
+                            s?.delete(s.length - 1, s.length)  // Limitar a dos decimales
+                        }
+                    }
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
         view.tvwAccept.setOnClickListener {
             if(view.edtAmount.text.toString().isNullOrEmpty() || view.edtAmount.text.toString() == "0"  || view.edtAmount.text.toString() == "0.0" ) {
                 etwTarjeta.setText("")
@@ -529,6 +630,25 @@ class PaymentActivity : MenuActivity() {
             .setView(view)
             .setCancelable(false)
             .show()
+        view.edtAmount.addTextChangedListener(object : TextWatcher {
+            private var current = ""
+            override fun afterTextChanged(s: Editable?) {
+                // Permitir solo 2 decimales
+                val text = s.toString()
+                if (text.isNotEmpty()) {
+                    if (text.contains(".")) {
+                        val decimalPart = text.substringAfter(".")
+                        if (decimalPart.length > 2) {
+                            s?.delete(s.length - 1, s.length)  // Limitar a dos decimales
+                        }
+                    }
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
 
         view.tvwAccept.setOnClickListener {
             if(view.edtAmount.text.toString().isNullOrEmpty() || view.edtAmount.text.toString() == "0"  || view.edtAmount.text.toString() == "0.0" ) {

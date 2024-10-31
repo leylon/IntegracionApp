@@ -18,7 +18,7 @@
 
     <application
         android:name=".ui.BasicApp"
-        android:allowBackup="false"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -57,8 +57,30 @@
         <activity
             android:name=".ui.sale.SaleActivity"
             android:exported="true"
+            android:parentActivityName="ui.login.LoginActivity"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/NoAppBarStyle" />
+            android:theme="@style/NoAppBarStyle" >
+            <intent-filter>
+                <action android:name="Pry.CambioFactura"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="Pry.CambioFactura2"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="CoolboxVentas"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="icg.actions.electronicpayment.CoolboxVentas.GET_BEHAVIOR"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="icg.actions.electronicpayment.CoolboxVentas.TRANSACTION"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.guide.GuideActivity"
             android:configChanges="orientation|screenSize"
@@ -85,10 +107,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="Pry.CambioFactura"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".ui.ending.EndingActivity"
@@ -98,13 +117,17 @@
         <activity
             android:name=".ui.payment.PaymentActivity"
             android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_payment_activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.home.HomeActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+
+
+        </activity>
         <activity
             android:name=".ui.menu.MenuActivity"
             android:configChanges="orientation|screenSize"

@@ -15,7 +15,7 @@
   -->
 
 <resources>
-    <string name="app_name">Coolbox Ventas</string>
+    <string name="app_name">CoolboxVentas</string>
     <string name="company_name">COOLBOX</string>
     <string name="title_activity_login">@string/company_name</string>
     <string name="no_comments">No comments</string>
@@ -107,7 +107,7 @@
     <string name="lbl_tipo_documento">TIPO DE DOCUMENTO</string>
     <string name="rdw_boleta">BOLETA</string>
     <string name="rdw_factura">FACTURA</string>
-
+    <string name="rdw_otrd">OTROS</string>
     <string name="title_sale_mayuscula">PEDIDO VENTA</string>
     <string name="title_sale_tienda">PEDIDO TDA</string>
     <string name="title_guide_tienda">GUÍA DE REMISIÓN</string>

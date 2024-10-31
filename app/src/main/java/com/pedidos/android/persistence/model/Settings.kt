@@ -6,4 +6,5 @@ interface Settings : Parcelable {
     var urlbase: String
     var logoUrl: String
     var impresora: String
+    var isLog: Int
 }

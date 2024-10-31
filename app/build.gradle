@@ -45,8 +45,8 @@ android {
     productFlavors{
         root {
             dimension "version"
-            versionCode 4
-            versionName "2.0.1"
+            versionCode 5
+            versionName "2.0.13"
             buildConfigField 'String', 'URL_SERVER', '"https://wsfacturacion.coolbox.com.pe:9443/SKM/"'
             buildConfigField 'String', 'URL_PEDIDO_PAGAR_NUEVO', '"pedidopagarnuevo"'
             buildConfigField 'String', 'VERSION_APP', '"27/03/2024"'

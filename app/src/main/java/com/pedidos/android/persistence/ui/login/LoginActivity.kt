@@ -5,6 +5,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
+import android.app.Activity
 import android.app.LoaderManager.LoaderCallbacks
 import android.content.Context
 import android.content.CursorLoader
@@ -31,11 +32,14 @@ import com.google.gson.Gson
 import com.pedidos.android.persistence.R
 import com.pedidos.android.persistence.api.LoginApiTask
 import com.pedidos.android.persistence.model.LoginResponse
+import com.pedidos.android.persistence.model.pluging.PluginDataResponse
+import com.pedidos.android.persistence.model.transfer.TransferDataResponse
 import com.pedidos.android.persistence.ui.BasicApp
 import com.pedidos.android.persistence.ui.menu.MenuActivity
 import com.pedidos.android.persistence.ui.sale.SaleActivity
 import com.pedidos.android.persistence.utils.hideSoftInput
 import kotlinx.android.synthetic.main.activity_login.*
+import java.io.Serializable
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -46,7 +50,8 @@ class LoginActivity : MenuActivity(), LoaderCallbacks<Cursor> {
      */
     private var mAuthApiTask: LoginApiTask? = null
     var imei: String? = null
-
+    var parametros: Bundle? = null
+    var transferDataResponse: PluginDataResponse? = null
     val PHONESTATS = 0x1
 //    val tel = getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
     @RequiresApi(Build.VERSION_CODES.O)
@@ -77,8 +82,16 @@ class LoginActivity : MenuActivity(), LoaderCallbacks<Cursor> {
         if (sessionActive.usuario == null || sessionActive.usuario == "") {
             return
         }
+        parametros = intent.extras
+        if(parametros != null){
+            //Log.v("ley data:", "parametros: ${Gson().toJson(parametros)}")
+//            transferDataResponse = parametros!!.getString("PLUGIN_DATA") as PluginDataResponse
+            Log.v("ley", "transferDataResponse: ${Gson().toJson(parametros!!.getString("PLUGIN_DATA"))}")
+            transferDataResponse = Gson().fromJson(parametros!!.getString("PLUGIN_DATA"), PluginDataResponse::class.java)
+            Log.v("ley","Ley Detalle: ${Gson().toJson(transferDataResponse?.lineas)}")
 
-        openSales()
+        }
+        openSales(transferDataResponse)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -223,7 +236,7 @@ class LoginActivity : MenuActivity(), LoaderCallbacks<Cursor> {
             Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
         loginResponse.imei = androidID
         saveSession(loginResponse)
-        openSales()
+        openSales(transferDataResponse)
         finish()
     }
 
@@ -239,8 +252,12 @@ class LoginActivity : MenuActivity(), LoaderCallbacks<Cursor> {
         val TAG = LoginActivity::class.java.simpleName!!
     }
 
-    private fun openSales() {
+    private fun openSales(pluginDataResponse: PluginDataResponse?) {
         val intent = Intent(this, SaleActivity::class.java)
+        if(pluginDataResponse != null){
+            intent.putExtra("PLUGIN_DATA",pluginDataResponse as Serializable)
+            intent.putExtra("acction",true)
+        }
         startActivity(intent)
         finish()
     }
@@ -364,6 +381,35 @@ class LoginActivity : MenuActivity(), LoaderCallbacks<Cursor> {
             {
                 ActivityCompat. requestPermissions(this, arrayOf(android.Manifest. permission.READ_PHONE_STATE), 2)
 
+            }
+        }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PHONESTATS) {
+            if (resultCode == RESULT_OK) {
+                val resultado = data?.getStringExtra("PLUGIN_RESPONSE")
+                val resultIntent = Intent()
+                resultIntent.putExtra("PLUGIN_RESPONSE", "{\n" +
+                        "\t\"msg\": \"\",\n" +
+                        "\t\"borr_articulos\": [\n" +
+                        "\t\t{\n" +
+                        "\t\t\t\"referencia\": \"2740632\",\n" +
+                        "\t\t\t\"codbarras\": \"040293132125\",\n" +
+                        "\t\t\t\"signo\": \"\"\n" +
+                        "\t\t}\n" +
+                        "\t],\n" +
+                        "\t\"ejecucionexterna\": {\n" +
+                        "\t\t\"correcta\": 0\n" +
+                        "\t}\n" +
+                        "}")
+                if (resultCode == Activity.RESULT_OK) {
+                    println("ley: "+ resultIntent?.getStringExtra("PLUGIN_RESPONSE"))
+                    setResult(Activity.RESULT_OK, resultIntent)
+                    finish()
+                }
+            } else {
+                Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show()
             }
         }
     }

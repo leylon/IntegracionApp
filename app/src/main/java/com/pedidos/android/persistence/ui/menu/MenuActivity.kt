@@ -89,14 +89,14 @@ open class MenuActivity : BaseActivity(), NavigationView.OnNavigationItemSelecte
                 finish()
                 startActivity(Intent(this, SaleActivity::class.java))
             }
-            R.id.nav_pedido_anular -> {
+            /* R.id.nav_pedido_anular -> {
                 finish()
                 startActivity(Intent(this, CancelActivity::class.java))
             }
             R.id.nav_pedido_reporte_operaciones -> {
                 finish()
                 startActivity(Intent(this, OperationsReportActivity::class.java))
-            }
+            } */
             R.id.nav_cierre_caja -> {
                 finish()
                 startActivity(Intent(this, CashBalanceActivity::class.java))
@@ -108,7 +108,7 @@ open class MenuActivity : BaseActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_log_out -> {
                 performLogOut()
             }
-            R.id.nav_guia_remision -> {
+            /*R.id.nav_guia_remision -> {
                 finish()
                 startActivity(Intent(this, GuideHeadActivity::class.java))
             }
@@ -132,7 +132,7 @@ open class MenuActivity : BaseActivity(), NavigationView.OnNavigationItemSelecte
                 finish()
                 startActivity(Intent(this, ReportPackingPrincipal::class.java))
 
-            }
+            }  */
 
         }
 
