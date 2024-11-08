@@ -55,7 +55,9 @@ class EndingActivity : MenuActivity() {
     }
 
     override fun onBackPressed() {
-        setResult(Activity.RESULT_OK)
+        val resultIntent = Intent()
+        resultIntent.putExtra("BACK", "BACK")
+        setResult(Activity.RESULT_OK,resultIntent)
         finish()
     }
 
@@ -123,6 +125,7 @@ class EndingActivity : MenuActivity() {
             (999) -> {
                 if (resultCode == Activity.RESULT_OK) {
                     val resultado = data?.getStringExtra("PLUGIN_RESPONSE")
+
                     val resultIntent = Intent()
                     resultIntent.putExtra("PLUGIN_RESPONSE", resultado)
                     if (resultCode == Activity.RESULT_OK) {

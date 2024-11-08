@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Base64
 import android.util.Log
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -27,13 +28,15 @@ import com.pedidos.android.persistence.ui.cancel.CancelActivity
 import com.pedidos.android.persistence.ui.menu.MenuActivity
 import com.pedidos.android.persistence.utils.BluetoothConnector
 import com.pedidos.android.persistence.utils.Extensions
+import kotlinx.android.synthetic.main.sales_activity.*
+import kotlinx.android.synthetic.main.search_imei_dialog.view.*
 import java.io.File
 import java.io.FileOutputStream
 
 
 @SuppressLint("Registered")
 open class BaseActivity : AppCompatActivity() {
-
+    private var view: View? = null
     fun checkSession() {
         val sessionActive = getSession()
         //no quitar validacion de null
@@ -123,6 +126,18 @@ open class BaseActivity : AppCompatActivity() {
 
     }
 
+    fun messageLog(message: String) {
+        val view = LayoutInflater.from(this).inflate(R.layout.dialog_message_log, null, false)
+        view?.textTitle?.setText(message)
+        val dialog = AlertDialog.Builder(this)
+            .setView(view)
+            .setCancelable(true)
+            .show()
+        view?.tvwAccept?.setOnClickListener {
+            dialog.dismiss()
+        }
+
+    }
     private fun setupPrinter(): BluetoothConnector.BluetoothSocketWrapper? {
         val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         val pairedDevices = bluetoothAdapter.bondedDevices

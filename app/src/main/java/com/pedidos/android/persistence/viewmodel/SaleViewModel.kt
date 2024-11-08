@@ -379,7 +379,7 @@ class SaleViewModel(application: Application, private var repository: CoolboxApi
                         val productoEntity = response.body()?.data
                         productoEntity!!.codigoVenta = productID.referencia
                         productoEntity.cantidad = productID.unidades
-                       // productoEntity.precio = productID.preciobruto
+                        productoEntity.precio = productID.precioiva
                         if (productID.color != ".") {
                             productoEntity.stimei = false
                             productoEntity.stimei2  = false

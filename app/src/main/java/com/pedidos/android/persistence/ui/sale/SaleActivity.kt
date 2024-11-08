@@ -129,7 +129,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
             Log.v("ley","Ley Detalle: ${Gson().toJson(pluginDataResponseData?.lineas)}")
             if (getActiveLog() == 1){
                 Log.v("ley","Ley Detalle: ${Gson().toJson(pluginDataResponseData?.lineas)}")
-                confirmMessage(Gson().toJson(pluginDataResponseData?.lineas))
+                messageLog(Gson().toJson(parametros!!.getString("PLUGIN_DATA")))
             }
             //
             if(pluginDataResponseData?.lineas?.size!!>0) {
@@ -141,7 +141,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                             val productEntity = ProductEntity()
                             productEntity.codigo = dataResponse.referencia
                             productEntity.cantidad = dataResponse.unidades
-                            productEntity.precio = dataResponse.precioneto
+                            productEntity.precio = dataResponse.precioiva
                             productEntity.imei = dataResponse.color
                             //productEntity.de = dataResponse.dto
                             secuencialOtro = dataResponse.numlinea
@@ -167,8 +167,6 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         }else{
             println("no hay parametros!!!")
         }
-        val accionGetBehavior = "icg.actions.electronicpayment.CoolboxVentas.GET_BEHAVIOR"
-        val accionTransaction = "icg.actions.electronicpayment.CoolboxVentas.TRANSACTION"
     }
 
 
@@ -406,6 +404,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
             }
             999 -> {
                 val resultado = data?.getStringExtra("PLUGIN_RESPONSE")
+                val optionBack = data?.getStringExtra("BACK")
                 println("ley: PLUGIN_RESPONSE_BACK: "+ resultado)
                 val resultIntent = Intent()
                 resultIntent.putExtra("PLUGIN_RESPONSE", "{\n" +
@@ -414,7 +413,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                         "\t\t\"ifejecucionnookinitventa\": 1\n" +
                         "\t}\n" +
                         "}")
-                if (resultCode == Activity.RESULT_OK) {
+                if (resultCode == Activity.RESULT_OK && optionBack == null) {
                     println("ley: "+ resultIntent?.getStringExtra("PLUGIN_RESPONSE"))
                     setResult(Activity.RESULT_OK, resultIntent)
                     finish()
@@ -438,16 +437,16 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                 codigoventa = productEntity.codigoVenta
                 codigoProducto = productEntity.codigo
                 descripcion = productEntity.descripcion
-                pcdcto = dataItemLinea.dto
+                pcdcto = if (!isGarantie) 0.0 else dataItemLinea.dto
                 cantidad = dataItemLinea.unidades
-                precio = productEntity.precio
+                precio = if (!isGarantie) productEntity.precio  else  dataItemLinea.precioiva
                 imei = productEntity.imei
                 imei2 = productEntity.imei2
                 monedaSimbolo = productEntity.monedaSimbolo
                 complementaryRowColor = productEntity.complementaryRowColor
                 secgaraexte = productEntity.secgaraexte
                 codgaraexte = productEntity.codgaraexte
-                totaldetalle = dataItemLinea.precioneto
+                totaldetalle = if (!isGarantie) productEntity.precio else dataItemLinea.precioneto
             }
 
         listSaleSubItem.add(saleSubItem)
@@ -479,7 +478,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
             pcdcto = dataPLugin.dto
             totaldetalle = dataPLugin.precioneto
             cantidad = dataPLugin.unidades
-            precio = productEntity.precio
+            precio = if (!isGarantie) dataPLugin.precioiva else productEntity.precio
             imei = productEntity.imei
             imei2 = productEntity.imei2
             monedaSimbolo = productEntity.monedaSimbolo
