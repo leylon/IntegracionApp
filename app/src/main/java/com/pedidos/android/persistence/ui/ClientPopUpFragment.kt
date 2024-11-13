@@ -25,6 +25,7 @@ import com.pedidos.android.persistence.model.LoginResponse
 import com.pedidos.android.persistence.model.TipoDocumento
 import com.pedidos.android.persistence.viewmodel.ClientViewModel
 import kotlinx.android.synthetic.main.client_popup_fragment.*
+import java.util.LinkedHashMap
 
 
 class ClientPopUpFragment : DialogFragment() {
@@ -32,7 +33,7 @@ class ClientPopUpFragment : DialogFragment() {
     private lateinit var loginInfo: LoginResponse
     private lateinit var onSelectClient: (client: Client) -> Unit
     private lateinit var mbinding: ClientPopupFragmentBinding
-
+    private lateinit var listTipoDocumento: LinkedHashMap<Int, String>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mbinding = DataBindingUtil.inflate(inflater, R.layout.client_popup_fragment, container, false)
 
@@ -94,7 +95,7 @@ class ClientPopUpFragment : DialogFragment() {
                                     .create().show()
                         } else {
                             codigo.setText(result.contents)
-                            mbinding.viewModel!!.findClient(result.contents, TipoDocumento.getValByPosition(tipodocumentoSpinner.selectedItemPosition))
+                            mbinding.viewModel!!.findClient(result.contents, listTipoDocumento.keys.elementAt(tipodocumentoSpinner.selectedItemPosition))
                         }
                     }
                     else -> {
@@ -106,11 +107,11 @@ class ClientPopUpFragment : DialogFragment() {
     }
 
     private fun findInReniecSunat() {
-        mbinding.viewModel?.findClientInRenienSunat(codigo.text.toString(), TipoDocumento.getValByPosition(tipodocumentoSpinner.selectedItemPosition))
+        mbinding.viewModel?.findClientInRenienSunat(codigo.text.toString(), listTipoDocumento.keys.elementAt(tipodocumentoSpinner.selectedItemPosition))
     }
 
     private fun findClientByCode() {
-        mbinding.viewModel?.findClient(codigo.text.toString(), TipoDocumento.getValByPosition(tipodocumentoSpinner.selectedItemPosition))
+        mbinding.viewModel?.findClient(codigo.text.toString(), listTipoDocumento.keys.elementAt(tipodocumentoSpinner.selectedItemPosition))
     }
 
     private fun scanProduct() {
@@ -127,7 +128,8 @@ class ClientPopUpFragment : DialogFragment() {
 
     private fun collectClientInformation(): ClientEntity {
         val newEntity = ClientEntity()
-        newEntity.identityDocumentType = TipoDocumento.getValByPosition(tipodocumentoSpinner.selectedItemPosition)
+       // newEntity.identityDocumentType = TipoDocumento.getValByPosition(tipodocumentoSpinner.selectedItemPosition)
+        newEntity.identityDocumentType = listTipoDocumento.keys.elementAt(tipodocumentoSpinner.selectedItemPosition)
         newEntity.documentNumber = codigo.text.toString()
         newEntity.fullName = nombres.text.toString()
         newEntity.address = direccion.text.toString()
@@ -142,7 +144,8 @@ class ClientPopUpFragment : DialogFragment() {
     private fun subscribeToModel(model: ClientViewModel) {
         model.getObservableClient().observe(this, Observer {
             model.client.set(it)
-            tipodocumentoSpinner.setSelection(TipoDocumento.getPositionByVal(it!!.identityDocumentType))
+            //tipodocumentoSpinner.setSelection(TipoDocumento.getPositionByVal(it!!.identityDocumentType))
+            tipodocumentoSpinner.setSelection(listTipoDocumento.keys.toList().indexOf(it!!.identityDocumentType))
         })
         model.message.observe(this, Observer {
             Toast.makeText(this.context, it, Toast.LENGTH_LONG).show()
@@ -179,7 +182,8 @@ class ClientPopUpFragment : DialogFragment() {
 
         override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, p3: Long) {
             val item = adapterView!!.getItemAtPosition(position)
-            val tipoDocumento = TipoDocumento.getValByPosition(position)
+            //val tipoDocumento = TipoDocumento.getValByPosition(position)
+            val tipoDocumento = listTipoDocumento.keys.elementAt(position)
 
             Log.i(TAG, "tipoDocumento: $tipoDocumento")
             Log.i(TAG, "item seleccionado: $item")
@@ -192,7 +196,7 @@ class ClientPopUpFragment : DialogFragment() {
     }
 
     private fun arrayAdapter(): ArrayAdapter<String> {
-        val dataAdapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, TipoDocumento.getAll().values.toList())
+        val dataAdapter = ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, listTipoDocumento.values.toList())
         dataAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
         return dataAdapter
     }
@@ -202,11 +206,12 @@ class ClientPopUpFragment : DialogFragment() {
         const val KEY_CLIENT_ID = "client_id"
         const val KEY_CLIENT_DOCUMENT_TYPE = "client_document_type"
         const val KEY_URLBase = "url_base"
-        fun createFragment(clientId: String, clientDocumentType: Int, urlBase: String, loginInfo: LoginResponse, onSelectClient: (client: Client) -> Unit): ClientPopUpFragment {
+        fun createFragment(clientId: String, clientDocumentType: Int, urlBase: String, loginInfo: LoginResponse, onSelectClient: (client: Client) -> Unit,mapTipoDocumento: LinkedHashMap<Int,String>): ClientPopUpFragment {
             val fragment = ClientPopUpFragment()
             fragment.onSelectClient = onSelectClient
             fragment.loginInfo = loginInfo
-
+            println("mapTipoDocumento: $mapTipoDocumento")
+            fragment.listTipoDocumento = mapTipoDocumento
             val args = Bundle()
             args.putString(KEY_CLIENT_ID, clientId)
             args.putInt(KEY_CLIENT_DOCUMENT_TYPE, clientDocumentType)

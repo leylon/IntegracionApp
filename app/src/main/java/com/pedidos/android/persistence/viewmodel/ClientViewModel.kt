@@ -7,12 +7,14 @@ import android.util.Log
 import com.pedidos.android.persistence.api.CoolboxApi
 import com.pedidos.android.persistence.db.entity.ClientEntity
 import com.pedidos.android.persistence.db.entity.ClientResponseEntity
+import com.pedidos.android.persistence.model.SelectedTipoDocumento
 import com.pedidos.android.persistence.model.TipoDocumento
 import com.pedidos.android.persistence.ui.BasicApp
 import com.pedidos.android.persistence.utils.ApiWrapper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.LinkedHashMap
 
 class ClientViewModel private constructor(application: Application)
     : AndroidViewModel(application) {
@@ -30,9 +32,13 @@ class ClientViewModel private constructor(application: Application)
     var documentosIdentidad = ObservableArrayList<String>()
     var message = MutableLiveData<String>()
 
+    var listTipoDocumento = MutableLiveData<ArrayList<SelectedTipoDocumento>>()
+    val mapTipoDocumento = LinkedHashMap<Int, String>()
     constructor(application: Application, repository: CoolboxApi) : this(application) {
         _repository = repository
-        documentosIdentidad.addAll(TipoDocumento.getAll().values.toList())
+        getTipoDocumentoIdentidad()
+        //documentosIdentidad.addAll(TipoDocumento.getAll().values.toList())
+        documentosIdentidad.addAll(mapTipoDocumento.values.toList())
     }
 
     fun registerClient(entity: ClientEntity) {
@@ -134,6 +140,35 @@ class ClientViewModel private constructor(application: Application)
                 identityDocumentType = tipoDocumento
             })
         }
+    }
+
+    private fun getTipoDocumentoIdentidad() {
+        showProgress.set(true)
+        _repository.tipoDocumentIdentidad().enqueue(object : Callback<ApiWrapper<ArrayList<SelectedTipoDocumento>>>{
+            override fun onResponse(
+                call: Call<ApiWrapper<ArrayList<SelectedTipoDocumento>>>,
+                response: Response<ApiWrapper<ArrayList<SelectedTipoDocumento>>>
+            ) {
+                if(response.isSuccessful && response.body()!!.result) {
+                    listTipoDocumento.value = response.body()?.data ?: arrayListOf()
+                   // val mapTipoDocumento = LinkedHashMap<Int, String>()
+                    for (list in listTipoDocumento.value!!){
+                        mapTipoDocumento[list.codigo]= list.description
+                    }
+                    documentosIdentidad.addAll(mapTipoDocumento.values.toList())
+                }
+                showProgress.set(false)
+            }
+
+            override fun onFailure(
+                call: Call<ApiWrapper<ArrayList<SelectedTipoDocumento>>>,
+                t: Throwable
+            ) {
+                Log.e(EndingViewModel.TAG, t.message)
+                showProgress.set(false)
+            }
+
+        })
     }
 
     companion object {

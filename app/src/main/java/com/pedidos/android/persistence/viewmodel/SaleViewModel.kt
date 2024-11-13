@@ -12,6 +12,8 @@ import com.pedidos.android.persistence.db.entity.ProductEntity
 import com.pedidos.android.persistence.db.entity.SaleEntity
 import com.pedidos.android.persistence.model.CheckImeiResponse
 import com.pedidos.android.persistence.model.SaleSubItem
+import com.pedidos.android.persistence.model.SelectedCreditCard
+import com.pedidos.android.persistence.model.SelectedTipoDocumento
 import com.pedidos.android.persistence.model.pluging.Linea
 import com.pedidos.android.persistence.model.sale.*
 import com.pedidos.android.persistence.ui.BasicApp
@@ -27,7 +29,12 @@ class SaleViewModel(application: Application, private var repository: CoolboxApi
     var saleLiveData = MutableLiveData<SaleEntity>()
     var showProgress = MutableLiveData<Boolean>()
     var message = MutableLiveData<String>()
+    var listTipoDocumento = MutableLiveData<ArrayList<SelectedTipoDocumento>>()
 
+    init {
+
+        getTipoDocumentoIdentidad()
+    }
     fun saveSale(onSuccess: (entity: SaleEntity) -> Unit, onError: (message: String) -> Unit) {
         //validations
         repository.insertSale(saleLiveData.value!!)
@@ -428,6 +435,30 @@ class SaleViewModel(application: Application, private var repository: CoolboxApi
             }
         })
     }
+    private fun getTipoDocumentoIdentidad() {
+        showProgress.postValue(true)
+        repository.tipoDocumentIdentidad().enqueue(object : Callback<ApiWrapper<ArrayList<SelectedTipoDocumento>>>{
+            override fun onResponse(
+                call: Call<ApiWrapper<ArrayList<SelectedTipoDocumento>>>,
+                response: Response<ApiWrapper<ArrayList<SelectedTipoDocumento>>>
+            ) {
+                if(response.isSuccessful && response.body()!!.result) {
+                    listTipoDocumento.value = response.body()?.data ?: arrayListOf()
+                }
+                showProgress.postValue(false)
+            }
+
+            override fun onFailure(
+                call: Call<ApiWrapper<ArrayList<SelectedTipoDocumento>>>,
+                t: Throwable
+            ) {
+                Log.e(EndingViewModel.TAG, t.message)
+                showProgress.postValue(false)
+            }
+
+        })
+    }
+
     companion object {
         val TAG = SaleViewModel::class.java.simpleName!!
 

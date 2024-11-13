@@ -1,12 +1,15 @@
 package com.pedidos.android.persistence.model
 
 class TipoDocumento {
+
+
     companion object {
         const val DNI = 1
         const val CARNET_EXTRANGERIA = 4
         const val RUC = 6
         const val PASAPORTE = 7
         const val OTROS = 0
+        const val RFC = 11
 
         fun getAll(): LinkedHashMap<Int, String> {
             val map = linkedMapOf<Int, String>()
@@ -15,6 +18,7 @@ class TipoDocumento {
             map[RUC] = "R.U.C."
             map[PASAPORTE] = "PASAPORTE"
             map[OTROS] = "OTROS"
+            map[RFC] = "R.F.C"
             return map
         }
 

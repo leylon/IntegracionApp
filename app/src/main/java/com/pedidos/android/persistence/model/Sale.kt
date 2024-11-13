@@ -28,4 +28,5 @@ interface Sale : Parcelable {
     var telefono : String
     var email : String
     var androidimei: String
+    var tipodocumentogenera: String
 }

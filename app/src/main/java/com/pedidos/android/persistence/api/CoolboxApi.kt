@@ -73,6 +73,9 @@ interface CoolboxApi {
     @POST(BasicApp.DEFAULT_API_VENTA_MOVIL+"pedidodetalle2")
     fun insertSaleSubItem2(@Body body: SaleEntity): Call<ApiWrapper<SaleEntity>>
 
+    @GET(BasicApp.DEFAULT_API_VENTA_MOVIL+"documentoidentidad?codigo")
+    fun tipoDocumentIdentidad(): Call<ApiWrapper<ArrayList<SelectedTipoDocumento>>>
+
     @GET(BasicApp.DEFAULT_API_VENTA_MOVIL+"Product")
     fun searchProduct(@Query("codigoVenta") codigoProducto: String): Call<ApiWrapper<ProductEntity>>
 

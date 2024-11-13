@@ -50,6 +50,9 @@ class SaleEntity() : Sale {
     override var telefono: String = ""
     override var email: String = ""
     override var androidimei: String = ""
+    override var tipodocumentogenera: String = ""
+
+
     @Ignore
     var productos: MutableList<SaleSubItem> = mutableListOf()
 
@@ -83,6 +86,7 @@ class SaleEntity() : Sale {
         telefono = parcel.readString()
         email = parcel.readString()
         androidimei = parcel.readString()
+        tipodocumentogenera = parcel.readString()
     }
 
     constructor(sale: Sale) : this() {
@@ -112,6 +116,7 @@ class SaleEntity() : Sale {
         telefono = sale.telefono
         email = sale.email
         androidimei = sale.androidimei
+        tipodocumentogenera = sale.tipodocumentogenera
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -141,6 +146,7 @@ class SaleEntity() : Sale {
         parcel.writeString(telefono)
         parcel.writeString(email)
         parcel.writeString(androidimei)
+        parcel.writeString(tipodocumentogenera)
     }
 
     override fun describeContents(): Int {

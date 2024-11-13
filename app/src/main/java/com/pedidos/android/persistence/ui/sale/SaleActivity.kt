@@ -28,6 +28,7 @@ import com.pedidos.android.persistence.db.entity.ProductEntity
 import com.pedidos.android.persistence.db.entity.SaleEntity
 import com.pedidos.android.persistence.db.entity.SaleSubItemEntity
 import com.pedidos.android.persistence.model.SaleSubItem
+import com.pedidos.android.persistence.model.SelectedCreditCard
 import com.pedidos.android.persistence.model.guide.DataResponse
 import com.pedidos.android.persistence.model.pluging.Linea
 import com.pedidos.android.persistence.model.pluging.PluginDataResponse
@@ -72,6 +73,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
     var sizeProductoSearch = 0
     var listSaleSubItem: MutableList<SaleSubItem> = mutableListOf()
     lateinit var dataItemLinea: Linea
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentViewWithMenu(R.layout.sales_activity)
@@ -670,6 +672,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
             currentSaleEntity.productoconcomplemento = entity.productoconcomplemento
             currentSaleEntity.telefono = entity.telefono
             currentSaleEntity.email = saleViewModel.saleLiveData?.value?.email ?: ""
+            currentSaleEntity.tipodocumentogenera = entity.tipodocumentogenera
            // currentSaleEntity.androidimei = "a9731e8ca60a4207"
         }
         //end nulls prevent
@@ -767,7 +770,11 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
 
         val codigoCliente = saleViewModel.saleLiveData.value!!.clienteCodigo
         val data = saleViewModel.saleLiveData.value
-
+        val listTipoDocumento = saleViewModel.listTipoDocumento
+        val mapTipoDocumento = LinkedHashMap<Int, String>()
+        for (list in listTipoDocumento.value!!){
+            mapTipoDocumento[list.codigo]= list.description
+        }
         val popUpFragment = ClientPopUpFragment.createFragment(codigoCliente,
                 data!!.clienteTipoDocumento,
                 getSettings().urlbase,
@@ -781,7 +788,8 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                         data.email = client.email
                         saleViewModel.saleLiveData.postValue(data)
                     }
-                })
+                },
+            mapTipoDocumento)
 
         popUpFragment.show(ft, "ClientPopup")
     }

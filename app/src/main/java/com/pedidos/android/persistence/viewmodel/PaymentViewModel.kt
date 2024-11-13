@@ -10,6 +10,8 @@ import com.pedidos.android.persistence.api.CoolboxApi
 import com.pedidos.android.persistence.db.entity.PaymentEntity
 import com.pedidos.android.persistence.db.entity.PaymentResponseEntity
 import com.pedidos.android.persistence.db.entity.SaleEntity
+import com.pedidos.android.persistence.model.SelectedCreditCard
+import com.pedidos.android.persistence.model.SelectedTipoDocumento
 import com.pedidos.android.persistence.model.pagos.PagoValeRequest
 import com.pedidos.android.persistence.model.pagos.PagoValeResponse
 import com.pedidos.android.persistence.ui.BasicApp
@@ -34,7 +36,10 @@ class PaymentViewModel(private val repository: CoolboxApi) : ViewModel() {
     var liveData = MutableLiveData<PaymentResponseEntity>()
     var showLoading = MutableLiveData<Boolean>()
     var resultMessages = MutableLiveData<String>()
-
+    var listTipoDocumento = MutableLiveData<ArrayList<SelectedTipoDocumento>>()
+    init {
+        getTipoDocumentoIdentidad()
+    }
     // CPV: Se implemento onError
     fun savePayment(data: PaymentEntity, onError: (message: String) -> Unit) {
         showLoading.postValue(true)
@@ -153,5 +158,28 @@ class PaymentViewModel(private val repository: CoolboxApi) : ViewModel() {
 
                 }
             })
+    }
+    private fun getTipoDocumentoIdentidad() {
+        showLoading.postValue(true)
+        repository.tipoDocumentIdentidad().enqueue(object : Callback<ApiWrapper<ArrayList<SelectedTipoDocumento>>>{
+            override fun onResponse(
+                call: Call<ApiWrapper<ArrayList<SelectedTipoDocumento>>>,
+                response: Response<ApiWrapper<ArrayList<SelectedTipoDocumento>>>
+            ) {
+                if(response.isSuccessful && response.body()!!.result) {
+                    listTipoDocumento.value = response.body()?.data ?: arrayListOf()
+                }
+                showLoading.postValue(false)
+            }
+
+            override fun onFailure(
+                call: Call<ApiWrapper<ArrayList<SelectedTipoDocumento>>>,
+                t: Throwable
+            ) {
+                Log.e(EndingViewModel.TAG, t.message)
+                showLoading.postValue(false)
+            }
+
+        })
     }
 }
