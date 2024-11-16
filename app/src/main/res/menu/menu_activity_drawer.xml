@@ -16,10 +16,11 @@
             android:id="@+id/nav_pedido_reporte_operaciones"
             android:icon="@android:drawable/ic_menu_set_as"
             android:title="@string/title_activity_operations_report" />-->
-        <item
+        <!--<item
             android:id="@+id/nav_cierre_caja"
             android:icon="@android:drawable/ic_menu_day"
             android:title="@string/title_activity_cash_balance" />
+        -->
         <item
             android:id="@+id/nav_documentos_generados"
             android:icon="@drawable/ic_list_black"

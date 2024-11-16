@@ -78,6 +78,7 @@ class PaymentActivity : MenuActivity() {
     private var view: View? = null
     private var numVale: String = ""
     private var isSaleSucceses: Boolean = false
+    private var refTarjeta: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentViewWithMenu(R.layout.payment_activity)
@@ -311,8 +312,9 @@ class PaymentActivity : MenuActivity() {
         paymentEntity.codigoTarjeta = creditCardSelected
         if (etwTarjeta.text.toString() != "") {
             paymentEntity.montoTarjeta = etwTarjeta.text.toString().toDouble()
+            paymentEntity.retarj = refTarjeta
         }
-
+        paymentEntity.retarj = refTarjeta
         paymentEntity.codigoOtro = otherPaymentSelected
         if ( etwOther.text.toString() != "") {
             paymentEntity.montoOtro = etwOther.text.toString().toDouble()
@@ -622,11 +624,14 @@ class PaymentActivity : MenuActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+
         view.tvwAccept.setOnClickListener {
+            refTarjeta = view.edtAmountOther.text.toString()
             if(view.edtAmount.text.toString().isNullOrEmpty() || view.edtAmount.text.toString() == "0"  || view.edtAmount.text.toString() == "0.0" ) {
                 etwTarjeta.setText("")
 
                 creditCardSelected = list[0].codeCard.toString()
+
                 btnTarjeta.text = list[0].description
                 btnTarjeta.setCompoundDrawablesWithIntrinsicBounds(getDrawable(list[0].getImageResource(list[0].icon)),null,null,null)
                 dialog.dismiss()

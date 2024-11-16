@@ -97,10 +97,10 @@ open class MenuActivity : BaseActivity(), NavigationView.OnNavigationItemSelecte
                 finish()
                 startActivity(Intent(this, OperationsReportActivity::class.java))
             } */
-            R.id.nav_cierre_caja -> {
+            /*R.id.nav_cierre_caja -> {
                 finish()
                 startActivity(Intent(this, CashBalanceActivity::class.java))
-            }
+            }*/
             R.id.nav_documentos_generados -> {
                 finish()
                 startActivity(Intent(this, GeneratedDocumentsActivity::class.java))

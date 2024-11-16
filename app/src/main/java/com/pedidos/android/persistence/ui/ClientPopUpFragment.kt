@@ -7,6 +7,7 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
+import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -173,6 +174,15 @@ class ClientPopUpFragment : DialogFragment() {
             phone.isFocusable = it
             phone.isFocusableInTouchMode = it
         })
+        model.typeInputText.observe(this, Observer {
+            if (it?.equals("NUMERICO")!!) {
+                codigo.hint = "Nro Documento"
+                codigo.inputType = InputType.TYPE_CLASS_NUMBER
+            } else {
+                codigo.hint = "Documento"
+                codigo.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS
+            }
+        })
     }
 
     private val onSpinnerSelectItem = object : AdapterView.OnItemSelectedListener {
@@ -190,6 +200,8 @@ class ClientPopUpFragment : DialogFragment() {
             if(tipoDocumento == 0){
                 mbinding.viewModel!!.findResultSuccess.postValue(true)
             }
+             val tipoDocumentoData = mbinding.viewModel!!.listTipoDocumento.value?.filter { dato -> dato.codigo == tipoDocumento }
+            mbinding.viewModel!!.typeInputText.postValue(tipoDocumentoData!!.first().teclado)
 
             mbinding.viewModel!!.cleanAndSetTipoDocumento(tipoDocumento)
         }

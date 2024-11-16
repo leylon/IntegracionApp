@@ -20,4 +20,5 @@ interface Payment {
     var numotro: String
     var numvale: String
     var impvale: Double
+    var retarj: String
 }

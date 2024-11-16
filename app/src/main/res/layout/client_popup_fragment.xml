@@ -101,7 +101,7 @@
                     android:layout_gravity="bottom"
                     android:layout_weight="1"
                     android:hint="@string/dni_ruc"
-                    android:inputType="number|textCapCharacters"
+                    android:inputType="text"
                     android:text="@{viewModel.client.documentNumber}"
                     android:textSize="16sp"
                     android:textStyle="bold"/>

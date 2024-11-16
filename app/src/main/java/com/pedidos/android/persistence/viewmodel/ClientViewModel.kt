@@ -27,6 +27,7 @@ class ClientViewModel private constructor(application: Application)
     var client = ObservableField<ClientEntity>()
     var saved = MutableLiveData<Boolean>()
     var findResultSuccess = MutableLiveData<Boolean>()
+    var typeInputText = MutableLiveData<String>()
 
     var showProgress = ObservableBoolean(false)
     var documentosIdentidad = ObservableArrayList<String>()

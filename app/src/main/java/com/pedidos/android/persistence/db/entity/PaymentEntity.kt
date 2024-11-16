@@ -50,5 +50,6 @@ class PaymentEntity(
     override var idpago_link: String = ""
     override var numvale: String = ""
     override var impvale: Double = 0.0
+    override var retarj: String = ""
 
 }

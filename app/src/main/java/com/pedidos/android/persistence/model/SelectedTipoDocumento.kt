@@ -6,5 +6,7 @@ data class SelectedTipoDocumento(
     @SerializedName("documentoidentidad")
     var codigo: Int,
     @SerializedName("descripciondocumentoidentidad")
-    var description: String
+    var description: String,
+    @SerializedName("teclado")
+    var teclado: String
 )
