@@ -177,7 +177,29 @@ class PaymentActivity : MenuActivity() {
 
         }
         validDecimal()
+        setupVisualizacionTipoPago()
     }
+
+    private fun setupVisualizacionTipoPago() {
+        val userInfo = getSession()
+        linerEfectivo.visibility = isVisbleView(userInfo.efectivo)
+        linerCobranzaEfectivo.visibility = isVisbleView(userInfo.efectivo)
+        linerFpay.visibility = isVisbleView(userInfo.fpay)
+        textFpay.visibility = isVisbleView(userInfo.fpay)
+        textFpay.visibility = isVisbleView(userInfo.fpay)
+        linerPagoLink.visibility = isVisbleView(userInfo.pagoLink)
+        textPagoLink.visibility = isVisbleView(userInfo.pagoLink)
+        linerTarjeta.visibility = isVisbleView(userInfo.tarjeta)
+        linerMakeAndWish.visibility = isVisbleView(userInfo.makeaWish)
+        linerVales.visibility = isVisbleView(userInfo.vales)
+        linerOtosPagos.visibility = isVisbleView(userInfo.otroPago)
+        linerMpos.visibility = isVisbleView(userInfo.mPos)
+    }
+
+    private fun isVisbleView(statusView: Boolean) : Int {
+        return if(statusView) View.VISIBLE else View.GONE
+    }
+
 
     override fun onBackPressed() {
         if (viewModel.showLoading.value!!) {

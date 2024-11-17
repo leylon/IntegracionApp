@@ -406,10 +406,10 @@ class SaleViewModel(application: Application, private var repository: CoolboxApi
     }
 
     fun checkAutomatically(it: ProductEntity,
-                           onSuccess: (entity: ProductEntity) -> Unit, onError: (message: String) -> Unit) {
+                           onSuccess: (entity: ProductEntity) -> Unit, onError: (message: String, it: ProductEntity) -> Unit) {
         repository.checkImei(it.codigoVenta, it.imei).enqueue(object : Callback<ApiWrapper<CheckImeiResponse>> {
             override fun onFailure(call: Call<ApiWrapper<CheckImeiResponse>>, t: Throwable) {
-                onError(t.message.toString())
+                onError(t.message.toString(),it)
             }
 
             override fun onResponse(call: Call<ApiWrapper<CheckImeiResponse>>, response: Response<ApiWrapper<CheckImeiResponse>>) {
@@ -419,17 +419,17 @@ class SaleViewModel(application: Application, private var repository: CoolboxApi
                             it.stimei = false
                             onSuccess(it)
                         } else {
-                            onError(response.body()?.message.toString())
+                            onError(response.body()?.message.toString(),it)
                             showProgress.postValue(false)
                         }
                     } else{
                         it.stimei = true
                         it.imei = ""
-                        onSuccess(it)
-                        //onError(response.body()?.message.toString())
+                        //onSuccess(it)
+                        onError(response.body()?.message.toString(),it)
                     }
                 } else {
-                    onError(response.body()?.message.toString())
+                    onError(response.body()?.message.toString(),it)
                 }
                     //errorResults.postValue(response.body()!!.message)
             }

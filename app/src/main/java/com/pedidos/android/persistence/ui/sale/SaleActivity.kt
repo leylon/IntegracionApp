@@ -211,15 +211,15 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                 //request IMEI
                 if (TextUtils.isEmpty(productEntity.imei)) {
 
-                    view = LayoutInflater.from(this).inflate(R.layout.search_imei_dialog, lltRoot, false)
-                    view?.textTitle?.setText("${productEntity.codigo}: ${productEntity.descripcion}")
-                    dialog = AlertDialog.Builder(this)
-                            .setView(view)
+                    val dialogView = LayoutInflater.from(this).inflate(R.layout.search_imei_dialog, lltRoot, false)
+                    dialogView?.textTitle?.setText("${productEntity.codigo}: ${productEntity.descripcion}")
+                    val mydialog = AlertDialog.Builder(this)
+                            .setView(dialogView)
                             .setCancelable(false)
                             //.setTitle("\n${productEntity.codigo}: ${productEntity.descripcion}")
                             .show()
 
-                    view?.btnScan?.setOnClickListener {
+                    dialogView?.btnScan?.setOnClickListener {
                         val integrator = IntentIntegrator(this)
                         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
                         integrator.setPrompt("ESCANEAR IMEI: \n${productEntity.descripcion}")
@@ -229,33 +229,40 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                         integrator.setRequestCode(113)
                         integrator.initiateScan()
                     }
-                    view?.tvwAccept?.setOnClickListener {
+                    dialogView?.tvwAccept?.setOnClickListener {
+
+                        println("ley: IMEI: "+ mydialog?.isShowing)
+                        mydialog?.dismiss()
                         fltLoading.visibility = View.VISIBLE
 
-                        productEntity.imei = view?.edtImei?.text.toString()
+                        productEntity.imei = dialogView.edtImei?.text.toString()
                         if(!TextUtils.isEmpty(productEntity.imei)){
+                            mydialog?.dismiss()
                             checkResult(productEntity)
-                            dialog?.dismiss()
+
                         }
 
+                    }
+                    dialogView?.tvwCancelar?.setOnClickListener {
+                        onBackPressed()
                     }
                 } else {
                    // dialog?.dismiss()
                    // addItem(productEntity, true)
-                    saleViewModel.checkAutomatically(productEntity, ::resultSearch, ::onError)
+                    saleViewModel.checkAutomatically(productEntity, ::resultSearch, ::onErrorImei)
                    // searchViewModel.checkAutomatically(productEntity)
                 }
             } else if (productEntity.stimei2) {
                 if (TextUtils.isEmpty(productEntity.imei2)) {
                     //request imei2
-                    view = LayoutInflater.from(this).inflate(R.layout.search_imei_dialog, lltRoot, false)
-                    dialog = AlertDialog.Builder(this)
-                            .setView(view)
+                    val dialogView = LayoutInflater.from(this).inflate(R.layout.search_imei_dialog, lltRoot, false)
+                    val mydialog2 = AlertDialog.Builder(this)
+                            .setView(dialogView)
                             .setCancelable(false)
                             .setTitle(R.string.propt_imei_title2)
                             .show()
 
-                    view?.btnScan?.setOnClickListener {
+                    dialogView?.btnScan?.setOnClickListener {
                         val integrator = IntentIntegrator(this)
                         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES)
                         integrator.setPrompt("Escanear Imei 2")
@@ -265,12 +272,16 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                         integrator.setRequestCode(115)
                         integrator.initiateScan()
                     }
-                    view?.tvwAccept?.setOnClickListener {
+                    dialogView?.tvwAccept?.setOnClickListener {
                         fltLoading.visibility = View.VISIBLE
 
-                        productEntity.imei2 = view?.edtImei?.text.toString()
+                        productEntity.imei2 = dialogView?.edtImei?.text.toString()
+                        mydialog2?.dismiss()
                         checkResult(productEntity)
-                        //dialog?.dismiss()
+                        //
+                        dialogView?.tvwCancelar?.setOnClickListener {
+                            onBackPressed()
+                        }
                     }
                 } else {
                     addItem(productEntity, true)
@@ -279,8 +290,9 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                 // get product from search edittext
                 complementProductTempCode = productEntity.codigo
                 addItem(productEntity,true)
-                if (dialog?.isShowing == true)
-                    dialog?.dismiss()
+                //mydialog?.dismiss()
+               // if (dialog?.isShowing == true)
+                 //   dialog?.dismiss()
             }
         } else {
             showProgress(false)
@@ -732,6 +744,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         //addItem(entity,true,dataPLugin)
     }
     private fun resultSearch(entity: ProductEntity){
+
         val newSaleEntity = saleViewModel.saleLiveData.value!!
         setSessionInfo(newSaleEntity)
         newSaleEntity.vendedorCodigo = pluginDataResponseData?.codvendedor.toString()
@@ -807,6 +820,19 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                 .setPositiveButton(R.string.aceptar) { d, _ -> d.dismiss() }
                 .setCancelable(false)
                 .create().show()
+    }
+    private fun onErrorImei(message: String, productEntity: ProductEntity) {
+        Log.e(TAG, message)
+        dialog?.dismiss()
+        AlertDialog.Builder(this, R.style.AppTheme_DIALOG)
+            .setTitle(R.string.app_name)
+            .setMessage(message)
+            .setPositiveButton(R.string.aceptar) { d, _ ->
+                d.dismiss()
+                checkResult(productEntity)
+                }
+            .setCancelable(false)
+            .create().show()
     }
 
     private fun showProgress(show: Boolean) {

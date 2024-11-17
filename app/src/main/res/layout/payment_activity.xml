@@ -189,12 +189,15 @@
 
 
             <LinearLayout
+                android:id="@+id/linerCobranzaEfectivo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="18dp"
+                android:visibility="visible"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textCoranzaEfectivo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/darkBlue"
@@ -209,6 +212,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/linerMakeAndWish"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/margin_medium"
@@ -235,14 +239,14 @@
                     <Button
                         android:id="@+id/btnMakeAndWish"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="72dp"
                         android:layout_marginBottom="12dp"
                         android:layout_weight="1"
                         android:backgroundTint="@color/white"
+                        android:drawableLeft="@drawable/ic_monedas_64"
                         android:text="MAKE AND WISH"
                         android:textAlignment="center"
                         android:textColor="@android:color/black"
-                        android:drawableLeft="@drawable/ic_monedas_64"
                         android:textSize="16sp" />
 
                     <EditText
@@ -261,6 +265,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/linerEfectivo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/margin_medium"
@@ -319,6 +324,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linerTarjeta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="18dp"
@@ -388,6 +394,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linerOtosPagos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -453,6 +460,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linerVales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -522,9 +530,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="18dp"
+                android:visibility="visible"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textMpos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/darkBlue"
@@ -535,16 +545,17 @@
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     tools:text="@string/tvw_cobranza_mpos" />
 
                 <LinearLayout
+                    android:id="@+id/linerMpos"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/margin_medium"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:orientation="horizontal"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:weightSum="2">
 
                     <Button
@@ -573,7 +584,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/textFpay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/darkBlue"
@@ -583,16 +594,17 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:textStyle="bold" />
 
                 <LinearLayout
+                    android:id="@+id/linerFpay"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/margin_medium"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:orientation="horizontal"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:weightSum="2">
 
                     <ImageButton
@@ -620,7 +632,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/textPagoLink"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/darkBlue"
@@ -630,16 +642,17 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="18sp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:textStyle="bold" />
 
                 <LinearLayout
+                    android:id="@+id/linerPagoLink"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/margin_medium"
                     android:layout_marginEnd="@dimen/margin_medium"
                     android:orientation="horizontal"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:weightSum="2">
 
                     <ImageButton

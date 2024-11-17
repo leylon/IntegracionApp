@@ -16,21 +16,21 @@ class LoginResponse(var cajacodigo: String,
                     var urlcorreo: String,
                     var urlcorreorespuesta: String,
                     @SerializedName("MakeaWish")
-                    var makeaWish: String,
+                    var makeaWish: Boolean,
                     @SerializedName("Efectivo")
-                    var efectivo: String,
+                    var efectivo: Boolean,
                     @SerializedName("EfectivoDol")
-                    var efectivoDol: String,
+                    var efectivoDol: Boolean,
                     @SerializedName("Tarjeta")
-                    var tarjeta: String,
+                    var tarjeta: Boolean,
                     @SerializedName("MPos")
-                    var mPos: String,
+                    var mPos: Boolean,
                     @SerializedName("OtroPago")
-                    var otroPago: String,
+                    var otroPago: Boolean,
                     @SerializedName("Vales")
-                    var vales: String,
+                    var vales: Boolean,
                     @SerializedName("PagoLink")
-                    var pagoLink: String,
+                    var pagoLink: Boolean,
                     @SerializedName("Fpay")
-                    var fpay: String
+                    var fpay: Boolean
                     )
