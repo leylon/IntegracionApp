@@ -14,6 +14,7 @@ import com.pedidos.android.persistence.utils.Formatter
 
 class GeneratedDocumentsAdapter(val items: MutableList<GeneratedDocumentEntity>, val listener: (GeneratedDocumentEntity) -> Unit) : RecyclerView.Adapter<GeneratedDocumentsAdapter.GeneratedDocumentsHolder>() {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GeneratedDocumentsHolder =
             GeneratedDocumentsHolder(LayoutInflater.from(parent.context)
                     .inflate(R.layout.generated_document_item, parent, false))

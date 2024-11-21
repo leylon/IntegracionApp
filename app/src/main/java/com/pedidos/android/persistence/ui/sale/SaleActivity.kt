@@ -104,7 +104,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         saleViewModel = ViewModelProviders.of(this, saleFactory).get(SaleViewModel::class.java)
         searchViewModel = ViewModelProviders.of(this, searchFactory).get(SearchProductViewModel::class.java)
         searchViewModel.searchResults.observe(this, Observer {
-            checkResult(it)
+            checkResult(it, dataItemLinea)
         })
         searchViewModel.errorResults.observe(this, Observer { showError(it) })
 
@@ -205,7 +205,8 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
             printOnSnackBar(it)
     }
 
-    private fun checkResult(productEntity: ProductEntity?) {
+    private fun checkResult(productEntity: ProductEntity?,dataPLugin: Linea) {
+        dataItemLinea =dataPLugin
         if (productEntity != null) {
             if (productEntity.stimei) {
                 //request IMEI
@@ -234,13 +235,17 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                         println("ley: IMEI: "+ mydialog?.isShowing)
                         mydialog?.dismiss()
                         fltLoading.visibility = View.VISIBLE
+                        if (!dialogView?.edtImei?.text.toString().isEmpty()) {
+                            productEntity.imei = dialogView.edtImei?.text.toString()
 
-                        productEntity.imei = dialogView.edtImei?.text.toString()
-                        if(!TextUtils.isEmpty(productEntity.imei)){
-                            mydialog?.dismiss()
-                            checkResult(productEntity)
-
+                        }else {
+                            productEntity.imei = view?.edtImei?.text.toString()
                         }
+                        checkResult(productEntity,dataPLugin)
+                        //if(!TextUtils.isEmpty(productEntity.imei)){
+                           // mydialog?.dismiss()
+
+                        //}
 
                     }
                     dialogView?.tvwCancelar?.setOnClickListener {
@@ -249,7 +254,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                 } else {
                    // dialog?.dismiss()
                    // addItem(productEntity, true)
-                    saleViewModel.checkAutomatically(productEntity, ::resultSearch, ::onErrorImei)
+                    saleViewModel.checkAutomatically(dataPLugin,productEntity, ::resultSearch, ::onErrorImei)
                    // searchViewModel.checkAutomatically(productEntity)
                 }
             } else if (productEntity.stimei2) {
@@ -274,10 +279,16 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                     }
                     dialogView?.tvwAccept?.setOnClickListener {
                         fltLoading.visibility = View.VISIBLE
-
-                        productEntity.imei2 = dialogView?.edtImei?.text.toString()
-                        mydialog2?.dismiss()
-                        checkResult(productEntity)
+                        if (!dialogView?.edtImei?.text.toString().isEmpty()) {
+                            productEntity.imei2 = dialogView?.edtImei?.text.toString()
+                            mydialog2?.dismiss()
+                        }else {
+                            productEntity.imei = view?.edtImei?.text.toString()
+                        }
+                        checkResult(productEntity,dataPLugin)
+                        //productEntity.imei2 = dialogView?.edtImei?.text.toString()
+                        //mydialog2?.dismiss()
+                        //checkResult(productEntity)
                         //
                         dialogView?.tvwCancelar?.setOnClickListener {
                             onBackPressed()
@@ -349,7 +360,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                         } else {
                             showProgress(true)
                             searchViewModel.searchResults.value?.imei = result.contents
-                            checkResult(searchViewModel.searchResults.value)
+                            checkResult(searchViewModel.searchResults.value,dataItemLinea)
                         }
                     } else {
                         showProgress(false)
@@ -376,7 +387,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                         } else {
                             showProgress(false)
                             searchViewModel.searchResults.value?.imei2 = result.contents
-                            checkResult(searchViewModel.searchResults.value)
+                            checkResult(searchViewModel.searchResults.value,dataItemLinea)
                         }
                     } else {
                         showProgress(false)
@@ -464,7 +475,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
             }
 
         listSaleSubItem.add(saleSubItem)
-
+        println("ley: listSaleSubItem: "+Gson().toJson(listSaleSubItem))
         if (listSaleSubItem.size == sizeProductoSearch) {
             showProgress(true)
             saleViewModel.saveDetail(listSaleSubItem)
@@ -502,7 +513,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         }
 
         listSaleSubItem.add(saleSubItem)
-
+        println("ley: listSaleSubItem: "+Gson().toJson(listSaleSubItem))
         if (listSaleSubItem.size == sizeProductoSearch) {
             showProgress(true)
             saleViewModel.saveDetail(listSaleSubItem)
@@ -727,7 +738,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
 
         if (!productCode.referencia.isNullOrEmpty()) {
             showProgress(true)
-
+            println("ley: productCode: "+ Gson().toJson(productCodeIn))
             saleViewModel.searchProductDirectly(productCode,::resultSearch,::onError)
         }
     }
@@ -735,16 +746,20 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
     private fun resultSearch(entity: ProductEntity,dataPLugin : Linea){
         val newSaleEntity = saleViewModel.saleLiveData.value!!
         setSessionInfo(newSaleEntity)
+        println("ley: entity: "+ Gson().toJson(entity))
+        println("ley: dataPLugin: "+ Gson().toJson(dataPLugin))
         newSaleEntity.vendedorCodigo = pluginDataResponseData?.codvendedor.toString()
         newSaleEntity.tienda = pluginDataResponseData?.lineas?.get(0)?.almacen.toString()
         toolbar.title = "${getString(R.string.title_sale_tienda)} ${newSaleEntity.tienda}"
         saleViewModel.saleLiveData.postValue(newSaleEntity)
+
         dataItemLinea = dataPLugin
-        checkResult(entity)
+        checkResult(entity,dataPLugin)
         //addItem(entity,true,dataPLugin)
     }
     private fun resultSearch(entity: ProductEntity){
-
+        println("ley: resultSearch: entity: "+ Gson().toJson(entity))
+        //println("ley: dataPLugin: "+ Gson().toJson(dataPLugin))
         val newSaleEntity = saleViewModel.saleLiveData.value!!
         setSessionInfo(newSaleEntity)
         newSaleEntity.vendedorCodigo = pluginDataResponseData?.codvendedor.toString()
@@ -752,7 +767,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         toolbar.title = "${getString(R.string.title_sale_tienda)} ${newSaleEntity.tienda}"
         saleViewModel.saleLiveData.postValue(newSaleEntity)
         //dataItemLinea = dataPLugin
-        checkResult(entity)
+       // checkResult(entity,)
         //addItem(entity,true,dataPLugin)
     }
 
@@ -829,7 +844,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
             .setMessage(message)
             .setPositiveButton(R.string.aceptar) { d, _ ->
                 d.dismiss()
-                checkResult(productEntity)
+                checkResult(productEntity,dataItemLinea)
                 }
             .setCancelable(false)
             .create().show()

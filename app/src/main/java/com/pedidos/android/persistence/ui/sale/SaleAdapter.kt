@@ -109,7 +109,7 @@ class SaleAdapter(var items: MutableList<SaleSubItem>, val onItemDelete: (SaleSu
                         "black"
                     )
                 ) {
-                    if(checkIsAvailableWarrantyAdd(items[adapterPosition].codigoProducto)) {
+                    //if(checkIsAvailableWarrantyAdd(items[adapterPosition].codigoProducto)) {
                         var intent = Intent(itemView.context,GarantiesProductActivity::class.java)
                         intent.putExtra(GarantiesProductActivity.PROD_ID, items[adapterPosition].codigoProducto)
                         intent.putExtra(GarantiesProductActivity.PROD_DESCRIP, items[adapterPosition].descripcion)
@@ -120,14 +120,16 @@ class SaleAdapter(var items: MutableList<SaleSubItem>, val onItemDelete: (SaleSu
                             .startActivityForResult(
                                 intent, SaleActivity.GARANTIE_REQUEST)
 
-                    } else {
-                        AlertDialog.Builder(itemView.context, R.style.AppTheme_DIALOG)
+                    //} else {
+                /*        AlertDialog.Builder(itemView.context, R.style.AppTheme_DIALOG)
                             .setTitle(R.string.app_name)
                             .setMessage(itemView.context.getString(R.string.warranty_size_wrong))
                             .setPositiveButton(R.string.aceptar) { d, _ -> d.dismiss() }
                             .setCancelable(false)
                             .create().show()
-                    }
+
+                 */
+                    //}
 
                 }
 

@@ -106,9 +106,9 @@ class SaleViewModel(application: Application, private var repository: CoolboxApi
                                         //agregamos el producto al pedido para mostrarlo
                                         currentEntity.productos.addAll(result?.productos ?: mutableListOf())
                                     } else {
-                                        val tempListProducts = saleLiveData.value!!.productos.filter { it.codigoProducto != saleSubItem.codigoProducto }
+                                       // val tempListProducts = saleLiveData.value!!.productos.filter { it.codigoProducto != saleSubItem.codigoProducto }
                                         saleLiveData.value!!.productos.removeAll{true}
-                                        currentEntity.productos.addAll( tempListProducts)
+                                        currentEntity.productos.addAll(result?.productos ?: mutableListOf())
                                     }
                                 } else {
                                     //delete all
@@ -405,31 +405,33 @@ class SaleViewModel(application: Application, private var repository: CoolboxApi
         })
     }
 
-    fun checkAutomatically(it: ProductEntity,
-                           onSuccess: (entity: ProductEntity) -> Unit, onError: (message: String, it: ProductEntity) -> Unit) {
-        repository.checkImei(it.codigoVenta, it.imei).enqueue(object : Callback<ApiWrapper<CheckImeiResponse>> {
+    fun checkAutomatically(dataPlugin: Linea,entityData:ProductEntity,
+                           onSuccess: (entity: ProductEntity,dataPlugin: Linea) -> Unit, onError: (message: String, it: ProductEntity) -> Unit) {
+        repository.checkImei(entityData.codigoVenta, entityData.imei).enqueue(object : Callback<ApiWrapper<CheckImeiResponse>> {
             override fun onFailure(call: Call<ApiWrapper<CheckImeiResponse>>, t: Throwable) {
-                onError(t.message.toString(),it)
+
+                onError(t.message.toString(),entityData)
             }
 
             override fun onResponse(call: Call<ApiWrapper<CheckImeiResponse>>, response: Response<ApiWrapper<CheckImeiResponse>>) {
                 if (response.isSuccessful) {
+                    entityData.precio = dataPlugin.precioiva
                     if (response.body()?.result == true) {
                         if (response.body()?.data != null) {
-                            it.stimei = false
-                            onSuccess(it)
+                            entityData.stimei = false
+                            onSuccess(entityData,dataPlugin)
                         } else {
-                            onError(response.body()?.message.toString(),it)
+                            onError(response.body()?.message.toString(),entityData)
                             showProgress.postValue(false)
                         }
                     } else{
-                        it.stimei = true
-                        it.imei = ""
+                        entityData.stimei = true
+                        entityData.imei = ""
                         //onSuccess(it)
-                        onError(response.body()?.message.toString(),it)
+                        onError(response.body()?.message.toString(),entityData)
                     }
                 } else {
-                    onError(response.body()?.message.toString(),it)
+                    onError(response.body()?.message.toString(),entityData)
                 }
                     //errorResults.postValue(response.body()!!.message)
             }

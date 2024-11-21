@@ -51,6 +51,15 @@
             tools:text="100.00"/>
 
         <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/ibwSharePdf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            android:src="@drawable/ic_menu_share"
+            android:tint="#97FFFFFF" />
+        <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/ibwPrint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

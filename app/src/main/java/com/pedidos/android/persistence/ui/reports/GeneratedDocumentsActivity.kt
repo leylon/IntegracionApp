@@ -45,7 +45,8 @@ class GeneratedDocumentsActivity : MenuActivity() {
 
         btnSearch.setOnClickListener { search() }
         rvwProducts.layoutManager = LinearLayoutManager(this)
-        rvwProducts.adapter = GeneratedDocumentsAdapter(mutableListOf()) { viewModel.getDocumentToPrint(it.documentTypeTemp, it.documentNumberTemp)}
+        rvwProducts.adapter = GeneratedDocumentsAdapter(mutableListOf()) {
+            viewModel.getDocumentToPrint(it.documentTypeTemp, it.documentNumberTemp)}
     }
 
     override fun onBackPressed(){}
