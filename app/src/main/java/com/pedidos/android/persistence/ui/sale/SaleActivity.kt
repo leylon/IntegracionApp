@@ -145,6 +145,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                             productEntity.cantidad = dataResponse.unidades
                             productEntity.precio = dataResponse.precioiva
                             productEntity.imei = dataResponse.color
+
                             //productEntity.de = dataResponse.dto
                             secuencialOtro = dataResponse.numlinea
                             /*productEntity.descripcion = dataResponse.descripcion
@@ -749,6 +750,9 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         println("ley: entity: "+ Gson().toJson(entity))
         println("ley: dataPLugin: "+ Gson().toJson(dataPLugin))
         newSaleEntity.vendedorCodigo = pluginDataResponseData?.codvendedor.toString()
+        if (pluginDataResponseData?.cliente.toString()!= "0") {
+            newSaleEntity.clienteCodigo = "*"+ pluginDataResponseData?.cliente.toString()
+        }
         newSaleEntity.tienda = pluginDataResponseData?.lineas?.get(0)?.almacen.toString()
         toolbar.title = "${getString(R.string.title_sale_tienda)} ${newSaleEntity.tienda}"
         saleViewModel.saleLiveData.postValue(newSaleEntity)

@@ -156,6 +156,8 @@ class SaleViewModel(application: Application, private var repository: CoolboxApi
                             currentEntity.monedaSimbolo = result?.monedaSimbolo ?: ""
                             currentEntity.complementaryRowColor = result?.complementaryRowColor ?: ""
                             currentEntity.productoconcomplemento = result?.productoconcomplemento ?: 0
+                            currentEntity.clienteCodigo = result?.clienteCodigo ?: ""
+                            currentEntity.clienteNombres = result?.clienteNombres ?: ""
 
                             // cuando se borra un elemento se debe verificar cuando se borra
 
