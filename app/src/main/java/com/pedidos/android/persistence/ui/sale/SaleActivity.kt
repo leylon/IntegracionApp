@@ -544,7 +544,8 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         viewModel.saleLiveData.observe(this, Observer { newItem ->
             showProgress(false)
             if (newItem != null) {
-                (rvwProducts.adapter as SaleAdapter).items.removeAll { true }
+               // (rvwProducts.adapter as SaleAdapter).items.removeAll { true }
+                (rvwProducts.adapter as SaleAdapter).clearItems()
                 (rvwProducts.adapter as SaleAdapter).addItems(newItem.productos)
                 updateScreen(newItem)
             }
@@ -585,6 +586,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         saleViewModel.saveSale(::goToResumenPedido, ::onError)
     }
     fun validaProssesSale() {
+        btnProcess.isEnabled = false
         val userInfo = getSession()
         val listProducts = saleAdapter.items
         if (saleViewModel.saleLiveData.value!!.productos.size == 0) {
@@ -594,6 +596,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
                 .setPositiveButton(R.string.aceptar) { d, _ -> d.dismiss() }
                 .setCancelable(false)
                 .create().show()
+            btnProcess.isEnabled = true
             return
         }
         /*
@@ -700,7 +703,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
            // currentSaleEntity.androidimei = "a9731e8ca60a4207"
         }
         //end nulls prevent
-
+        btnProcess.isEnabled = true
         startActivityForResult(Intent(this, EndingActivity::class.java).apply {
             putExtra(EndingActivity.EXTRA_ENTITY, currentSaleEntity)
         },999)
@@ -831,6 +834,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
 
 
     private fun onError(message: String) {
+        btnProcess.isEnabled = true
         Log.e(TAG, message)
 
         AlertDialog.Builder(this, R.style.AppTheme_DIALOG)

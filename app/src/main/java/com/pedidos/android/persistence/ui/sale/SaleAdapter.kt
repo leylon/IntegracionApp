@@ -84,11 +84,16 @@ class SaleAdapter(var items: MutableList<SaleSubItem>, val onItemDelete: (SaleSu
     fun addItems(items: List<SaleSubItem>) {
         try {
             this.items.addAll(items)
-            notifyItemRangeChanged(this.items.size - items.size, itemCount)
+            notifyItemRangeInserted(this.items.size - items.size, itemCount)
         }catch (e : Throwable) {
             Log.d("crash", e.message)
         }
 
+    }
+    fun clearItems() {
+        val itemCount = items.size
+        items.clear()
+        notifyItemRangeRemoved(0, itemCount) // Notifica que se eliminaron todos los elementos
     }
 
     inner class SaleHolder(view: View) : RecyclerView.ViewHolder(view) {
