@@ -20,6 +20,7 @@ import android.app.Application;
 
 import com.pedidos.android.persistence.BuildConfig;
 import com.pedidos.android.persistence.api.ApiCorreo;
+import com.pedidos.android.persistence.api.ApiExternas;
 import com.pedidos.android.persistence.api.CoolboxApi;
 
 /**
@@ -46,6 +47,7 @@ public class BasicApp extends Application {
     public static final String DEFAULT_BASE_URL = "http://192.168.1.2/SKMWSVentaMovil/api/";
 
     private CoolboxApi mrepository;
+    private ApiExternas apiExternas;
 
     private ApiCorreo mrepositoryApiCorreo;
 
@@ -63,6 +65,13 @@ public class BasicApp extends Application {
         }
 
         return mrepository;
+    }
+    public ApiExternas getApiRepositoryExterno(String urlBase) {
+        if (apiExternas == null) {
+            apiExternas = ApiExternas.Companion.create(urlBase);
+        }
+
+        return apiExternas;
     }
     public ApiCorreo getApiRepositoryCorreo(String urlBase) {
         if (mrepositoryApiCorreo == null) {

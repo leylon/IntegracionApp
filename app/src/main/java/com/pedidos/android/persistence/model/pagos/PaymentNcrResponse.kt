@@ -3,6 +3,10 @@ package com.pedidos.android.persistence.model.pagos
 import com.google.gson.annotations.SerializedName
 
 data class PaymentNcrResponse(
+    @SerializedName("respuesta")
+    val result: Boolean,
+    @SerializedName("mensaje")
+    val message: String,
     @SerializedName("CO_EMPL")
     val coEmpl: String,
     @SerializedName("CO_EMPR")

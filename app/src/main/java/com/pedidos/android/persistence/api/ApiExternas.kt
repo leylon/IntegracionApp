@@ -33,9 +33,9 @@ interface ApiExternas {
 
 
     companion object {
-        fun create(urlBase: String): CoolboxApi = create(HttpUrl.parse(urlBase)!!)
+        fun create(urlBase: String): ApiExternas = create(HttpUrl.parse(urlBase)!!)
 
-        fun create(httpUrl: HttpUrl): CoolboxApi {
+        fun create(httpUrl: HttpUrl): ApiExternas {
             val logger = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { it ->
                 Log.d("API", it)
             })
@@ -60,7 +60,7 @@ interface ApiExternas {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
                 .build()
-                .create(CoolboxApi::class.java)
+                .create(ApiExternas::class.java)
         }
     }
 }

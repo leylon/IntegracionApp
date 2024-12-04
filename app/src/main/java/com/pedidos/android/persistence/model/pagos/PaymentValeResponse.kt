@@ -9,7 +9,7 @@ data class PaymentValeResponse(
     val message: String,
     @SerializedName("NU_VALE")
     val vale: String,
-    @SerializedName("NU_BARR")
+    @SerializedName("CO_BARR")
     val barra: String,
     @SerializedName("IM_VALE")
     val importe: Double,

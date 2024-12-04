@@ -51,5 +51,9 @@ class PaymentEntity(
     override var numvale: String = ""
     override var impvale: Double = 0.0
     override var retarj: String = ""
+    @SerializedName("numncr")
+    override var numncr: String = ""
+    @SerializedName("impncr")
+    override var impncr: Double = 0.0
 
 }
