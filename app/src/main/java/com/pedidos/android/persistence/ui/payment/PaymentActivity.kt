@@ -16,8 +16,11 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
 import com.google.zxing.integration.android.IntentIntegrator
 import com.pedidos.android.persistence.R
 import com.pedidos.android.persistence.db.entity.*
@@ -194,6 +197,10 @@ class PaymentActivity : MenuActivity() {
         linerVales.visibility = isVisbleView(userInfo.vales)
         linerOtosPagos.visibility = isVisbleView(userInfo.otroPago)
         linerMpos.visibility = isVisbleView(userInfo.mPos)
+        textMpos.visibility = isVisbleView(userInfo.mPos)
+        linerNCR.visibility = isVisbleView(userInfo.aplncr)
+        textNCR.visibility = isVisbleView(userInfo.aplncr)
+
     }
 
     private fun isVisbleView(statusView: Boolean) : Int {
@@ -237,7 +244,7 @@ class PaymentActivity : MenuActivity() {
 
     private fun btnOnClickVale() {
         view = LayoutInflater.from(this)
-            .inflate(R.layout.search_imei_dialog, lltRoot, false)
+            .inflate(R.layout.dialog_pago_vale, lltRoot, false)
         dialog = AlertDialog.Builder(this)
             .setView(view)
             .setCancelable(false)
@@ -403,7 +410,33 @@ class PaymentActivity : MenuActivity() {
     }
 
     private fun showLoading(show: Boolean) {
-        fltLoading.visibility = if (show) View.VISIBLE else View.GONE
+
+        if (show) showProgressBar() else hideProgressBar()
+    }
+    private fun toggleButtons(root: ViewGroup, isEnabled: Boolean) {
+        for (i in 0 until root.childCount) {
+            val child = root.getChildAt(i)
+            when (child) {
+                is Button -> child.isEnabled = isEnabled
+                is EditText -> child.isEnabled = isEnabled
+                is ViewGroup -> toggleButtons(child, isEnabled) // Recursión para layouts anidados
+
+            }
+        }
+    }
+    private fun showProgressBar() {
+        val fltLoading = findViewById<View>(R.id.fltLoading)
+        fltLoading.visibility = View.VISIBLE
+
+        val rootLayout = findViewById<ViewGroup>(R.id.payment_activity_root)
+        toggleButtons(rootLayout, false) // Bloquea botones
+    }
+    private fun hideProgressBar() {
+        val fltLoading = findViewById<View>(R.id.fltLoading)
+        fltLoading.visibility = View.GONE
+
+        val rootLayout = findViewById<ViewGroup>(R.id.payment_activity_root)
+        toggleButtons(rootLayout, true) // Habilita botones
     }
 
     private val onSpinerSelectedItem = object : AdapterView.OnItemSelectedListener {

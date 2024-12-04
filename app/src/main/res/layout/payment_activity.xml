@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         android:elevation="2dp"
         android:translationZ="2dp"
+
         android:background="@color/background_trans"
         android:visibility="gone">
 
@@ -147,17 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_medium"
                 android:orientation="horizontal">
-                <!--
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/tvw_payment_tipo_documento"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    tools:text="@string/tvw_payment_tipo_documento" />
-                -->
+
                 <RadioButton
                     android:id="@+id/rbwTicket"
                     android:layout_width="wrap_content"
@@ -221,20 +212,7 @@
                     android:paddingLeft="@dimen/margin_small"
                     android:paddingRight="@dimen/margin_small"
                     android:weightSum="2">
-                    <!--
-                    <Button
-                        android:id="@+id/btnMakeAndWish"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/colorPrimary"
-                        android:text="@string/tvwMakeAndWish"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/white"
-                        android:drawableLeft="@drawable/ic_coins_white_100"
-                        android:textSize="15sp" />
-                    -->
+
 
                     <Button
                         android:id="@+id/btnMakeAndWish"
@@ -744,6 +722,54 @@
                         android:ems="10"
                         android:inputType="numberDecimal"
                         android:textAlignment="textEnd" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textNCR"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/darkBlue"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="@string/tvw_cobranza_ncr"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:visibility="visible"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/linerNCR"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    android:weightSum="2">
+
+                    <ImageButton
+                        android:id="@+id/btnNCR"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/other_service"
+                        android:backgroundTint="@color/white"
+                        android:drawableStart="@drawable/fpay_ic"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/etwNCR"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
+                        android:textAlignment="textEnd"
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <View

@@ -227,6 +227,14 @@ interface CoolboxApi {
     @POST(BasicApp.DEFAULT_API_PICKING+"guiascompletas")
     fun reportPickado(@Body body: PedidoRequest): Call<ReportPickingResponse>
 
+    @POST(BasicApp.DEFAULT_API_PICKING+"consultavalegifcard")
+    fun pagovale(@Body body: PickingTerminarRequest): Call<PickingTerminarResponse>
+
+    @POST(BasicApp.DEFAULT_API_PICKING+"consultancricg")
+    fun pagoNcr(@Body body: PickingTerminarRequest): Call<PickingTerminarResponse>
+
+
+
     companion object {
         fun create(urlBase: String): CoolboxApi = create(HttpUrl.parse(urlBase)!!)
 

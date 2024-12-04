@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <!-- VALE / GIFTCARD -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
+
+        <EditText
+            android:id="@+id/editTextGiftCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="VALE / GIFTCARD"
+            android:inputType="text"
+            android:background="@android:drawable/edit_text"
+            android:padding="8dp" />
+
+        <ImageView
+            android:id="@+id/imageSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_search"
+            android:contentDescription="Search" />
+    </LinearLayout>
+
+    <!-- SALDO -->
+    <TextView
+        android:id="@+id/textViewSaldo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SALDO:"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:paddingBottom="8dp" />
+
+    <!-- BARRA -->
+    <TextView
+        android:id="@+id/textViewBarra"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BARRA:"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:paddingBottom="8dp" />
+
+    <!-- VENCIMIENTO -->
+    <TextView
+        android:id="@+id/textViewVencimiento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="VENCIMIENTO:"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:paddingBottom="16dp" />
+
+    <!-- IMPORTE A USAR -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/editTextImporte"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="IMPORTE A USAR"
+            android:inputType="numberDecimal"
+            android:background="@android:drawable/edit_text"
+            android:padding="8dp" />
+
+        <Button
+            android:id="@+id/buttonAceptar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACEPTAR"
+            android:background="@drawable/background_rounded_blue"
+            android:textColor="#FFFFFF"
+            android:padding="8dp"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+</LinearLayout>

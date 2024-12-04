@@ -14,11 +14,14 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import com.google.gson.Gson
 import com.google.zxing.integration.android.IntentIntegrator
@@ -859,7 +862,32 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
     }
 
     private fun showProgress(show: Boolean) {
-        fltLoading.visibility = if (show) View.VISIBLE else View.GONE
+        //fltLoading.visibility =
+            if (show) showProgressBar() else hideProgressBar()
+    }
+    private fun toggleButtons(root: ViewGroup, isEnabled: Boolean) {
+        for (i in 0 until root.childCount) {
+            val child = root.getChildAt(i)
+            when (child) {
+                is Button -> child.isEnabled = isEnabled
+                is RecyclerView -> child.isEnabled = isEnabled
+                is ViewGroup -> toggleButtons(child, isEnabled) // Recursión para layouts anidados
+            }
+        }
+    }
+    private fun showProgressBar() {
+        val fltLoading = findViewById<View>(R.id.fltLoading)
+        fltLoading.visibility = View.VISIBLE
+
+        val rootLayout = findViewById<ViewGroup>(R.id.lltRoot)
+        toggleButtons(rootLayout, false) // Bloquea botones
+    }
+    private fun hideProgressBar() {
+        val fltLoading = findViewById<View>(R.id.fltLoading)
+        fltLoading.visibility = View.GONE
+
+        val rootLayout = findViewById<ViewGroup>(R.id.lltRoot)
+        toggleButtons(rootLayout, true) // Habilita botones
     }
 
     private fun initSale() {

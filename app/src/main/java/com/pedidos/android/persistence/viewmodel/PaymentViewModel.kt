@@ -182,4 +182,8 @@ class PaymentViewModel(private val repository: CoolboxApi) : ViewModel() {
 
         })
     }
+
+    private fun showVales(){
+
+    }
 }
