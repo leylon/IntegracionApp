@@ -93,7 +93,11 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         toolbar.title = "${getString(R.string.title_sale_tienda)} ${getSession().tienda}"
         textVersion.text = "Version : " + BasicApp.APP_VERSION
         rvwProducts.adapter = saleAdapter
-        btnProcess.setOnClickListener { validaProssesSale()} //processSale() }
+        val cont = 0
+        btnProcess.setOnClickListener {
+            println("click.."+cont.inc())
+            btnProcess.isEnabled = false
+            validaProssesSale()} //processSale() }
         imbwAddProductCombined.setOnClickListener { productSearchCombined() }
         imbwAddProductoWithCamera.setOnClickListener {
             flag_pop = false
@@ -706,7 +710,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
            // currentSaleEntity.androidimei = "a9731e8ca60a4207"
         }
         //end nulls prevent
-        btnProcess.isEnabled = true
+
         startActivityForResult(Intent(this, EndingActivity::class.java).apply {
             putExtra(EndingActivity.EXTRA_ENTITY, currentSaleEntity)
         },999)
@@ -1058,6 +1062,12 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
             //error(data.mensaje)
 
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        println("onResume")
+        btnProcess.isEnabled = true
     }
 }
 

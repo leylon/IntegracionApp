@@ -69,7 +69,7 @@ class ClientPopUpFragment : DialogFragment() {
         spinner.adapter = arrayAdapter()
 
         if (arguments!!.getString(KEY_CLIENT_ID).trim() != "") {
-            clientViewModel.findClient(arguments!!.getString(KEY_CLIENT_ID), arguments!!.getInt(KEY_CLIENT_DOCUMENT_TYPE))
+           // clientViewModel.findClient(arguments!!.getString(KEY_CLIENT_ID), arguments!!.getInt(KEY_CLIENT_DOCUMENT_TYPE))
         }
 
         //resize popup to full

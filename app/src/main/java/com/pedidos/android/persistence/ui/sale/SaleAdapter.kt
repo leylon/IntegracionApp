@@ -45,9 +45,10 @@ class SaleAdapter(var items: MutableList<SaleSubItem>, val onItemDelete: (SaleSu
             holder.tvwProductImei.visibility = View.VISIBLE
         }
 
-            if( items[position].productoconcomplemento <= 0) {
+        if( items[position].productoconcomplemento <= 0) {
             holder.ivbProdComp.visibility = View.GONE
         } else {
+            holder.ivbDelete.visibility = View.VISIBLE
             holder.ivbProdComp.visibility = View.VISIBLE
             if(complementProductTempCode != null && complementProductTempCode == items[position].codigoProducto) {
                 openComplementary(holder.itemView, position)
@@ -56,6 +57,12 @@ class SaleAdapter(var items: MutableList<SaleSubItem>, val onItemDelete: (SaleSu
             //
 
         }
+        if(items[position].secgaraexte>0) {
+            holder.ivbDelete.visibility = View.VISIBLE
+        }else {
+            holder.ivbDelete.visibility = View.GONE
+        }
+
         if (!TextUtils.isEmpty(subItem.complementaryRowColor)) {
             when (subItem.complementaryRowColor) {
                 "green" -> holder.tvwProductName.setTextColor(
@@ -65,13 +72,17 @@ class SaleAdapter(var items: MutableList<SaleSubItem>, val onItemDelete: (SaleSu
                         43
                     )
                 )// .lltContainer.setBackgroundColor(Color.GREEN)
-                "blue" -> holder.tvwProductName.setTextColor(
-                    Color.rgb(
-                        36,
-                        86,
-                        240
+                "blue" -> {
+                    holder.tvwProductName.setTextColor(
+                        Color.rgb(
+                            36,
+                            86,
+                            240
+                        )
                     )
-                )// .lltContainer.setBackgroundColor(Color.BLUE)
+
+                }
+                // .lltContainer.setBackgroundColor(Color.BLUE)
                 "red" -> holder.tvwProductName.setTextColor(Color.RED)
                 "black" -> holder.tvwProductName.setTextColor(Color.BLACK)
                 "black111" -> holder.lltContainer.setBackgroundColor(Color.TRANSPARENT)
