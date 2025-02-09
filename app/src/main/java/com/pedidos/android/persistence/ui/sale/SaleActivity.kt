@@ -117,7 +117,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
 
         subscribeToModel(saleViewModel)
 
-        /*RxTextView.textChanges(etwAddProduct)
+  /*      RxTextView.textChanges(etwAddProduct)
                 .filter { it.length > 2 }
                 .debounce(600, TimeUnit.MILLISECONDS)
                 //.subscribeOn(Schedulers.io())

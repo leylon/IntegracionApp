@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
+import com.jakewharton.rxbinding.widget.RxTextView
 import com.pedidos.android.persistence.R
 import com.pedidos.android.persistence.databinding.ClientPopupFragmentBinding
 import com.pedidos.android.persistence.db.entity.ClientEntity
@@ -78,6 +79,14 @@ class ClientPopUpFragment : DialogFragment() {
         lp.width = WindowManager.LayoutParams.MATCH_PARENT
 
         dialog.window.attributes = lp
+        RxTextView.textChanges(codigo)
+                .subscribe {
+                    println("codigo: $it")
+                    nombres.setText("")
+                    direccion.setText("")
+                    correo.setText("")
+                    phone.setText("")
+                }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -183,6 +192,7 @@ class ClientPopUpFragment : DialogFragment() {
                 codigo.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS
             }
         })
+
     }
 
     private val onSpinnerSelectItem = object : AdapterView.OnItemSelectedListener {
