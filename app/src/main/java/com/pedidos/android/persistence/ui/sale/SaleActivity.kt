@@ -903,6 +903,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         newSaleEntity.clienteTipoDocumento = Defaults.Cliente.identityDocumentType
         newSaleEntity.email = Defaults.Cliente.email
         newSaleEntity.telefono = Defaults.Cliente.phone
+        newSaleEntity.papelSize = getSettings().pageSize
         saleViewModel.saleLiveData.postValue(newSaleEntity)
     }
 
@@ -915,6 +916,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         saleEntity.cajaCodigo = userInfo.cajacodigo
         saleEntity.tienda = userInfo.tienda
         saleEntity.androidimei = userInfo.imei
+        saleEntity.papelSize = getSettings().pageSize
        // saleEntity.email = userInfo.email
         return saleEntity
     }

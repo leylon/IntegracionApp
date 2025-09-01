@@ -2,6 +2,7 @@ package com.pedidos.android.persistence.ui
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothSocket
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -32,6 +33,10 @@ import kotlinx.android.synthetic.main.sales_activity.*
 import kotlinx.android.synthetic.main.search_imei_dialog.view.*
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import java.nio.charset.Charset
+import kotlin.math.min
 
 
 @SuppressLint("Registered")
@@ -167,6 +172,10 @@ open class BaseActivity : AppCompatActivity() {
         try {
             val blueToothWrapper = this.setupPrinter()
             if (blueToothWrapper != null) {
+                val setMulti = byteArrayOf(0x1C.toByte(), 0x26.toByte())
+                val setUtf8  = getCodePageCommandSunmi(16)
+                blueToothWrapper.outputStream.write(setMulti)
+                blueToothWrapper.outputStream.write(setUtf8)
                 blueToothWrapper.outputStream.write(bytes)
                 blueToothWrapper.outputStream.close()
                 blueToothWrapper.close()
@@ -191,12 +200,24 @@ open class BaseActivity : AppCompatActivity() {
         try {
             val blueToothWrapper = this.setupPrinter()
             if (blueToothWrapper != null) {
-                blueToothWrapper.outputStream.write(documentoPrint.toByteArray(Charsets.ISO_8859_1))
+                println("Ley documentoPrint: " + documentoPrint)
+               /* val initPrinter = byteArrayOf(0x1B, 0x40)
+                blueToothWrapper.outputStream.write(initPrinter)
+                val selectCodePage = byteArrayOf(0x1B, 0x74, 0x13) // 0x13 es 19 en hexadecimal
+                blueToothWrapper.outputStream.write(selectCodePage)
+               //val setMulti = byteArrayOf(0x1C.toByte(), 0x26.toByte())
+                //val setUtf8  = getCodePageCommand(1)
+                //val setSmallFont = byteArrayOf(0x1B.toByte(), 0x21.toByte(), 0x00.toByte())
+                //blueToothWrapper.outputStream.write(setMulti)
+                // blueToothWrapper.outputStream.write(setUtf8)
+                /*blueToothWrapper.outputStream.write(setSmallFont)
+                Thread.sleep(1500)*/
+                blueToothWrapper.outputStream.write(documentoPrint.toByteArray(Charset.forName("IBM850")))
                 Thread.sleep(1500)
                 blueToothWrapper.outputStream.close()
                 blueToothWrapper.inputStream.close()
-                blueToothWrapper.close()
-                return true
+                blueToothWrapper.close()*/
+                return printSpanishText(blueToothWrapper.underlyingSocket, documentoPrint)
             } else {
                 printOnSnackBar(getString(R.string.printer_error))
             }
@@ -207,6 +228,76 @@ open class BaseActivity : AppCompatActivity() {
 
         return false
         //saveAndShareFile(Base64.decode(documentoPrint, Base64.DEFAULT), numeroDocumento)
+    }
+    /**
+     * Envía datos de texto a una impresora Bluetooth, manejando caracteres especiales en español.
+     *
+     * @param socket El BluetoothSocket conectado a la impresora.
+     * @param textToPrint El texto que se desea imprimir.
+     * @return true si la impresión se envió correctamente, false en caso de error.
+     */
+    fun printSpanishText(socket: BluetoothSocket?, textToPrint: String): Boolean {
+        if (socket == null) {
+            println("Error: El socket Bluetooth es nulo.")
+            return false
+        }
+
+        var outputStream: OutputStream? = null
+        try {
+            outputStream = socket.outputStream
+
+            // --- Comandos para la impresora ---
+            val initPrinter = byteArrayOf(0x1B, 0x40)
+            val selectCodePage = byteArrayOf(0x1B, 0x74, 0x13) // PC858 (Euro)
+            // NUEVO: Comando para establecer el interlineado por defecto (ESC 2)
+            //val setDefaultLineSpacing = byteArrayOf(0x1B, 0x32)
+            val setCompactLineSpacing = byteArrayOf(0x1B, 0x33, 15)
+            // Codificar el texto completo una sola vez.
+            val textData = textToPrint.toByteArray(Charset.forName("IBM850"))
+
+            // --- Envío de datos a la impresora ---
+
+            // 1. Enviar comandos de inicialización y configuración.
+            outputStream.write(initPrinter)
+            outputStream.write(selectCodePage)
+            outputStream.write(setCompactLineSpacing) // Aplicamos el interlineado estándar
+
+            // 2. Enviar el texto en trozos (chunks) para evitar desbordamiento del búfer.
+            val chunkSize = 512 // Tamaño del trozo en bytes. Puedes ajustar este valor.
+            var offset = 0
+            while (offset < textData.size) {
+                val size = min(chunkSize, textData.size - offset)
+                outputStream.write(textData, offset, size)
+                // Pequeña pausa para que la impresora procese el trozo.
+                Thread.sleep(50)
+                offset += size
+            }
+
+            // 3. Agregar saltos de línea al final y asegurar que todo se envíe.
+            outputStream.write(byteArrayOf(0x0A, 0x0A, 0x0A, 0x0A))
+            outputStream.flush()
+
+            println("Datos enviados a la impresora correctamente.")
+
+            // 4. Pausa final larga antes de cerrar para asegurar que la impresión se complete.
+            Thread.sleep(2000) // Aumentamos un poco el tiempo final por si acaso.
+
+            return true
+
+        } catch (e: Exception) { // Capturamos Exception para incluir InterruptedException
+            println("Error durante la impresión: ${e.message}")
+            e.printStackTrace()
+            return false
+        } finally {
+            // 5. Cerrar la conexión.
+            try {
+                outputStream?.close()
+                socket.close()
+                println("Socket de impresora cerrado.")
+            } catch (e: IOException) {
+                println("Error al cerrar el socket de la impresora: ${e.message}")
+            }
+        }
     }
 
 
@@ -255,7 +346,12 @@ open class BaseActivity : AppCompatActivity() {
         //shareFile(file)
         externalViewFile(file)
     }
-
+    fun getCodePageCommand(page: Int): ByteArray {
+        return byteArrayOf(0x1B, 0x74, page.toByte()) // ESC t <n>
+    }
+    fun getCodePageCommandSunmi(page: Int): ByteArray {
+        return byteArrayOf(0x1C.toByte(), 0x43.toByte(), 0xFF.toByte()) // ESC t <n>
+    }
     private fun shareFile(file: File) {
         val uri = FileProvider.getUriForFile(this, this.packageName + ".provider", file)
         val intent = Intent().apply {

@@ -194,6 +194,9 @@
     <string name="tvw_cobranza_fpay">Cobranza Fpay</string>
     <string name="tvw_cobranza_ncr">Nota de Crédito</string>
     <string name="tvw_cobranza_pLink">Cobranza Pago Link</string>
+    <string name="hint_size_impresora">Tamaño Papel...</string>
+    <string name="tvw_size_impresora">Tamaño Papel Impresora:</string>
+
     <string name="yes">Si</string>
     <string name="no">No</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -203,5 +206,10 @@
     <string-array name="array_modo_transport">
         <item>PUBLICO</item>
         <item>PRIVADO</item>
+    </string-array>
+    <string-array name="paper_sizes">
+        <item>80mm</item>
+        <item>58mm</item>
+        <item>48mm</item>
     </string-array>
 </resources>

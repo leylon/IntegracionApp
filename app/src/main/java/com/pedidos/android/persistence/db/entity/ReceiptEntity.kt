@@ -7,5 +7,6 @@ class ReceiptEntity : Receipt {
     @SerializedName("documentoprint")
     override var documentoPrint: String = ""
     override var qrbase64 : String = ""
+
     var pdfBytes: ByteArray = byteArrayOf()
 }

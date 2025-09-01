@@ -53,6 +53,7 @@
             <item
                 android:id="@+id/nav_log_out"
                 android:icon="@drawable/ic_people_outline"
+                android:visible="false"
                 android:title="@string/side_bar_item_logout" />
         </menu>
     </item>
