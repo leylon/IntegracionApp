@@ -466,7 +466,7 @@ class SaleActivity : MenuActivity(), QuestionPopUpFragment.newDialoglistenerQues
         }
 
             var saleSubItem = SaleSubItemEntity().apply {
-                secuencial = lastSecuencialOrDefault //+ 1
+                secuencial = secuencialOtro //+ 1
                 codigoventa = productEntity.codigoVenta
                 codigoProducto = productEntity.codigo
                 descripcion = productEntity.descripcion
