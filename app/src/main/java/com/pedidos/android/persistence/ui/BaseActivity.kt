@@ -172,11 +172,35 @@ open class BaseActivity : AppCompatActivity() {
         try {
             val blueToothWrapper = this.setupPrinter()
             if (blueToothWrapper != null) {
-                val setMulti = byteArrayOf(0x1C.toByte(), 0x26.toByte())
-                val setUtf8  = getCodePageCommandSunmi(16)
-                blueToothWrapper.outputStream.write(setMulti)
-                blueToothWrapper.outputStream.write(setUtf8)
-                blueToothWrapper.outputStream.write(bytes)
+               // val setMulti = byteArrayOf(0x1C.toByte(), 0x26.toByte())
+                //val setUtf8  = getCodePageCommandSunmi(16)
+                // --- Comandos para la impresora ---
+                val initPrinter = byteArrayOf(0x1B, 0x40)
+                val selectCodePage = byteArrayOf(0x1B, 0x74, 0x13) // PC858 (Euro)
+                // NUEVO: Comando para establecer el interlineado por defecto (ESC 2)
+                //val setDefaultLineSpacing = byteArrayOf(0x1B, 0x32)
+                val setCompactLineSpacing = byteArrayOf(0x1B, 0x33, 15)
+                // Codificar el texto completo una sola vez.
+                val textData = String(bytes, Charset.forName("IBM850")).toByteArray()
+                // --- Envío de datos a la impresora ---
+                // 1. Enviar comandos de inicialización y configuración.
+                blueToothWrapper.outputStream.write(initPrinter)
+                blueToothWrapper.outputStream.write(selectCodePage)
+                blueToothWrapper.outputStream.write(setCompactLineSpacing) // Aplicamos el interlineado estándar
+
+                // 2. Enviar el texto en trozos (chunks) para evitar desbordamiento del búfer.
+                val chunkSize = 512 // Tamaño del trozo en bytes. Puedes ajustar este valor.
+                var offset = 0
+                while (offset < textData.size) {
+                    val size = min(chunkSize, textData.size - offset)
+                    blueToothWrapper.outputStream.write(textData, offset, size)
+                    // Pequeña pausa para que la impresora procese el trozo.
+                    Thread.sleep(50)
+                    offset += size
+                }
+
+                blueToothWrapper.outputStream.write(textData)
+                Thread.sleep(2000)
                 blueToothWrapper.outputStream.close()
                 blueToothWrapper.close()
                 return true
