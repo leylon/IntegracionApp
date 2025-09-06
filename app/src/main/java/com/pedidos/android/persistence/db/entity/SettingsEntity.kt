@@ -10,13 +10,16 @@ class SettingsEntity() : Settings {
     override var impresora: String = "Printer_"
     override var isLog: Int = 0
     override var pageSize: String = "80mm"
+    override var  typePrint: String = "SUNMI"
 
     constructor(parcel: Parcel) : this() {
         urlbase = parcel.readString()
         logoUrl = parcel.readString()
         impresora = parcel.readString()
         pageSize = parcel.readString()
+        typePrint = parcel.readString()
         isLog = parcel.readInt()
+
         var pageSize: String
 
     }
@@ -26,6 +29,7 @@ class SettingsEntity() : Settings {
         parcel.writeString(logoUrl)
         parcel.writeString(impresora)
         parcel.writeString(pageSize)
+        parcel.writeString(typePrint)
         parcel.writeInt(isLog)
     }
 

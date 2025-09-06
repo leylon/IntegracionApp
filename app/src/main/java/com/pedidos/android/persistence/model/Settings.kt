@@ -8,4 +8,5 @@ interface Settings : Parcelable {
     var impresora: String
     var isLog: Int
     var pageSize: String
+    var typePrint: String
 }

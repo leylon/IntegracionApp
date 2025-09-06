@@ -67,6 +67,10 @@ class PaymentViewModel(private val repository: CoolboxApi) : ViewModel() {
                         val voucherVisa = Base64.decode(responseResult.voucherMposPrint, Base64.DEFAULT)
                         responseResult.voucherMposPrint = String(voucherVisa)
                     }
+                    if (responseResult.qrPrint2.trim().isNotEmpty()) {
+                        val qrReceip2 = responseResult.qrPrint2
+                        responseResult.qrPrint2 = qrReceip2
+                    }
 
                     liveData.postValue(responseResult)
                 } else {

@@ -548,15 +548,30 @@ class PaymentActivity : MenuActivity() {
             if (performPrintingOrShare(entity.documentoPrint)) {
                 if(performPrintingOrShareQR(entity.qrPrint)) {
                     if(performPrintingOrShare(entity.piedocumentoPrint)) {
-                        confirmResultMessage(entity.serviceResultMessage, onOk = {
-                            //try to print, if its not stop process
-                            if (entity.voucherMposPrint.trim().isNotEmpty()) {
-                                performPrintingOrShare(entity.voucherMposPrint)
-                            }
+                        if (entity.qrPrint2.trim().isNotEmpty()){
+                            if(performPrintingOrShareQR(entity.qrPrint2)){
+                                confirmResultMessage(entity.serviceResultMessage, onOk = {
+                                    //try to print, if its not stop process
+                                    if (entity.voucherMposPrint.trim().isNotEmpty()) {
+                                        performPrintingOrShare(entity.voucherMposPrint)
+                                    }
 
-                            it.dismiss()
-                            startNewSale()
-                        })
+                                    it.dismiss()
+                                    startNewSale()
+                                })
+                            }
+                        } else {
+                            confirmResultMessage(entity.serviceResultMessage, onOk = {
+                                //try to print, if its not stop process
+                                if (entity.voucherMposPrint.trim().isNotEmpty()) {
+                                    performPrintingOrShare(entity.voucherMposPrint)
+                                }
+
+                                it.dismiss()
+                                startNewSale()
+                            })
+                        }
+
                     }
                 }
             } else {

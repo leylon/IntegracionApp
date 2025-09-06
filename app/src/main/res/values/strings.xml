@@ -196,7 +196,7 @@
     <string name="tvw_cobranza_pLink">Cobranza Pago Link</string>
     <string name="hint_size_impresora">Tamaño Papel...</string>
     <string name="tvw_size_impresora">Tamaño Papel Impresora:</string>
-
+    <string name="tvw_type_impresora">Tipo Impresora:</string>
     <string name="yes">Si</string>
     <string name="no">No</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -211,5 +211,10 @@
         <item>80mm</item>
         <item>58mm</item>
         <item>48mm</item>
+    </string-array>
+    <string-array name="paper_type">
+        <item>SUNMI</item>
+        <item>HIOPOS</item>
+        <item>GENERIC</item>
     </string-array>
 </resources>

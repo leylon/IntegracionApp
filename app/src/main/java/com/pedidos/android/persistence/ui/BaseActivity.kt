@@ -270,21 +270,56 @@ open class BaseActivity : AppCompatActivity() {
         try {
             outputStream = socket.outputStream
 
+            // --- Lógica específica por tipo de impresora ---
+
+            val settings = getSettings()
+            val printerType = settings.typePrint
+            var textData: ByteArray = byteArrayOf() // Inicialización vacía
+            when (printerType) {
+                "HIOPOS" -> {
+                    println("Usando modo GENERIC (Code Page/IBM850)")
+                    // Comandos que funcionaron para la impresora TongLiang
+                    val initPrinter = byteArrayOf(0x1B, 0x40)
+                    val selectCodePage = byteArrayOf(0x1B, 0x74, 0x13) // PC858 (Euro)
+                    // NUEVO: Comando para establecer el interlineado por defecto (ESC 2)
+                    //val setDefaultLineSpacing = byteArrayOf(0x1B, 0x32)
+                    val setCompactLineSpacing = byteArrayOf(0x1B, 0x33, 15)
+                    // Codificar el texto completo una sola vez.
+                    val textData = textToPrint.toByteArray(Charset.forName("IBM850"))
+                    // 1. Enviar comandos de inicialización y configuración.
+                    outputStream.write(initPrinter)
+                    outputStream.write(selectCodePage)
+                    outputStream.write(setCompactLineSpacing) // Aplicamos el interlineado estándar
+
+                }
+                "SUNMI" -> {
+                    println("Usando modo SUNMI (UTF-8)")
+                    // Para Sunmi, enviamos directamente en UTF-8 sin comandos extraños.
+                    // La impresora Sunmi debería interpretar UTF-8 de forma nativa.
+                    val setMulti = byteArrayOf(0x1C.toByte(), 0x26.toByte())
+                    val setUtf8  = getCodePageCommandSunmi(16)
+                    outputStream.write(setMulti)
+                    outputStream.write(setUtf8)
+                    textData = textToPrint.toByteArray(Charsets.UTF_8)
+                   // outputStream.write(textToPrint.toByteArray(Charsets.UTF_8))
+
+                }
+                "GENERIC" -> {
+                    println("Usando modo GENERIC (UTF-8)")
+                    // Para Sunmi, enviamos directamente en UTF-8 sin comandos extraños.
+                    // La impresora Sunmi debería interpretar UTF-8 de forma nativa.
+                    val setMulti = byteArrayOf(0x1C.toByte(), 0x26.toByte())
+                    val setUtf8  = getCodePageCommand(16)
+                    outputStream.write(setMulti)
+                    outputStream.write(setUtf8)
+                    textData = textToPrint.toByteArray(Charsets.UTF_8)
+                }
+            }
             // --- Comandos para la impresora ---
-            val initPrinter = byteArrayOf(0x1B, 0x40)
-            val selectCodePage = byteArrayOf(0x1B, 0x74, 0x13) // PC858 (Euro)
-            // NUEVO: Comando para establecer el interlineado por defecto (ESC 2)
-            //val setDefaultLineSpacing = byteArrayOf(0x1B, 0x32)
-            val setCompactLineSpacing = byteArrayOf(0x1B, 0x33, 15)
-            // Codificar el texto completo una sola vez.
-            val textData = textToPrint.toByteArray(Charset.forName("IBM850"))
+
 
             // --- Envío de datos a la impresora ---
 
-            // 1. Enviar comandos de inicialización y configuración.
-            outputStream.write(initPrinter)
-            outputStream.write(selectCodePage)
-            outputStream.write(setCompactLineSpacing) // Aplicamos el interlineado estándar
 
             // 2. Enviar el texto en trozos (chunks) para evitar desbordamiento del búfer.
             val chunkSize = 512 // Tamaño del trozo en bytes. Puedes ajustar este valor.
@@ -335,13 +370,28 @@ open class BaseActivity : AppCompatActivity() {
 
             val blueToothWrapper = this.setupPrinter()
             if (blueToothWrapper != null) {
+                var documentPrint : ByteArray? = byteArrayOf()
                 val qrByte = Base64.decode(qrPrint,Base64.DEFAULT)
                 val qrBitmap = BitmapFactory.decodeByteArray(qrByte,0, qrByte.size)
-                val documentPrint = Extensions().decodeBitmap(qrBitmap)
+                documentPrint = Extensions().decodeBitmap(qrBitmap)
 
                 blueToothWrapper.outputStream.write(byteArrayOf(0x1b, 'a'.toByte(), 0x01))
-                blueToothWrapper.outputStream.write(documentPrint)
-                Thread.sleep(1500)
+
+                val chunkSize = 512 // Tamaño del trozo en bytes. Puedes ajustar este valor.
+                var offset = 0
+                while (offset < documentPrint!!.size) {
+                    val size = min(chunkSize, documentPrint!!.size - offset)
+                    blueToothWrapper.outputStream.write(documentPrint!!, offset, size)
+                    // Pequeña pausa para que la impresora procese el trozo.
+                    Thread.sleep(50)
+                    offset += size
+                }
+
+                // 3. Agregar saltos de línea al final y asegurar que todo se envíe.
+                blueToothWrapper.outputStream.write(byteArrayOf(0x0A, 0x0A, 0x0A, 0x0A))
+                //blueToothWrapper.outputStream.write(documentPrint)
+                blueToothWrapper.outputStream.write(byteArrayOf(0x1b, 'a'.toByte(), 0x01))
+                Thread.sleep(2000)
                 blueToothWrapper.outputStream.close()
                 blueToothWrapper.inputStream.close()
                 blueToothWrapper.close()
