@@ -314,6 +314,15 @@ open class BaseActivity : AppCompatActivity() {
                     outputStream.write(setUtf8)
                     textData = textToPrint.toByteArray(Charsets.UTF_8)
                 }
+                "POSD" -> {
+                    println("Usando modo POSD (Code Page/IBM850)")
+                    // Probamos con la página de códigos PC850 (Multilingual), muy común.
+                    val selectCodePage = byteArrayOf(0x1B, 0x74, 0x02) // PC850
+                    val setCompactLineSpacing = byteArrayOf(0x1B, 0x33, 18)
+                    outputStream.write(selectCodePage)
+                    outputStream.write(setCompactLineSpacing)
+                    textData = textToPrint.toByteArray(Charset.forName("IBM850"))
+                }
             }
             // --- Comandos para la impresora ---
 
@@ -333,7 +342,7 @@ open class BaseActivity : AppCompatActivity() {
             }
 
             // 3. Agregar saltos de línea al final y asegurar que todo se envíe.
-            outputStream.write(byteArrayOf(0x0A, 0x0A, 0x0A, 0x0A))
+            //outputStream.write(byteArrayOf(0x0A, 0x0A, 0x0A, 0x0A))
             outputStream.flush()
 
             println("Datos enviados a la impresora correctamente.")
@@ -362,7 +371,7 @@ open class BaseActivity : AppCompatActivity() {
 
     protected fun performPrintingQr(qrPrint: String): Boolean {
         if (qrPrint == "") {
-            Log.i(CancelActivity.TAG, "no existe valor en el documento")
+            Log.i(CancelActivity.TAG, "No se encontro documento a imprimir")
             printOnSnackBar(getString(R.string.payment_no_receipt))
             return false
         }
@@ -389,8 +398,10 @@ open class BaseActivity : AppCompatActivity() {
 
                 // 3. Agregar saltos de línea al final y asegurar que todo se envíe.
                 blueToothWrapper.outputStream.write(byteArrayOf(0x0A, 0x0A, 0x0A, 0x0A))
+                blueToothWrapper.outputStream.write(byteArrayOf(0x0A, 0x0A, 0x0A, 0x0A))
                 //blueToothWrapper.outputStream.write(documentPrint)
                 blueToothWrapper.outputStream.write(byteArrayOf(0x1b, 'a'.toByte(), 0x01))
+                blueToothWrapper.outputStream.flush()
                 Thread.sleep(2000)
                 blueToothWrapper.outputStream.close()
                 blueToothWrapper.inputStream.close()

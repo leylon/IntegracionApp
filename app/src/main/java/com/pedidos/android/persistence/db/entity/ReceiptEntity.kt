@@ -7,6 +7,9 @@ class ReceiptEntity : Receipt {
     @SerializedName("documentoprint")
     override var documentoPrint: String = ""
     override var qrbase64 : String = ""
+    override var imagenqr: String = ""
+    override var imagenqr2: String = ""
+    override var piedocumentoprint: String = ""
 
     var pdfBytes: ByteArray = byteArrayOf()
 }

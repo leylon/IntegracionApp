@@ -46,6 +46,7 @@ class GeneratedDocumentsActivity : MenuActivity() {
         btnSearch.setOnClickListener { search() }
         rvwProducts.layoutManager = LinearLayoutManager(this)
         rvwProducts.adapter = GeneratedDocumentsAdapter(mutableListOf()) {
+            println("DOCUMENTO SELECCIONADO adapter: $it")
             viewModel.getDocumentToPrint(it.documentTypeTemp, it.documentNumberTemp)}
     }
 
@@ -65,7 +66,14 @@ class GeneratedDocumentsActivity : MenuActivity() {
     }
 
     private fun printDocument(document: ReceiptEntity){
+        println("DOCUMENTO A IMPRIMIR: $document")
         performPrinting(document.documentoPrint)
+        performPrintingQr(document.imagenqr)
+        performPrinting(document.piedocumentoprint)
+        if (document.imagenqr2.trim().isNotEmpty()){
+            performPrintingQr(document.imagenqr2)
+        }
+
     }
 
     private fun showError(error: String?) {

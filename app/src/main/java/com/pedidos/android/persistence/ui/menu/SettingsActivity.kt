@@ -41,7 +41,7 @@ class SettingsActivity : AppCompatActivity() {
         val spinner: Spinner = findViewById(R.id.spnSizeImpresora)
         val spinnerTypePrint: Spinner = findViewById(R.id.spnTypeImpresora)
         val sizes = arrayOf("80mm", "58mm","48mm")
-        val typePrints = arrayOf("SUNMI", "HIOPOS","GENERIC")
+        val typePrints = arrayOf("SUNMI", "HIOPOS","GENERIC","POSD")
         val adapter = ArrayAdapter(
             this, // Contexto
             android.R.layout.simple_spinner_item, // Layout por defecto

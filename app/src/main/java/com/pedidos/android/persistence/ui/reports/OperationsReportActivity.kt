@@ -38,7 +38,9 @@ class OperationsReportActivity : MenuActivity() {
         val factory = OperationsReportViewModel.Companion.Factory(application, getSettings().urlbase)
         viewModel = ViewModelProviders.of(this, factory)[OperationsReportViewModel::class.java]
 
-        viewModel.operationReportResult.observe(this, Observer { onGenerateReportFinished(it!!) })
+        viewModel.operationReportResult.observe(this, Observer {
+            println("REPORTE OPERACIONES: $it")
+            onGenerateReportFinished(it!!) })
         viewModel.showProgress.observe(this, Observer { showProgress(it!!) })
         viewModel.errorMessages.observe(this, Observer {
             if (it != null) {
