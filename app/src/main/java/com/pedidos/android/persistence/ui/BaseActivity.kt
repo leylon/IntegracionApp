@@ -296,6 +296,8 @@ open class BaseActivity : AppCompatActivity() {
                     println("Usando modo SUNMI (UTF-8)")
                     // Para Sunmi, enviamos directamente en UTF-8 sin comandos extraños.
                     // La impresora Sunmi debería interpretar UTF-8 de forma nativa.
+                    val resetFontMode = byteArrayOf(0x1B, 0x21, 0x00)
+                    outputStream.write(resetFontMode)
                     val setMulti = byteArrayOf(0x1C.toByte(), 0x26.toByte())
                     val setUtf8  = getCodePageCommandSunmi(16)
                     outputStream.write(setMulti)
@@ -348,7 +350,7 @@ open class BaseActivity : AppCompatActivity() {
             println("Datos enviados a la impresora correctamente.")
 
             // 4. Pausa final larga antes de cerrar para asegurar que la impresión se complete.
-            Thread.sleep(2000) // Aumentamos un poco el tiempo final por si acaso.
+            Thread.sleep(1500) // Aumentamos un poco el tiempo final por si acaso.
 
             return true
 
@@ -397,12 +399,12 @@ open class BaseActivity : AppCompatActivity() {
                 }
 
                 // 3. Agregar saltos de línea al final y asegurar que todo se envíe.
-                blueToothWrapper.outputStream.write(byteArrayOf(0x0A, 0x0A, 0x0A, 0x0A))
-                blueToothWrapper.outputStream.write(byteArrayOf(0x0A, 0x0A, 0x0A, 0x0A))
+                //blueToothWrapper.outputStream.write(byteArrayOf(0x0A, 0x0A, 0x0A, 0x0A))
+                //blueToothWrapper.outputStream.write(byteArrayOf(0x0A, 0x0A, 0x0A, 0x0A))
                 //blueToothWrapper.outputStream.write(documentPrint)
                 blueToothWrapper.outputStream.write(byteArrayOf(0x1b, 'a'.toByte(), 0x01))
                 blueToothWrapper.outputStream.flush()
-                Thread.sleep(2000)
+                Thread.sleep(1500)
                 blueToothWrapper.outputStream.close()
                 blueToothWrapper.inputStream.close()
                 blueToothWrapper.close()
