@@ -188,7 +188,7 @@
     <string name="sale_add_description_button">Agregar Descripción</string>
     <string name="warranty_size_wrong">Por el momento solo se puede ingresar un producto de garantía.</string>
     <string name="monto_a_pagar_n_0_para_cancelar">Monto a pagar \n\'0\' para cancelar</string>
-    <string name="seleccione_una_tarjeta_nde_pago">SELECCIONE UNA TARJETA \nDE PAGO</string>
+    <string name="seleccione_una_tarjeta_nde_pago">SELECCIONE UNA TARJETA</string>
     <string name="select_payment_other">SELECCIONE OTROS PAGOS</string>
     <string name="cobranza_otros_pagos">Cobranza Otros Pagos</string>
     <string name="tvw_cobranza_fpay">Cobranza Fpay</string>

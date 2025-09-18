@@ -402,6 +402,7 @@ open class BaseActivity : AppCompatActivity() {
                 //blueToothWrapper.outputStream.write(byteArrayOf(0x0A, 0x0A, 0x0A, 0x0A))
                 //blueToothWrapper.outputStream.write(byteArrayOf(0x0A, 0x0A, 0x0A, 0x0A))
                 //blueToothWrapper.outputStream.write(documentPrint)
+                blueToothWrapper.outputStream.write(byteArrayOf(0x0A, 0x0A))
                 blueToothWrapper.outputStream.write(byteArrayOf(0x1b, 'a'.toByte(), 0x01))
                 blueToothWrapper.outputStream.flush()
                 Thread.sleep(1500)
